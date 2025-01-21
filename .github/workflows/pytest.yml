@@ -52,3 +52,5 @@ jobs:
           echo "DATABRICKS_HOST: $DATABRICKS_HOST"
           echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
           pytest --verbose
+
+

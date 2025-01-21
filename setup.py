@@ -1,4 +1,4 @@
-from blue_plugin import NAME, VERSION, DESCRIPTION, REPO_NAME
+from palisades import NAME, VERSION, DESCRIPTION, REPO_NAME
 from blueness.pypi import setup
 
 setup(
@@ -22,3 +22,5 @@ setup(
         ],
     },
 )
+
+
