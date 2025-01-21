@@ -19,7 +19,7 @@ list_of_menu_item = {
         "ICON": roofai_ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction.png?raw=true",
-        "title": "Step by Step Review: Labelling, Training, and Prediction.",
+        "title": "Labelling -> Training -> Inference.",
     },
     "template": {
         "ICON": ICON,
