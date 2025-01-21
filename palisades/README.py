@@ -13,13 +13,13 @@ list_of_menu_item = {
         "ICON": blue_geo_ICON,
         "url": "https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data",
         "marquee": "https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true",
-        "title": 'Integration with ["Satellite imagery for select sudden onset major crisis events."](https://www.maxar.com/open-data/)',
+        "title": '["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/)',
     },
     "Algo: Semantic Segmentation": {
         "ICON": roofai_ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction.png?raw=true",
-        "title": "Integration with [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch).",
+        "title": "[segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)",
     },
     "template": {
         "ICON": ICON,
