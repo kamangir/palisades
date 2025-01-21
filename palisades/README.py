@@ -19,7 +19,7 @@ list_of_menu_item = {
         "ICON": roofai_ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction.png?raw=true",
-        "title": "Labelling -> Training -> Inference.",
+        "title": "Integration with [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch).",
     },
     "template": {
         "ICON": ICON,
