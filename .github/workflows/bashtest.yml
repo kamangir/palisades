@@ -34,13 +34,13 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          ABCLI_AWS_RDS_HOST: ${{ secrets.ABCLI_AWS_RDS_HOST }}
-          ABCLI_AWS_RDS_PASSWORD: ${{ secrets.ABCLI_AWS_RDS_PASSWORD }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+          ENCODED_BLOB_SAS_TOKEN: ${{ secrets.ENCODED_BLOB_SAS_TOKEN }}
         run: |
           echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
           echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
-          echo "ABCLI_AWS_RDS_HOST: $ABCLI_AWS_RDS_HOST"
-          echo "ABCLI_AWS_RDS_PASSWORD: $ABCLI_AWS_RDS_PASSWORD"
+          echo "DATABRICKS_HOST: $DATABRICKS_HOST"
+          echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
 
           ./.github/workflows/bashtest.sh palisades
 
