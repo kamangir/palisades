@@ -1,6 +1,7 @@
 import os
 
 from blue_objects import file, README
+from blue_geo import ICON as blue_geo_ICON
 
 from palisades import NAME, VERSION, ICON, REPO_NAME
 
@@ -8,10 +9,10 @@ from palisades import NAME, VERSION, ICON, REPO_NAME
 
 list_of_menu_item = {
     "Maxar Open Data": {
-        "ICON": ICON,
-        "url": "#",
-        "marquee": "",
-        "title": "",
+        "ICON": blue_geo_ICON,
+        "url": "https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data",
+        "marquee": "https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true",
+        "title": "Source: Maxar Open Data",
     },
     "Step by Step Review": {
         "ICON": ICON,

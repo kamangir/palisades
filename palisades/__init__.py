@@ -6,7 +6,7 @@ DESCRIPTION = (
     f"{ICON} Geospatial AI for Post-Disaster Damage Assessment using Maxar Open Data."
 )
 
-VERSION = "4.3.1"
+VERSION = "4.4.1"
 
 REPO_NAME = NAME
 
