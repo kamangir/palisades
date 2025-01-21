@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
-function test_blue_sandbox_palisades_predict() {
+function test_palisades_predict() {
     local options=$1
 
-    blue_sandbox_palisades_predict \
+    palisades_predict \
         ingest,$options \
         - \
         palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp \

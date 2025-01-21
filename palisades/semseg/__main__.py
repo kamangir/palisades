@@ -4,9 +4,9 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 from roofai.semseg import Profile
 
-from blue_sandbox import NAME
-from blue_sandbox.palisades.semseg import predict
-from blue_sandbox.logger import logger
+from palisades import NAME
+from palisades.semseg import predict
+from palisades.logger import logger
 
 NAME = module.name(__file__, NAME)
 

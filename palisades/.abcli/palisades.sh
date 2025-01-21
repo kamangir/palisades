@@ -12,4 +12,6 @@ function palisades() {
     python3 -m palisades "$@"
 }
 
+abcli_log $(palisades version --show_icon 1)
+
 abcli_source_caller_suffix_path /palisades

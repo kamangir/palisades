@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function blue_sandbox_palisades_ingest() {
+function palisades_ingest() {
     local options=$1
     local target_options=$2
     local datacube_ingest_options=$3

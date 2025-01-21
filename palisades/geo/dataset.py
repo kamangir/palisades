@@ -7,8 +7,8 @@ from blueness import module
 from blue_objects import file
 from roofai.dataset.classes import DatasetTarget
 
-from blue_sandbox import NAME
-from blue_sandbox.logger import logger
+from palisades import NAME
+from palisades.logger import logger
 
 NAME = module.name(__file__, NAME)
 

@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function blue_sandbox_palisades_predict() {
+function palisades_predict() {
     local options=$1
     local do_ingest=$(abcli_option_int "$options" ingest 0)
     local do_tag=$(abcli_option_int "$options" tag 1)
@@ -28,7 +28,7 @@ function blue_sandbox_palisades_predict() {
     abcli_log "semseg[$model_object_name].predict($datacube_id) -$device-@-$profile-> $prediction_object_name."
 
     abcli_eval dryrun=$do_dryrun \
-        python3 -m blue_sandbox.palisades predict \
+        python3 -m palisades.semseg predict \
         --device $device \
         --model_object_name $model_object_name \
         --datacube_id $datacube_id \

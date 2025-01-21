@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function blue_sandbox_palisades_train() {
+function palisades_train() {
     local options=$1
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))

@@ -19,10 +19,10 @@ from roofai.semseg import Profile
 from roofai import fullname as roofai_fullname
 from roofai.semseg.augmentation import get_validation_augmentation, get_preprocessing
 
-from blue_sandbox import NAME
-from blue_sandbox import fullname
-from blue_sandbox.palisades.geo.dataset import GeoDataset
-from blue_sandbox.logger import logger
+from palisades import NAME
+from palisades import fullname
+from palisades.geo.dataset import GeoDataset
+from palisades.logger import logger
 
 
 NAME = module.name(__file__, NAME)

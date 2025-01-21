@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function blue_sandbox_palisades_label() {
+function palisades_label() {
     local options=$1
     local do_download=$(abcli_option_int "$options" download 0)
     local offset=$(abcli_option "$option" offset 0)
