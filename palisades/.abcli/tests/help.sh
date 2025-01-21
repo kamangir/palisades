@@ -17,12 +17,6 @@ function test_palisades_help() {
         "palisades test" \
         "palisades test list" \
         \
-        "palisades browse" \
-        "palisades leaf" \
-        "palisades node" \
-        "palisades node leaf" \
-        \
-        "palisades" \
         "palisades ingest" \
         "palisades label" \
         "palisades predict" \
