@@ -5,8 +5,8 @@ load_env(__name__)
 load_config(__name__)
 
 
-BLUE_PLUGIN_SECRET = os.getenv(
-    "BLUE_PLUGIN_SECRET",
+PALISADES_SECRET = os.getenv(
+    "PALISADES_SECRET",
     "",
 )
 

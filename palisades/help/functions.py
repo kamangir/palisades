@@ -1,5 +1,6 @@
 from typing import List
 
+from abcli.help.generic import help_functions as generic_help_functions
 from blue_options.terminal import show_usage, xtra
 from roofai.help.semseg import (
     train_options,
@@ -11,6 +12,8 @@ from blue_geo.watch.targets.target_list import TargetList
 from blue_geo.help.datacube import scope_details
 from blue_geo.help.datacube import ingest_options as datacube_ingest_options
 from blue_geo.help.datacube.label import options as datacube_label_options
+
+from palisades import ALIAS
 
 target_list = TargetList(catalog="maxar_open_data")
 
@@ -133,9 +136,13 @@ def help_train(
     )
 
 
-help_functions = {
-    "ingest": help_ingest,
-    "label": help_label,
-    "predict": help_predict,
-    "train": help_train,
-}
+help_functions = generic_help_functions(plugin_name=ALIAS)
+
+help_functions.update(
+    {
+        "ingest": help_ingest,
+        "label": help_label,
+        "predict": help_predict,
+        "train": help_train,
+    }
+)

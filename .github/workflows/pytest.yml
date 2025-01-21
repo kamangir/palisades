@@ -3,20 +3,12 @@ name: pytest
 on: [push]
 
 jobs:
-  log-commit-message:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Log commit message
-        run: |
-          echo "Commit message: '${{ github.event.head_commit.message }}'"
-
   build:
     runs-on: ubuntu-latest
     if: "! contains(github.event.head_commit.message, 'no-workflow')"
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.10"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -40,7 +32,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           ABCLI_AWS_RDS_HOST: ${{ secrets.ABCLI_AWS_RDS_HOST }}
           ABCLI_AWS_RDS_PASSWORD: ${{ secrets.ABCLI_AWS_RDS_PASSWORD }}
-          BLUE_PLUGIN_SECRET: ${{ secrets.BLUE_PLUGIN_SECRET }}
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
@@ -48,7 +39,6 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
           echo "ABCLI_AWS_RDS_HOST: $ABCLI_AWS_RDS_HOST"
           echo "ABCLI_AWS_RDS_PASSWORD: $ABCLI_AWS_RDS_PASSWORD"
-          echo "BLUE_PLUGIN_SECRET: $BLUE_PLUGIN_SECRET"
           echo "DATABRICKS_HOST: $DATABRICKS_HOST"
           echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
           pytest --verbose

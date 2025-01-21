@@ -8,6 +8,13 @@ jobs:
     if: "! contains(github.event.head_commit.message, 'no-workflow')"
     steps:
       - uses: actions/checkout@v3
+      - name: Download se_resnext50_32x4d
+        run: |
+          mkdir -pv /home/runner/.cache/torch/hub/checkpoints/
+          curl \
+          --insecure \
+          -L http://data.lip6.fr/cadene/pretrainedmodels/se_resnext50_32x4d-a260b3a4.pth \
+          -o /home/runner/.cache/torch/hub/checkpoints/se_resnext50_32x4d-a260b3a4.pth
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
         with:
