@@ -2,11 +2,9 @@ NAME = "palisades"
 
 ICON = "🧑🏽‍🚒"
 
-DESCRIPTION = (
-    f"{ICON} Geospatial AI for Post-Disaster Damage Assessment using Maxar Open Data."
-)
+DESCRIPTION = f"{ICON} Post-Disaster Land Cover Classification."
 
-VERSION = "4.8.1"
+VERSION = "4.9.1"
 
 REPO_NAME = NAME
 
