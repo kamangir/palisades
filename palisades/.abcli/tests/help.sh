@@ -5,24 +5,28 @@ function test_palisades_help() {
 
     local module
     for module in \
-        "@plugin" \
+        "palisades" \
         \
-        "@plugin pypi" \
-        "@plugin pypi browse" \
-        "@plugin pypi build" \
-        "@plugin pypi install" \
+        "palisades pypi" \
+        "palisades pypi browse" \
+        "palisades pypi build" \
+        "palisades pypi install" \
         \
-        "@plugin pytest" \
+        "palisades pytest" \
         \
-        "@plugin test" \
-        "@plugin test list" \
+        "palisades test" \
+        "palisades test list" \
         \
-        "@plugin browse" \
-        "@plugin leaf" \
-        "@plugin node" \
-        "@plugin node leaf" \
+        "palisades browse" \
+        "palisades leaf" \
+        "palisades node" \
+        "palisades node leaf" \
         \
-        "@plugin task" \
+        "palisades" \
+        "palisades ingest" \
+        "palisades label" \
+        "palisades predict" \
+        "palisades train" \
         \
         "palisades"; do
         abcli_eval ,$options \
@@ -34,5 +38,3 @@ function test_palisades_help() {
 
     return 0
 }
-
-

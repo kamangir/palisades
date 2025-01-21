@@ -1,16 +1,18 @@
 NAME = "palisades"
 
-ICON = "🌀"
+ICON = "🧑🏽‍🚒"
 
-DESCRIPTION = f"{ICON} a git template for an awesome-bash-cli plugin."
+DESCRIPTION = (
+    f"{ICON} Geospatial AI for Post-Disaster Damage Assessment using Maxar Open Data."
+)
 
-VERSION = "3.209.1"
+VERSION = "4.2.1"
 
-REPO_NAME = "palisades"
+REPO_NAME = NAME
 
-MARQUEE = "https://github.com/kamangir/assets/raw/main/palisades/marquee.png?raw=true"
+MARQUEE = "https://github.com/kamangir/assets/blob/main/palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640.gif?raw=true"
 
-ALIAS = "@plugin"
+ALIAS = NAME
 
 
 def fullname() -> str:

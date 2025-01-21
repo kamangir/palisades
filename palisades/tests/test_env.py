@@ -11,6 +11,6 @@ def test_required_env():
 
 def test_palisades_env():
     assert env.BLUE_PLUGIN_SECRET
-    assert env.BLUE_PLUGIN_CONFIG
 
-
+    assert env.PALISADES_QUERY_OBJECT_PALISADES_MAXAR
+    assert env.PALISADES_QUERY_OBJECT_PALISADES_MAXAR_TEST

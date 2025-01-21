@@ -1,4 +1,4 @@
-from palisades.host import signature
+from palisades.palisades.host import signature
 
 
 def test_signature():

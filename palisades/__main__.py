@@ -1,7 +1,7 @@
 from blueness.argparse.generic import main
 
 from palisades import NAME, VERSION, DESCRIPTION, ICON, README
-from palisades.logger import logger
+from palisades.palisades.logger import logger
 
 main(
     ICON=ICON,

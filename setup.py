@@ -9,9 +9,9 @@ setup(
     description=DESCRIPTION,
     packages=[
         NAME,
+        f"{NAME}.geo",
         f"{NAME}.help",
-        f"{NAME}.help.node",
-        f"{NAME}.node",
+        f"{NAME}.semseg",
     ],
     include_package_data=True,
     package_data={
@@ -19,8 +19,7 @@ setup(
             "config.env",
             "sample.env",
             ".abcli/**/*.sh",
+            "*.md",
         ],
     },
 )
-
-

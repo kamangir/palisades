@@ -4,15 +4,41 @@ from blue_objects import file, README
 
 from palisades import NAME, VERSION, ICON, REPO_NAME
 
+# refactor
+
+list_of_menu_item = {
+    "Maxar Open Data": {
+        "ICON": ICON,
+        "url": "#",
+        "marquee": "",
+        "title": "",
+    },
+    "Step by Step Review": {
+        "ICON": ICON,
+        "url": "#",
+        "marquee": "",
+        "title": "",
+    },
+    "template": {
+        "ICON": ICON,
+        "url": "#",
+        "marquee": "",
+        "title": "",
+    },
+}
+
 
 items = [
-    "{}[`{}`](#) [![image]({})](#) {}".format(
-        ICON,
-        f"feature {index}",
-        "https://github.com/kamangir/assets/raw/main/palisades/marquee.png?raw=true",
-        f"description of feature {index} ...",
+    "{}[`{}`]({}) [![image]({})]({}) {}".format(
+        menu_item["ICON"],
+        menu_item_name,
+        menu_item["url"],
+        menu_item["marquee"],
+        menu_item["url"],
+        menu_item["title"],
     )
-    for index in range(1, 4)
+    for menu_item_name, menu_item in list_of_menu_item.items()
+    if menu_item_name != "template"
 ]
 
 
@@ -25,5 +51,3 @@ def build():
         VERSION=VERSION,
         REPO_NAME=REPO_NAME,
     )
-
-

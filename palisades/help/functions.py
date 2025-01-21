@@ -1,84 +1,141 @@
 from typing import List
 
 from blue_options.terminal import show_usage, xtra
-from abcli.help.generic import help_functions as generic_help_functions
+from roofai.help.semseg import (
+    train_options,
+    device_and_profile_details,
+    predict_options,
+)
 
-from palisades import ALIAS
-from palisades.help.node.functions import help_functions as help_node
+from blue_geo.watch.targets.target_list import TargetList
+from blue_geo.help.datacube import scope_details
+from blue_geo.help.datacube import ingest_options as datacube_ingest_options
+from blue_geo.help.datacube.label import options as datacube_label_options
+
+target_list = TargetList(catalog="maxar_open_data")
 
 
-def help_browse(
+def help_ingest(
     tokens: List[str],
     mono: bool,
 ) -> str:
-    options = "actions|repo"
+    options = xtra("~download,dryrun", mono=mono)
 
-    return show_usage(
+    target_options = "".join(
         [
-            "@plugin",
-            "browse",
-            f"[{options}]",
-        ],
-        "browse palisades.",
-        mono=mono,
-    )
-
-
-def help_leaf(
-    tokens: List[str],
-    mono: bool,
-) -> str:
-    options = "dryrun,upload"
-    args = [
-        "[--<keyword-1> <value-1>]",
-        "[--<keyword-2> <value-2>]",
-    ]
-
-    return show_usage(
-        [
-            "@plugin",
-            "leaf",
-            f"[{options}]",
-            "[.|<object-name>]",
+            "target=<target>",
+            xtra(" | <query-object-name>", mono),
         ]
-        + args,
-        "palisades leaf <object-name>.",
+    )
+
+    ingest_options = "".join(
+        [
+            xtra("~ingest_datacubes | ", mono=mono),
+            datacube_ingest_options(mono=mono),
+        ]
+    )
+
+    return show_usage(
+        [
+            "palisades",
+            "ingest",
+            f"[{options}]",
+            f"[{target_options}]",
+            f"[{ingest_options}]",
+        ],
+        "ingest <target>.",
+        {
+            "target: {}".format(" | ".join(target_list.get_list())): [],
+            **scope_details,
+        },
         mono=mono,
     )
 
 
-def help_task(
+def help_label(
+    tokens: List[str],
+    mono: bool,
+) -> str:
+    options = "download,offset=<offset>"
+
+    return show_usage(
+        [
+            "palisades",
+            "label",
+            f"[{options}]",
+            f"[{datacube_label_options(mono=mono)}]",
+            "[.|<query-object-name>]",
+        ],
+        "label <query-object-name>.",
+        mono=mono,
+    )
+
+
+def help_predict(
     tokens: List[str],
     mono: bool,
 ) -> str:
     options = "".join(
         [
-            xtra("dryrun,", mono=mono),
-            "<thing-1+thing-2>|all",
+            "ingest",
+            xtra(",~tag", mono=mono),
         ]
     )
 
     return show_usage(
         [
-            "@plugin",
-            "task",
+            "palisades",
+            "predict",
             f"[{options}]",
-            "[.|<object-name>]",
+            f"[{predict_options(mono=mono)}]",
+            "[..|<model-object-name>]",
+            "[.|<datacube-id>]",
+            "[-|<prediction-object-name>]",
         ],
-        "task -things-> <object-name>.",
+        "<datacube-id> -<model-object-name>-> <prediction-object-name>",
+        device_and_profile_details,
         mono=mono,
     )
 
 
-help_functions = generic_help_functions(plugin_name=ALIAS)
+def help_train(
+    tokens: List[str],
+    mono: bool,
+) -> str:
+    options = xtra("dryrun,~download,review", mono=mono)
 
-help_functions.update(
-    {
-        "browse": help_browse,
-        "leaf": help_leaf,
-        "node": help_node,
-        "task": help_task,
-    }
-)
+    ingest_options = "".join(
+        [
+            "count=<10000>",
+            xtra(",dryrun,upload", mono=mono),
+        ]
+    )
+
+    return show_usage(
+        [
+            "palisades",
+            "train",
+            f"[{options}]",
+            "[.|<query-object-name>]",
+            f"[{ingest_options}]",
+            "[-|<dataset-object-name>]",
+            "[{},epochs=<5>]".format(
+                train_options(
+                    mono=mono,
+                    show_download=False,
+                )
+            ),
+            "[-|<model-object-name>]",
+        ],
+        "train palisades.",
+        device_and_profile_details,
+        mono=mono,
+    )
 
 
+help_functions = {
+    "ingest": help_ingest,
+    "label": help_label,
+    "predict": help_predict,
+    "train": help_train,
+}
