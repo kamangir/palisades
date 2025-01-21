@@ -5,7 +5,7 @@ from blueness.argparse.generic import sys_exit
 from roofai.semseg import Profile
 
 from palisades import NAME
-from palisades.semseg import predict
+from palisades.semseg.predict import predict
 from palisades.logger import logger
 
 NAME = module.name(__file__, NAME)
