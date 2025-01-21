@@ -4,22 +4,22 @@ from blue_objects import file, README
 from blue_geo import ICON as blue_geo_ICON
 from roofai import ICON as roofai_ICON
 
-from palisades import NAME, VERSION, ICON, REPO_NAME
+from palisades import NAME, VERSION, ICON, REPO_NAME, MARQUEE
 
 # refactor
 
 list_of_menu_item = {
-    "Maxar Open Data": {
+    "STAC Catalog: Maxar Open Data": {
         "ICON": blue_geo_ICON,
         "url": "https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data",
         "marquee": "https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true",
-        "title": 'Source of ["Satellite imagery for select sudden onset major crisis events."](https://www.maxar.com/open-data/)',
+        "title": 'Integration with ["Satellite imagery for select sudden onset major crisis events."](https://www.maxar.com/open-data/)',
     },
-    "Step by Step Review": {
-        "ICON": ICON,
-        "url": "#",
-        "marquee": "",
-        "title": "",
+    "Algo: Semantic Segmentation": {
+        "ICON": roofai_ICON,
+        "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
+        "marquee": MARQUEE,
+        "title": "Step by Step Review: Labelling, Training, and Prediction.",
     },
     "template": {
         "ICON": ICON,

@@ -69,11 +69,11 @@ graph LR
 
 |   |   |
 | --- | --- |
-| 🌐[`Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) Source of ["Satellite imagery for select sudden onset major crisis events."](https://www.maxar.com/open-data/) | 🧑🏽‍🚒[`Step by Step Review`](#) [![image]()](#)  |
+| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) Integration with ["Satellite imagery for select sudden onset major crisis events."](https://www.maxar.com/open-data/) | 🏛️[`Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/blob/main/palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640.gif?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) Step by Step Review: Labelling, Training, and Prediction. |
 
 ---
 
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.192.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.5.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.192.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.6.1`](https://github.com/kamangir/palisades).
