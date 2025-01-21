@@ -1,41 +1,71 @@
-# 🌀 blue-plugin
+# 🧑🏽‍🚒 `palisades`: Post-Disaster Land Cover Classification
 
-🌀 `blue-plugin` is a git template for an 🪄 [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`) plugin, to build [things like these](https://github.com/kamangir?tab=repositories), that out-of-the-box support,
+[Semantic Segmentation](https://github.com/kamangir/roofai) on [Maxar Open Data](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) acquisitions. 
 
-- a [github repo](https://github.com/) with [actions](https://github.com/features/actions).
-- [pylint](https://pypi.org/project/pylint/).
-- [pytest](https://docs.pytest.org/).
-- a pip-installable python + bash package published to [pypi](https://pypi.org/).
-- a bash [command interface](./blue_plugin/.abcli/blue_plugin.sh).
-- [bash testing](./.github/workflows/bashtest.yml).
-- secret management through [ssm](https://docs.aws.amazon.com/secretsmanager/).
-- in-repo [compiled](./blue_plugin/README.py) READMEs based on [templates](./template.md).
-- [object management](https://github.com/kamangir/blue-objects) on [Amazon S3](https://aws.amazon.com/s3/) with metadata tracking by [MLflow](https://mlflow.org/).
-- [workflow management](https://github.com/kamangir/notebooks-and-scripts/tree/main/blueflow/workflow) on [AWS Batch](https://aws.amazon.com/batch/).
-- [docker](https://github.com/kamangir/notebooks-and-scripts/blob/main/blueflow/.abcli/docker.sh) and [SageMaker](https://github.com/kamangir/notebooks-and-scripts/blob/main/blueflow/.abcli/sagemaker.sh) enabled.
+```mermaid
+graph LR
+    palisades_ingest_query_ingest["palisades ingest~~- <query-object-name> scope=<scope>"]
 
-## installation
+    palisades_ingest_target["palisades ingest~~- target=<target> ~ingest_datacubes"]
 
-```bash
-pip install blue-plugin
+    palisades_ingest_target_ingest["palisades ingest~~- target=<target> scope=<scope>"]
+
+    palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
+
+    palisades_train["palisades train~~- <query-object-name> count=<count> <dataset-object-name> epochs=<5> <model-object-name>"]
+
+    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name>"]
+
+    target["🎯 target"]:::folder
+    query_object["📂 query object"]:::folder
+    datacube_1["🧊 datacube 1"]:::folder
+    datacube_2["🧊 datacube 2"]:::folder
+    datacube_3["🧊 datacube 3"]:::folder
+    dataset_object["🏛️ dataset object"]:::folder
+    model_object["🏛️ model object"]:::folder
+    prediction_object["📂 prediction object"]:::folder
+
+    query_object --> datacube_1
+    query_object --> datacube_2
+    query_object --> datacube_3
+
+    query_object --> palisades_ingest_query_ingest
+    palisades_ingest_query_ingest --> datacube_1
+    palisades_ingest_query_ingest --> datacube_2
+    palisades_ingest_query_ingest --> datacube_3
+
+    target --> palisades_ingest_target
+    palisades_ingest_target --> query_object
+
+    target --> palisades_ingest_target_ingest
+    palisades_ingest_target_ingest --> query_object
+    palisades_ingest_target_ingest --> datacube_1
+    palisades_ingest_target_ingest --> datacube_2
+    palisades_ingest_target_ingest --> datacube_3
+
+    query_object --> palisades_label
+    palisades_label --> datacube_1
+
+    query_object --> palisades_train
+    palisades_train --> dataset_object
+    palisades_train --> model_object
+
+    model_object --> palisades_predict
+    datacube_1 --> palisades_predict
+    palisades_predict --> prediction_object
+
+    classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
 
-## creating a blue-plugin
+<details>
+<summary>palisades help</summary>
 
-1️⃣ create a new repository from [this template](https://github.com/kamangir/blue-plugin),
+--help-- palisades ingest help
+--help-- palisades label help
+--help-- palisades train help
+--help-- palisades predict help
 
-2️⃣ complete `<repo-name>` and `<plugin-name>` and run,
-
-```bash
-@git clone <repo-name> cd
-
-@plugins transform <repo-name>
-
-@init
-<plugin-name> help
-```
-
-## features
+</details>
 
 --table--
 

@@ -1,6 +1,12 @@
 blueness
-blue-options
 abcli
+blue-options
+blue_objects
+blue_geo
+blueflow
+blue_plugin
+roofai
+
 boto3
 geojson
 geopandas
