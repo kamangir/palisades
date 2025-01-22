@@ -2,7 +2,7 @@
 
 ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
 
-## Objects
+---
 
 Prediction on a train datacube: 
 [predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc](https://kamangir-public.s3.ca-central-1.amazonaws.com/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc.tar.gz)
@@ -37,8 +37,3 @@ Prediction result template:
 ---
 
 total: 10 files, 821 MB.
-
-## Tech Stack
-
-- ML: [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)
-- Catalog: https://maxar-opendata.s3.amazonaws.com/events/catalog.json

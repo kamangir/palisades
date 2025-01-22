@@ -2,7 +2,7 @@
 
 ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
 
-## Objects
+---
 
 Prediction on a train datacube: 
 object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc
