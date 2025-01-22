@@ -80,5 +80,9 @@ def build():
                 [],
                 "docs/release-one.md",
             ),
+            (
+                [],
+                "docs/building-analytics.md",
+            ),
         ]
     )
