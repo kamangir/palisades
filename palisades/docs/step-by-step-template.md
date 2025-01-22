@@ -12,7 +12,7 @@ palisades ingest ~upload \
 $PALISADES_QUERY_OBJECT_PALISADES_MAXAR
 ```
 
-[palisades-Palisades-Maxar-query-2025-01-16-181ejb](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-Palisades-Maxar-query-2025-01-16-181ejb.tar.gz)
+object:::palisades-Palisades-Maxar-query-2025-01-16-181ejb
 
 <details>
 <summary>details</summary>
@@ -65,14 +65,14 @@ datacube.label
 
 ## 4️⃣ creating a single-datacube dataset,
 
-[palisades-dataset-v1](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-dataset-v1.tar.gz)
+object:::palisades-dataset-v1
 
 ```yaml
 datacube_id:
 - datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00
 ```
 
-[datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00](https://kamangir-public.s3.ca-central-1.amazonaws.com/datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00.tar.gz)
+object:::datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00
 
 ```bash
 palisades label \
@@ -126,7 +126,7 @@ roofai dataset ingest \
   --val_count 1000
 ```
 
-[palisades-dataset-v1-ingest-2025-01-19-v48x7l](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-dataset-v1-ingest-2025-01-19-v48x7l.tar.gz)
+object:::palisades-dataset-v1-ingest-2025-01-19-v48x7l
 
 | | |
 |-|-|
@@ -151,7 +151,7 @@ source: palisades-dataset-v1
 
 dataset: `125 X test + 1,002 X train + 125 X val`.
 
-[palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp.tar.gz)
+object:::palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/predict-00000.png?raw=true)
 
@@ -204,7 +204,7 @@ palisades predict ingest \
     datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00
 ```
 
-[predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0](https://kamangir-public.s3.ca-central-1.amazonaws.com/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0.tar.gz)
+object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0
 
 | | |
 |-|-|
@@ -217,9 +217,8 @@ predict:
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/prediction.png?raw=true)
 
-[palisades-round-one-2025-01-21-le9rww](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-round-one-2025-01-21-le9rww.tar.gz)
+object:::palisades-round-one-2025-01-21-le9rww
 
 -> [release one](./release-one.md)
 
 ✅
-

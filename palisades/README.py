@@ -45,11 +45,27 @@ items = [
 
 
 def build():
-    return README.build(
-        items=items,
-        path=os.path.join(file.path(__file__), ".."),
-        ICON=ICON,
-        NAME=NAME,
-        VERSION=VERSION,
-        REPO_NAME=REPO_NAME,
+    return all(
+        README.build(
+            items=items,
+            path=os.path.join(file.path(__file__), path),
+            ICON=ICON,
+            NAME=NAME,
+            VERSION=VERSION,
+            REPO_NAME=REPO_NAME,
+        )
+        for items, path in [
+            (
+                items,
+                "..",
+            ),
+            (
+                [],
+                "docs/step-by-step.md",
+            ),
+            (
+                [],
+                "docs/release-one.md",
+            ),
+        ]
     )
