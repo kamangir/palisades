@@ -42,5 +42,4 @@ total: 10 files, 821 MB.
 
 - ML: [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)
 - Catalog: https://maxar-opendata.s3.amazonaws.com/events/catalog.json
-- Inspired by: https://github.com/microsoft/building-damage-assessment
 - Triggered by: https://www.linkedin.com/feed/update/urn:li:activity:7282676832011730944/, https://www.satellite-image-deep-learning.com/p/building-damage-assessment
