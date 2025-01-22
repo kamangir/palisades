@@ -13,6 +13,7 @@ from blue_geo.help.datacube import scope_details
 from blue_geo.help.datacube import ingest_options as datacube_ingest_options
 from blue_geo.help.datacube.label import options as datacube_label_options
 
+from palisades.help.buildings import help_functions as help_buildings
 from palisades import ALIAS
 
 target_list = TargetList(catalog="maxar_open_data")
@@ -140,6 +141,7 @@ help_functions = generic_help_functions(plugin_name=ALIAS)
 
 help_functions.update(
     {
+        "buildings": help_buildings,
         "ingest": help_ingest,
         "label": help_label,
         "predict": help_predict,

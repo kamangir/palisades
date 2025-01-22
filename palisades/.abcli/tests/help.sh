@@ -5,7 +5,8 @@ function test_palisades_help() {
 
     local module
     for module in \
-        "palisades" \
+        "palisades buildings" \
+        "palisades buildings download" \
         \
         "palisades pypi" \
         "palisades pypi browse" \
