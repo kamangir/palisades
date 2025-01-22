@@ -17,11 +17,17 @@ list_of_menu_item = {
         "marquee": "https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true",
         "title": '["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/)',
     },
-    "Algo: Semantic Segmentation": {
+    "Vision Algo: Semantic Segmentation": {
         "ICON": roofai_ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true",
         "title": "[segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)",
+    },
+    "Analytics: Building Damage": {
+        "ICON": ICON,
+        "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analytics.md",
+        "marquee": "https://github.com/kamangir/assets/blob/main/palisades/buildings.png?raw=true",
+        "title": "Microsoft, OSM, Google, through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
     },
     "template": {
         "ICON": ICON,
