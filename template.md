@@ -80,7 +80,7 @@ graph LR
 
 ---
 
-This workflow is inspired by https://github.com/microsoft/building-damage-assessment and `palisades buildings download` calls `download_building_footprints.py` from the same repo - through https://www.satellite-image-deep-learning.com/p/building-damage-assessment.
+This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 
