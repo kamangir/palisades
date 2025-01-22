@@ -75,4 +75,8 @@ graph LR
 
 ---
 
+Inspired by: https://github.com/microsoft/building-damage-assessment
+
+---
+
 --signature--
