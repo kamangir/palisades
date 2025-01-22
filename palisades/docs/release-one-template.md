@@ -2,6 +2,8 @@
 
 ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
 
+---
+
 Prediction on a train datacube: 
 object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc
 
@@ -31,5 +33,7 @@ object:::Sentinel-2-Shapefile-Index-v3
 
 Prediction result template: 
 object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0
+
+---
 
 total: 10 files, 821 MB. 
