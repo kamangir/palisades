@@ -217,4 +217,6 @@ predict:
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/prediction.png?raw=true)
 
+[palisades-round-one-2025-01-21-le9rww](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-round-one-2025-01-21-le9rww.tar.gz)
+
 ✅

@@ -14,3 +14,5 @@ def test_palisades_env():
     assert env.PALISADES_QUERY_OBJECT_PALISADES_MAXAR_TEST
 
     assert env.PALISADES_DEFAULT_FIRE_MODEL
+
+    assert env.PALISADES_QGIS_TEMPLATE_PREDICT
