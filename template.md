@@ -75,7 +75,7 @@ graph LR
 
 ---
 
-Inspired by: https://github.com/microsoft/building-damage-assessment
+Inspired by https://github.com/microsoft/building-damage-assessment, through https://www.satellite-image-deep-learning.com/p/building-damage-assessment.
 
 ---
 
