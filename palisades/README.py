@@ -1,9 +1,11 @@
 import os
 
+from blue_options.help.functions import get_help
 from blue_objects import file, README
 from blue_geo import ICON as blue_geo_ICON
 from roofai import ICON as roofai_ICON
 
+from palisades.help.functions import help_functions
 from palisades import NAME, VERSION, ICON, REPO_NAME, MARQUEE
 
 # refactor
@@ -18,7 +20,7 @@ list_of_menu_item = {
     "Algo: Semantic Segmentation": {
         "ICON": roofai_ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md",
-        "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction.png?raw=true",
+        "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true",
         "title": "[segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)",
     },
     "template": {
@@ -51,6 +53,11 @@ def build():
             path=os.path.join(file.path(__file__), path),
             ICON=ICON,
             NAME=NAME,
+            help_function=lambda tokens: get_help(
+                tokens,
+                help_functions,
+                mono=True,
+            ),
             VERSION=VERSION,
             REPO_NAME=REPO_NAME,
         )

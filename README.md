@@ -64,20 +64,65 @@ graph LR
 <details>
 <summary>palisades help</summary>
 
---help-- palisades ingest help
---help-- palisades label help
---help-- palisades train help
---help-- palisades predict help
+```bash
+palisades \
+	ingest \
+	[~download,dryrun] \
+	[target=<target> | <query-object-name>] \
+	[~ingest_datacubes | ~copy_template,dryrun,overwrite,scope=<scope>,upload]
+ . ingest <target>.
+   target: Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | Palisades-Maxar | Palisades-Maxar-test
+   scope: all + metadata + raster + rgb + rgbx + <.jp2> + <.tif> + <.tiff>
+      all: ALL files.
+      metadata (default): any < 1 MB.
+      raster: all raster.
+      rgb: rgb.
+      rgbx: rgb and what is needed to build rgb.
+      <suffix>: any *<suffix>.
+```
+```bash
+palisades \
+	label \
+	[download,offset=<offset>] \
+	[~download,dryrun,~QGIS,~rasterize,~sync,upload] \
+	[.|<query-object-name>]
+ . label <query-object-name>.
+```
+```bash
+palisades \
+	train \
+	[dryrun,~download,review] \
+	[.|<query-object-name>] \
+	[count=<10000>,dryrun,upload] \
+	[-|<dataset-object-name>] \
+	[device=<device>,dryrun,profile=<profile>,upload,epochs=<5>] \
+	[-|<model-object-name>]
+ . train palisades.
+   device: cpu | cuda
+   profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
+```
+```bash
+palisades \
+	predict \
+	[ingest,~tag] \
+	[device=<device>,~download,dryrun,profile=<profile>,upload] \
+	[-|<model-object-name>] \
+	[.|<datacube-id>] \
+	[-|<prediction-object-name>]
+ . <datacube-id> -<model-object-name>-> <prediction-object-name>
+   device: cpu | cuda
+   profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
+```
 
 </details>
 
 |   |   |
 | --- | --- |
-| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) |
+| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) |
 
 ---
 
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.29.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.30.1`](https://github.com/kamangir/palisades).
