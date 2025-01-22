@@ -91,7 +91,7 @@ def help_predict(
             "predict",
             f"[{options}]",
             f"[{predict_options(mono=mono)}]",
-            "[..|<model-object-name>]",
+            "[-|<model-object-name>]",
             "[.|<datacube-id>]",
             "[-|<prediction-object-name>]",
         ],

@@ -10,10 +10,10 @@ function palisades_predict() {
     local device=$(abcli_option "$predict_options" device $device)
     local do_dryrun=$(abcli_option_int "$predict_options" dryrun 0)
     local do_download=$(abcli_option_int "$predict_options" download $(abcli_not $do_dryrun))
-    local do_upload=$(abcli_option_int "$predict_options" upload $(abcli_not $do_dryrun))
+    local do_upload=$(abcli_option_int "$predict_options" upload 0)
     local profile=$(abcli_option "$predict_options" profile VALIDATION)
 
-    local model_object_name=$(abcli_clarify_object $3 ..)
+    local model_object_name=$(abcli_clarify_object $3 $PALISADES_DEFAULT_FIRE_MODEL)
     [[ "$do_download" == 1 ]] &&
         abcli_download - $model_object_name
 
@@ -24,6 +24,10 @@ function palisades_predict() {
             $datacube_id
 
     local prediction_object_name=$(abcli_clarify_object $5 predict-$datacube_id-$(abcli_string_timestamp_short))
+    abcli_clone \
+        - \
+        $PALISADES_QGIS_TEMPLATE_PREDICT \
+        $prediction_object_name
 
     abcli_log "semseg[$model_object_name].predict($datacube_id) -$device-@-$profile-> $prediction_object_name."
 
@@ -40,7 +44,7 @@ function palisades_predict() {
     [[ "$do_tag" == 1 ]] &&
         abcli_mlflow_tags_set \
             $prediction_object_name \
-            datacube_id=$datacube_id,model=$model_object_name,profile=$profile
+            contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $prediction_object_name
