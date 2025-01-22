@@ -10,7 +10,7 @@ function palisades_predict() {
     local device=$(abcli_option "$predict_options" device $device)
     local do_dryrun=$(abcli_option_int "$predict_options" dryrun 0)
     local do_download=$(abcli_option_int "$predict_options" download $(abcli_not $do_dryrun))
-    local do_upload=$(abcli_option_int "$predict_options" upload $(abcli_not $do_dryrun))
+    local do_upload=$(abcli_option_int "$predict_options" upload 0)
     local profile=$(abcli_option "$predict_options" profile VALIDATION)
 
     local model_object_name=$(abcli_clarify_object $3 $PALISADES_DEFAULT_FIRE_MODEL)

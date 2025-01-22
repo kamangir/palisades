@@ -205,6 +205,10 @@ def predict(
         prediction_object_name,
         "predict",
         {
+            "datacube_id": datacube_id,
             "elapsed_time": timer.elapsed_time,
+            "model": model_object_name,
+            "output_filename": file.name_and_extension(output_filename),
+            "reference_filename": reference_filename,
         },
     )
