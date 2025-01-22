@@ -19,3 +19,6 @@ pylint
 pytest
 python-dotenv[cli]
 tqdm
+
+osmnx
+pyproj
