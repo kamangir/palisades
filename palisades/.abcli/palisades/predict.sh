@@ -13,7 +13,7 @@ function palisades_predict() {
     local do_upload=$(abcli_option_int "$predict_options" upload $(abcli_not $do_dryrun))
     local profile=$(abcli_option "$predict_options" profile VALIDATION)
 
-    local model_object_name=$(abcli_clarify_object $3 ..)
+    local model_object_name=$(abcli_clarify_object $3 $PALISADES_DEFAULT_FIRE_MODEL)
     [[ "$do_download" == 1 ]] &&
         abcli_download - $model_object_name
 

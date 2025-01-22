@@ -157,6 +157,11 @@ dataset: `125 X test + 1,002 X train + 125 X val`.
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/train-summary.png?raw=true)
 
+```bash
+$PALISADES_DEFAULT_FIRE_MODEL
+```
+
+
 ```json
 {
   "activation": "sigmoid",
@@ -195,7 +200,7 @@ palisades train - \
 ```bash
 palisades predict ingest \
     profile=FULL,upload \
-    palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp \
+    $PALISADES_DEFAULT_FIRE_MODEL \
     datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00
 ```
 
