@@ -2,6 +2,10 @@
 
 [Semantic Segmentation](https://github.com/kamangir/roofai) on [Maxar Open Data](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) acquisitions. 
 
+```bash
+pip install palisades
+```
+
 ```mermaid
 graph LR
     palisades_ingest_query_ingest["palisades ingest~~- <query-object-name> scope=<scope>"]
