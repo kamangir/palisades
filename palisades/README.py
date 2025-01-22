@@ -27,7 +27,7 @@ list_of_menu_item = {
         "ICON": ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analytics.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/buildings.png?raw=true",
-        "title": "Microsoft, OSM, Google, through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
+        "title": "Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
     },
     "template": {
         "ICON": ICON,
