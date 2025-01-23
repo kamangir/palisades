@@ -10,15 +10,15 @@ pip install palisades
 graph LR
     palisades_ingest_query_ingest["palisades ingest~~- <query-object-name> scope=<scope>"]
 
-    palisades_ingest_target["palisades ingest~~- target=<target> ~ingest_datacubes"]
-
     palisades_ingest_target_ingest["palisades ingest~~- target=<target> scope=<scope>"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
 
     palisades_train["palisades train~~- <query-object-name> count=<count> <dataset-object-name> epochs=<5> <model-object-name>"]
 
-    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name>"]
+    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> country_code=<iso-code>,source=microsoft|osm|google"]
+
+    palisades_buildings_download_footprints["palisades buildings download_footprints filename=<filename> <input-object-name> country_code=<iso-code>,source=microsoft|osm|google <output-object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -38,9 +38,6 @@ graph LR
     palisades_ingest_query_ingest --> datacube_2
     palisades_ingest_query_ingest --> datacube_3
 
-    target --> palisades_ingest_target
-    palisades_ingest_target --> query_object
-
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
     palisades_ingest_target_ingest --> datacube_1
@@ -57,6 +54,9 @@ graph LR
     model_object --> palisades_predict
     datacube_1 --> palisades_predict
     palisades_predict --> prediction_object
+
+    prediction_object --> palisades_buildings_download_footprints
+    palisades_buildings_download_footprints --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -75,7 +75,7 @@ graph LR
 
 ---
 
-Inspired by https://github.com/microsoft/building-damage-assessment, through https://www.satellite-image-deep-learning.com/p/building-damage-assessment.
+This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download_footprints` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 

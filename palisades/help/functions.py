@@ -13,6 +13,9 @@ from blue_geo.help.datacube import scope_details
 from blue_geo.help.datacube import ingest_options as datacube_ingest_options
 from blue_geo.help.datacube.label import options as datacube_label_options
 
+from palisades.help.buildings import help_functions as help_buildings
+from palisades.help.buildings import query_options as building_query_options
+from palisades.help.buildings import query_details as building_query_details
 from palisades import ALIAS
 
 target_list = TargetList(catalog="maxar_open_data")
@@ -85,6 +88,13 @@ def help_predict(
         ]
     )
 
+    query_options = "".join(
+        [
+            xtra("~download_footprints | ", mono=mono),
+            building_query_options(mono=mono),
+        ]
+    )
+
     return show_usage(
         [
             "palisades",
@@ -94,9 +104,13 @@ def help_predict(
             "[-|<model-object-name>]",
             "[.|<datacube-id>]",
             "[-|<prediction-object-name>]",
+            f"[{query_options}]",
         ],
         "<datacube-id> -<model-object-name>-> <prediction-object-name>",
-        device_and_profile_details,
+        {
+            **device_and_profile_details,
+            **building_query_details,
+        },
         mono=mono,
     )
 
@@ -140,6 +154,7 @@ help_functions = generic_help_functions(plugin_name=ALIAS)
 
 help_functions.update(
     {
+        "buildings": help_buildings,
         "ingest": help_ingest,
         "label": help_label,
         "predict": help_predict,

@@ -19,3 +19,13 @@ pylint
 pytest
 python-dotenv[cli]
 tqdm
+
+fiona
+osmnx
+pyproj
+dask_geopandas
+deltalake
+mercantile
+planetary_computer
+s3fs
+adlfs

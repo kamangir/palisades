@@ -10,15 +10,15 @@ pip install palisades
 graph LR
     palisades_ingest_query_ingest["palisades<br>ingest -<br>&lt;query-object-name&gt;<br>scope=&lt;scope&gt;"]
 
-    palisades_ingest_target["palisades<br>ingest -<br>target=&lt;target&gt;<br>~ingest_datacubes"]
-
     palisades_ingest_target_ingest["palisades<br>ingest -<br>target=&lt;target&gt;<br>scope=&lt;scope&gt;"]
 
     palisades_label["palisades<br>label<br>offset=&lt;offset&gt; -<br>&lt;query-object-name&gt;"]
 
     palisades_train["palisades<br>train -<br>&lt;query-object-name&gt;<br>count=&lt;count&gt;<br>&lt;dataset-object-name&gt;<br>epochs=&lt;5&gt;<br>&lt;model-object-name&gt;"]
 
-    palisades_predict["palisades<br>predict ingest -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;"]
+    palisades_predict["palisades<br>predict ingest -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google"]
+
+    palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints<br>filename=&lt;filename&gt;<br>&lt;input-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google<br>&lt;output-object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -38,9 +38,6 @@ graph LR
     palisades_ingest_query_ingest --> datacube_2
     palisades_ingest_query_ingest --> datacube_3
 
-    target --> palisades_ingest_target
-    palisades_ingest_target --> query_object
-
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
     palisades_ingest_target_ingest --> datacube_1
@@ -57,6 +54,9 @@ graph LR
     model_object --> palisades_predict
     datacube_1 --> palisades_predict
     palisades_predict --> prediction_object
+
+    prediction_object --> palisades_buildings_download_footprints
+    palisades_buildings_download_footprints --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -108,25 +108,32 @@ palisades \
 	[device=<device>,~download,dryrun,profile=<profile>,upload] \
 	[-|<model-object-name>] \
 	[.|<datacube-id>] \
-	[-|<prediction-object-name>]
+	[-|<prediction-object-name>] \
+	[~download_footprints | country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>]
  . <datacube-id> -<model-object-name>-> <prediction-object-name>
    device: cpu | cuda
    profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
+   country-name: for Microsoft, optional, overrides <iso-code>.
+   iso-code: Country Alpha2 ISO code: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+      Canada: CA
+      US: US
+   source: microsoft | osm | google
+   calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
 ```
 
 </details>
 
-|   |   |
-| --- | --- |
-| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) |
+|   |   |   |
+| --- | --- | --- |
+| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Vision Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) | 🧑🏽‍🚒[`Analytics: Building Damage`](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) [![image](https://github.com/kamangir/assets/blob/main/palisades/buildings.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) |
 
 ---
 
-Inspired by https://github.com/microsoft/building-damage-assessment, through https://www.satellite-image-deep-learning.com/p/building-damage-assessment.
+This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download_footprints` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.37.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.51.1`](https://github.com/kamangir/palisades).

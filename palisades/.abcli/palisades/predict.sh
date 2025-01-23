@@ -29,6 +29,8 @@ function palisades_predict() {
         $PALISADES_QGIS_TEMPLATE_PREDICT \
         $prediction_object_name
 
+    local buildings_query_options=$6
+
     abcli_log "semseg[$model_object_name].predict($datacube_id) -$device-@-$profile-> $prediction_object_name."
 
     abcli_eval dryrun=$do_dryrun \
@@ -37,17 +39,26 @@ function palisades_predict() {
         --model_object_name $model_object_name \
         --datacube_id $datacube_id \
         --prediction_object_name $prediction_object_name \
-        --profile $profile \
-        "${@:6}"
-    local status="$?"
+        --profile $profile
+    [[ $? -ne 0 ]] && return 1
 
     [[ "$do_tag" == 1 ]] &&
         abcli_mlflow_tags_set \
             $prediction_object_name \
             contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile
 
+    local do_download_building_footprints=$(abcli_option_int "$buildings_query_options" download_footprints 1)
+    if [[ "$do_download_building_footprints" == 1 ]]; then
+        palisades_buildings_download_footprints \
+            ~download,dryrun=$do_dryrun \
+            $prediction_object_name \
+            ,$buildings_query_options \
+            $prediction_object_name
+        [[ $? -ne 0 ]] && return 1
+    fi
+
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $prediction_object_name
 
-    return $status
+    return 0
 }
