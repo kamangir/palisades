@@ -12,15 +12,14 @@ def help_download(
         [
             xtra("~download,dryrun,", mono=mono),
             "filename=<filename>",
-            xtra(",overwrite,", mono=mono),
-            xtra("upload", mono=mono),
+            xtra(",upload", mono=mono),
         ]
     )
 
     query_options = "".join(
         [
             "country_code=<iso-code>",
-            xtra(",country_name=<country-name>,", mono=mono),
+            xtra(",country_name=<country-name>,overwrite,", mono=mono),
             "source=<source>",
         ]
     )
