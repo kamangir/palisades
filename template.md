@@ -16,7 +16,7 @@ graph LR
 
     palisades_train["palisades train~~- <query-object-name> count=<count> <dataset-object-name> epochs=<5> <model-object-name>"]
 
-    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name>"]
+    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> country_code=<iso-code>,source=microsoft|osm|google"]
 
     palisades_buildings_download["palisades buildings download filename=<filename> <input-object-name> country_code=<iso-code>,source=microsoft|osm|google <output-object-name>"]
 
