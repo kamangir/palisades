@@ -35,6 +35,11 @@ PALISADES_TEST_PREDICTION_OBJECT = os.getenv(
     "",
 )
 
+PALISADES_TEST_DATACUBE = os.getenv(
+    "PALISADES_TEST_DATACUBE",
+    "",
+)
+
 PALISADES_DEFAULT_BUFFER_M_str = os.getenv(
     "PALISADES_DEFAULT_BUFFER_M",
     "",

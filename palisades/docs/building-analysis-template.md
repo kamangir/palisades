@@ -7,7 +7,7 @@
 
 palisades predict ingest \
 	profile=VALIDATION,~upload - \
-	datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00 . \
+	$PALISADES_TEST_DATACUBE . \
 	country_code=US,source=microsoft
 
 @open QGIS .
