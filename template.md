@@ -10,8 +10,6 @@ pip install palisades
 graph LR
     palisades_ingest_query_ingest["palisades ingest~~- <query-object-name> scope=<scope>"]
 
-    palisades_ingest_target["palisades ingest~~- target=<target> ~ingest_datacubes"]
-
     palisades_ingest_target_ingest["palisades ingest~~- target=<target> scope=<scope>"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
@@ -39,9 +37,6 @@ graph LR
     palisades_ingest_query_ingest --> datacube_1
     palisades_ingest_query_ingest --> datacube_2
     palisades_ingest_query_ingest --> datacube_3
-
-    target --> palisades_ingest_target
-    palisades_ingest_target --> query_object
 
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
