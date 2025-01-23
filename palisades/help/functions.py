@@ -90,7 +90,7 @@ def help_predict(
 
     query_options = "".join(
         [
-            xtra("~download_buildings | ", mono=mono),
+            xtra("~download_footprints | ", mono=mono),
             building_query_options(mono=mono),
         ]
     )

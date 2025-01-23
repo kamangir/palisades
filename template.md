@@ -18,7 +18,7 @@ graph LR
 
     palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> country_code=<iso-code>,source=microsoft|osm|google"]
 
-    palisades_buildings_download["palisades buildings download filename=<filename> <input-object-name> country_code=<iso-code>,source=microsoft|osm|google <output-object-name>"]
+    palisades_buildings_download_footprints["palisades buildings download_footprints filename=<filename> <input-object-name> country_code=<iso-code>,source=microsoft|osm|google <output-object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -55,8 +55,8 @@ graph LR
     datacube_1 --> palisades_predict
     palisades_predict --> prediction_object
 
-    prediction_object --> palisades_buildings_download
-    palisades_buildings_download --> prediction_object
+    prediction_object --> palisades_buildings_download_footprints
+    palisades_buildings_download_footprints --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -75,7 +75,7 @@ graph LR
 
 ---
 
-This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
+This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download_footprints` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 

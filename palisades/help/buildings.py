@@ -25,7 +25,7 @@ query_details = {
 }
 
 
-def help_download(
+def help_download_footprints(
     tokens: List[str],
     mono: bool,
 ) -> str:
@@ -41,7 +41,7 @@ def help_download(
         [
             "palisades",
             "buildings",
-            "download",
+            "download_footprints",
             f"[{options}]",
             "[.|<input-object-name>]",
             f"[{query_options(mono=mono)}]",
@@ -54,5 +54,5 @@ def help_download(
 
 
 help_functions = {
-    "download": help_download,
+    "download_footprints": help_download_footprints,
 }

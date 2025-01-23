@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function palisades_buildings_download() {
+function palisades_buildings_download_footprints() {
     local options=$1
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" dryrun $(abcli_not $do_dryrun))

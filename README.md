@@ -18,7 +18,7 @@ graph LR
 
     palisades_predict["palisades<br>predict ingest -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google"]
 
-    palisades_buildings_download["palisades<br>buildings<br>download<br>filename=&lt;filename&gt;<br>&lt;input-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google<br>&lt;output-object-name&gt;"]
+    palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints<br>filename=&lt;filename&gt;<br>&lt;input-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google<br>&lt;output-object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -55,8 +55,8 @@ graph LR
     datacube_1 --> palisades_predict
     palisades_predict --> prediction_object
 
-    prediction_object --> palisades_buildings_download
-    palisades_buildings_download --> prediction_object
+    prediction_object --> palisades_buildings_download_footprints
+    palisades_buildings_download_footprints --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -109,7 +109,7 @@ palisades \
 	[-|<model-object-name>] \
 	[.|<datacube-id>] \
 	[-|<prediction-object-name>] \
-	[~download_buildings | country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>]
+	[~download_footprints | country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>]
  . <datacube-id> -<model-object-name>-> <prediction-object-name>
    device: cpu | cuda
    profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
@@ -129,11 +129,11 @@ palisades \
 
 ---
 
-This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
+This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download_footprints` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.50.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.194.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.51.1`](https://github.com/kamangir/palisades).
