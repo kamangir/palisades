@@ -6,9 +6,9 @@
 @select building-analysis-$(@@timestamp)
 
 palisades predict ingest \
-	profile=VALIDATION,~upload - \
-	$PALISADES_TEST_DATACUBE . \
-	country_code=US,source=microsoft
+    profile=FULL,~upload - \
+    $PALISADES_TEST_DATACUBE . \
+    country_code=US,source=microsoft
 
 @open QGIS .
 ```

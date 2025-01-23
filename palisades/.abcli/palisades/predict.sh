@@ -31,6 +31,8 @@ function palisades_predict() {
 
     local buildings_query_options=$6
 
+    local analysis_options=$7
+
     abcli_log "semseg[$model_object_name].predict($datacube_id) -$device-@-$profile-> $prediction_object_name."
 
     abcli_eval dryrun=$do_dryrun \
@@ -53,6 +55,14 @@ function palisades_predict() {
             ~download,dryrun=$do_dryrun \
             $prediction_object_name \
             ,$buildings_query_options \
+            $prediction_object_name
+        [[ $? -ne 0 ]] && return 1
+    fi
+
+    local do_analyze=$(abcli_option_int "$analysis_options" analyze 1)
+    if [[ "$do_analyze" == 1 ]]; then
+        palisades_buildings_analyze \
+            ~download,$analysis_options \
             $prediction_object_name
         [[ $? -ne 0 ]] && return 1
     fi
