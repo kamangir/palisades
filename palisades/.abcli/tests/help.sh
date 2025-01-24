@@ -6,6 +6,7 @@ function test_palisades_help() {
     local module
     for module in \
         "palisades buildings" \
+        "palisades buildings analyze" \
         "palisades buildings download_footprints" \
         \
         "palisades pypi" \

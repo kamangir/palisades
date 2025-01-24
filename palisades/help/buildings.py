@@ -4,6 +4,47 @@ from blue_options.terminal import show_usage, xtra
 from abcli.help.generic import help_functions as generic_help_functions
 
 
+def analyze_options(
+    mono: bool,
+    cascade: bool = False,
+):
+    return "".join(
+        ["buffer=<buffer>"]
+        + (
+            []
+            if cascade
+            else [
+                xtra(",~download,dryrun,~ingest,", mono=mono),
+                "upload",
+            ]
+        )
+    )
+
+
+analyze_details = {
+    "buffer: in meters.": [],
+}
+
+
+def help_analyze(
+    tokens: List[str],
+    mono: bool,
+) -> str:
+
+    return show_usage(
+        [
+            "palisades",
+            "buildings",
+            "analyze",
+            f"[{analyze_options(mono=mono)}]",
+            "[.|<object-name>]",
+        ],
+        "analyze the buildings in <object-name>.",
+        analyze_details,
+        mono=mono,
+    )
+
+
 def query_options(mono: bool):
     return "".join(
         [
@@ -47,12 +88,13 @@ def help_download_footprints(
             f"[{query_options(mono=mono)}]",
             "[-|<output-object-name>]",
         ],
-        "aoi:<input-object-name>/<filename> -download-buildings-> <output-object-name>.",
+        "aoi:<input-object-name>/<filename> -download-building-footprints-> <output-object-name>.",
         query_details,
         mono=mono,
     )
 
 
 help_functions = {
+    "analyze": help_analyze,
     "download_footprints": help_download_footprints,
 }

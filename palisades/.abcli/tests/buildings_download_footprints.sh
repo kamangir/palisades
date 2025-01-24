@@ -5,6 +5,6 @@ function test_palisades_buildings_download_footprints() {
 
     palisades_buildings_download_footprints \
         ,$options \
-        predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-22-h6u7wj \
-        country_code=US,source=microsoft
+        $PALISADES_TEST_PREDICTION_OBJECT \
+        country_code=US,source=microsoft,overwrite
 }

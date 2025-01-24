@@ -16,9 +16,11 @@ graph LR
 
     palisades_train["palisades train~~- <query-object-name> count=<count> <dataset-object-name> epochs=<5> <model-object-name>"]
 
-    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> country_code=<iso-code>,source=microsoft|osm|google"]
+    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> country_code=<iso-code>,source=microsoft|osm|google buffer=<buffer>"]
 
     palisades_buildings_download_footprints["palisades buildings download_footprints filename=<filename> <input-object-name> country_code=<iso-code>,source=microsoft|osm|google <output-object-name>"]
+
+    palisades_buildings_analyze["palisades buildings analyze buffer=<buffer> <object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -57,6 +59,9 @@ graph LR
 
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
+
+    prediction_object --> palisades_buildings_analyze
+    palisades_buildings_analyze --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```

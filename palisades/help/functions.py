@@ -16,6 +16,8 @@ from blue_geo.help.datacube.label import options as datacube_label_options
 from palisades.help.buildings import help_functions as help_buildings
 from palisades.help.buildings import query_options as building_query_options
 from palisades.help.buildings import query_details as building_query_details
+from palisades.help.buildings import analyze_options as building_analyze_options
+from palisades.help.buildings import analyze_details as building_analyze_details
 from palisades import ALIAS
 
 target_list = TargetList(catalog="maxar_open_data")
@@ -95,6 +97,16 @@ def help_predict(
         ]
     )
 
+    analyze_options = "".join(
+        [
+            xtra("~analyze | ", mono=mono),
+            building_analyze_options(
+                mono=mono,
+                cascade=True,
+            ),
+        ]
+    )
+
     return show_usage(
         [
             "palisades",
@@ -105,11 +117,13 @@ def help_predict(
             "[.|<datacube-id>]",
             "[-|<prediction-object-name>]",
             f"[{query_options}]",
+            f"[{analyze_options}]",
         ],
         "<datacube-id> -<model-object-name>-> <prediction-object-name>",
         {
             **device_and_profile_details,
             **building_query_details,
+            **building_analyze_details,
         },
         mono=mono,
     )

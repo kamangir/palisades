@@ -16,3 +16,8 @@ def test_palisades_env():
     assert env.PALISADES_DEFAULT_FIRE_MODEL
 
     assert env.PALISADES_QGIS_TEMPLATE_PREDICT
+
+    assert env.PALISADES_TEST_PREDICTION_OBJECT
+    assert env.PALISADES_TEST_DATACUBE
+
+    assert env.PALISADES_DEFAULT_BUFFER_M > 0
