@@ -8,9 +8,9 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_query_ingest["palisades ingest~~- <query-object-name> scope=<scope>"]
+    palisades_ingest_target["palisades ingest~~- target=<target> scope=<scope>"]
 
-    palisades_ingest_target_ingest["palisades ingest~~- target=<target> scope=<scope>"]
+    palisades_ingest_query["palisades ingest~~- <query-object-name> scope=<scope>"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
 
@@ -31,16 +31,13 @@ graph LR
 
     query_object --> datacube
 
-    model_object --> palisades_ingest_query_ingest
-    query_object --> palisades_ingest_query_ingest
-    palisades_ingest_query_ingest --> datacube
-    palisades_ingest_query_ingest --> prediction_object
+    target --> palisades_ingest_target
+    palisades_ingest_target --> palisades_ingest_query
 
-    model_object --> palisades_ingest_target_ingest
-    target --> palisades_ingest_target_ingest
-    palisades_ingest_target_ingest --> query_object
-    palisades_ingest_target_ingest --> datacube
-    palisades_ingest_target_ingest --> prediction_object
+    model_object --> palisades_ingest_query
+    query_object --> palisades_ingest_query
+    palisades_ingest_query --> datacube
+    palisades_ingest_query --> prediction_object
 
     query_object --> palisades_label
     palisades_label --> datacube

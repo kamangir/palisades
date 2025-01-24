@@ -8,9 +8,9 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_query_ingest["palisades<br>ingest -<br>&lt;query-object-name&gt;<br>scope=&lt;scope&gt;"]
+    palisades_ingest_target["palisades<br>ingest -<br>target=&lt;target&gt;<br>scope=&lt;scope&gt;"]
 
-    palisades_ingest_target_ingest["palisades<br>ingest -<br>target=&lt;target&gt;<br>scope=&lt;scope&gt;"]
+    palisades_ingest_query["palisades<br>ingest -<br>&lt;query-object-name&gt;<br>scope=&lt;scope&gt;"]
 
     palisades_label["palisades<br>label<br>offset=&lt;offset&gt; -<br>&lt;query-object-name&gt;"]
 
@@ -31,16 +31,13 @@ graph LR
 
     query_object --> datacube
 
-    model_object --> palisades_ingest_query_ingest
-    query_object --> palisades_ingest_query_ingest
-    palisades_ingest_query_ingest --> datacube
-    palisades_ingest_query_ingest --> prediction_object
+    target --> palisades_ingest_target
+    palisades_ingest_target --> palisades_ingest_query
 
-    model_object --> palisades_ingest_target_ingest
-    target --> palisades_ingest_target_ingest
-    palisades_ingest_target_ingest --> query_object
-    palisades_ingest_target_ingest --> datacube
-    palisades_ingest_target_ingest --> prediction_object
+    model_object --> palisades_ingest_query
+    query_object --> palisades_ingest_query
+    palisades_ingest_query --> datacube
+    palisades_ingest_query --> prediction_object
 
     query_object --> palisades_label
     palisades_label --> datacube
@@ -140,4 +137,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.95.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.96.1`](https://github.com/kamangir/palisades).
