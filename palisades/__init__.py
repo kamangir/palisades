@@ -4,7 +4,7 @@ ICON = "🧑🏽‍🚒"
 
 DESCRIPTION = f"{ICON} Post-Disaster Land Cover Classification."
 
-VERSION = "4.96.1"
+VERSION = "4.97.1"
 
 REPO_NAME = NAME
 
