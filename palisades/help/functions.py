@@ -23,6 +23,27 @@ from palisades import ALIAS
 target_list = TargetList(catalog="maxar_open_data")
 
 
+def building_query_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~download_footprints | ", mono=mono),
+            building_query_options(mono=mono),
+        ]
+    )
+
+
+def building_analyze_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~analyze | ", mono=mono),
+            building_analyze_options(
+                mono=mono,
+                cascade=True,
+            ),
+        ]
+    )
+
+
 def help_ingest(
     tokens: List[str],
     mono: bool,
@@ -43,6 +64,13 @@ def help_ingest(
         ]
     )
 
+    batch_options = "".join(
+        [
+            "predict",
+            xtra(",count=<count>,~tag", mono=mono),
+        ]
+    )
+
     return show_usage(
         [
             "palisades",
@@ -50,11 +78,19 @@ def help_ingest(
             f"[{options}]",
             f"[{target_options}]",
             f"[{ingest_options}]",
+            f"[{batch_options}]",
+            "[{}]".format(predict_options(mono=mono, cascade=True)),
+            "[-|<model-object-name>]",
+            f"[{building_query_options_(mono=mono)}]",
+            f"[{building_analyze_options_(mono=mono)}]",
         ],
         "ingest <target>.",
         {
             "target: {}".format(" | ".join(target_list.get_list())): [],
             **scope_details,
+            **device_and_profile_details,
+            **building_query_details,
+            **building_analyze_details,
         },
         mono=mono,
     )
@@ -90,34 +126,17 @@ def help_predict(
         ]
     )
 
-    query_options = "".join(
-        [
-            xtra("~download_footprints | ", mono=mono),
-            building_query_options(mono=mono),
-        ]
-    )
-
-    analyze_options = "".join(
-        [
-            xtra("~analyze | ", mono=mono),
-            building_analyze_options(
-                mono=mono,
-                cascade=True,
-            ),
-        ]
-    )
-
     return show_usage(
         [
             "palisades",
             "predict",
             f"[{options}]",
-            f"[{predict_options(mono=mono)}]",
+            "[{}]".format(predict_options(mono=mono, cascade=True)),
             "[-|<model-object-name>]",
             "[.|<datacube-id>]",
             "[-|<prediction-object-name>]",
-            f"[{query_options}]",
-            f"[{analyze_options}]",
+            f"[{building_query_options_(mono=mono)}]",
+            f"[{building_analyze_options_(mono=mono)}]",
         ],
         "<datacube-id> -<model-object-name>-> <prediction-object-name>",
         {

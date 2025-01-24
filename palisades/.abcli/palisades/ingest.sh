@@ -26,9 +26,12 @@ function palisades_ingest() {
     fi
 
     local do_ingest_datacubes=$(abcli_option_int "$datacube_ingest_options" ingest_datacubes 1)
-    [[ "$do_ingest_datacubes" == 0 ]] && return 0
+    if [[ "$do_ingest_datacubes" == 1 ]]; then
+        blue_geo_catalog_query_ingest - \
+            $query_object_name \
+            ,$datacube_ingest_options
+        [[ $? -ne 0 ]] && return 1
+    fi
 
-    blue_geo_catalog_query_ingest - \
-        $query_object_name \
-        ,$datacube_ingest_options
+    :
 }

@@ -69,7 +69,12 @@ palisades \
 	ingest \
 	[~download,dryrun] \
 	[target=<target> | <query-object-name>] \
-	[~ingest_datacubes | ~copy_template,dryrun,overwrite,scope=<scope>,upload]
+	[~ingest_datacubes | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
+	[predict,count=<count>,~tag] \
+	[device=<device>,profile=<profile>] \
+	[-|<model-object-name>] \
+	[~download_footprints | country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>] \
+	[~analyze | buffer=<buffer>]
  . ingest <target>.
    target: Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | Palisades-Maxar | Palisades-Maxar-test
    scope: all + metadata + raster + rgb + rgbx + <.jp2> + <.tif> + <.tiff>
@@ -79,6 +84,15 @@ palisades \
       rgb: rgb.
       rgbx: rgb and what is needed to build rgb.
       <suffix>: any *<suffix>.
+   device: cpu | cuda
+   profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
+   country-name: for Microsoft, optional, overrides <iso-code>.
+   iso-code: Country Alpha2 ISO code: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+      Canada: CA
+      US: US
+   source: microsoft | osm | google
+   calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
+   buffer: in meters.
 ```
 ```bash
 palisades \
@@ -105,7 +119,7 @@ palisades \
 palisades \
 	predict \
 	[ingest,~tag] \
-	[device=<device>,~download,dryrun,profile=<profile>,upload] \
+	[device=<device>,profile=<profile>] \
 	[-|<model-object-name>] \
 	[.|<datacube-id>] \
 	[-|<prediction-object-name>] \
@@ -139,4 +153,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.98.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.99.1`](https://github.com/kamangir/palisades).
