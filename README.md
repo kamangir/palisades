@@ -49,7 +49,8 @@ graph LR
 
     model_object --> palisades_predict
     datacube --> palisades_predict
-    palisades_predict --> prediction_object
+    palisades_predict --> palisades_buildings_download_footprints
+    palisades_predict --> palisades_buildings_analyze
 
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
@@ -138,4 +139,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.97.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.98.1`](https://github.com/kamangir/palisades).
