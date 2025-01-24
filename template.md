@@ -8,19 +8,19 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_target["palisades ingest~~- target=<target>~~- predict~~-~~- source=microsoft|osm|google buffer=<buffer>"]
+    palisades_ingest_target["palisades ingest~~- target=<target>~~- predict"]
 
-    palisades_ingest_query["palisades ingest~~- <query-object-name>~~- predict~~-~~- source=microsoft|osm|google buffer=<buffer>"]
+    palisades_ingest_query["palisades ingest~~- <query-object-name>~~- predict"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
 
     palisades_train["palisades train~~- <query-object-name> count=<count> <dataset-object-name> epochs=<5> <model-object-name>"]
 
-    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name> source=microsoft|osm|google buffer=<buffer>"]
+    palisades_predict["palisades predict~~ingest~~- <model-object-name> <datacube-id> <prediction-object-name>"]
 
-    palisades_buildings_download_footprints["palisades buildings download_footprints filename=<filename> <input-object-name> source=microsoft|osm|google <output-object-name>"]
+    palisades_buildings_download_footprints["palisades buildings download_footprints filename=<filename> <input-object-name>~~- <output-object-name>"]
 
-    palisades_buildings_analyze["palisades buildings analyze buffer=<buffer> <object-name>"]
+    palisades_buildings_analyze["palisades buildings analyze~~- <object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
