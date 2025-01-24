@@ -18,8 +18,10 @@ palisades predict ingest \
 palisades.load
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-1.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true)
 
+
+object:::building-analysis-2025-01-23-mdtggz
 🔥
 
 ```bash
