@@ -9,6 +9,7 @@ import shapely.geometry
 from tqdm import tqdm
 import glob
 import cv2
+from rasterio.features import rasterize
 
 from blueness import module
 from blue_objects import objects, file
@@ -39,6 +40,18 @@ def analyze_buildings(
         logger.error("predict.output_filename not found in metadata.")
         return False
     prediction_full_filename = objects.path_of(prediction_filename, object_name)
+
+    datacube_id = get_from_object(
+        object_name,
+        "predict.datacube_id",
+        "",
+    )
+    reference_filename = get_from_object(
+        object_name,
+        "predict.reference_filename",
+        "",
+    )
+    reference_full_filename = objects.path_of(reference_filename, datacube_id)
 
     footprint_filename_list = glob.glob(objects.path_of("*.gpkg", object_name))
     if not footprint_filename_list:
@@ -74,16 +87,30 @@ def analyze_buildings(
 
     logger.info("analyzing {:,} building(s)".format(len(projected_building_geoms)))
     list_of_building_info: List[Any] = []
-    with rasterio.open(prediction_full_filename) as f:
-        for index, building_geom in tqdm(enumerate(projected_building_geoms)):
-            building_shape = shapely.geometry.shape(building_geom).buffer(buffer)
 
-            building_mask, _ = rasterio.mask.mask(
-                f,
-                [building_shape],
+    with rasterio.open(
+        prediction_full_filename,
+    ) as prediction_raster, rasterio.open(
+        reference_full_filename,
+    ) as reference_raster:
+        for index, building_geom in tqdm(enumerate(projected_building_geoms)):
+            building_shape = shapely.geometry.shape(building_geom)
+            building_shape_buffered = building_shape.buffer(buffer)
+
+            prediction_mask, transform = rasterio.mask.mask(
+                prediction_raster,
+                [building_shape_buffered],
                 crop=True,
                 nodata=0,
                 filled=True,
+            )
+
+            rasterized_shape = rasterize(
+                [(building_shape, 1)],  # value 1 to all pixels inside the shape
+                out_shape=prediction_mask.shape[1:],
+                transform=transform,
+                fill=0,  # background
+                dtype="uint8",
             )
 
             building_info = {
@@ -92,25 +119,37 @@ def analyze_buildings(
                 "thumbnail": "",
             }
 
-            if np.all(building_mask == 0):
+            if np.all(prediction_mask == 0):
                 list_of_building_info += [building_info]
                 continue
-
-            building_mask = building_mask[0].astype(np.float32) / 255
-
-            building_info["damage"] = float(np.mean(building_mask))
 
             building_info["thumbnail"] = "thumbnail-{}{:06}.png".format(
                 file.name(prediction_filename),
                 index,
             )
+
+            reference_mask, transform = rasterio.mask.mask(
+                reference_raster,
+                [building_shape_buffered],
+                crop=True,
+                nodata=-1,
+                filled=True,
+            )
+            reference_mask = np.transpose(reference_mask, (1, 2, 0))
+
+            prediction_mask = prediction_mask[0].astype(np.float32) / 255
+
+            building_info["damage"] = float(np.mean(prediction_mask))
+
             if not log_matrix(
-                matrix=building_mask,
+                matrix=prediction_mask,
+                suffix=[reference_mask],
                 header=objects.signature(
-                    info="{} / {:06}".format(
-                        prediction_filename,
-                        index,
-                    ),
+                    info=reference_filename,
+                    object_name=datacube_id,
+                )
+                + objects.signature(
+                    info=f"{index:06}",
                     object_name=object_name,
                 )
                 + [
