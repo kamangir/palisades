@@ -31,7 +31,6 @@ def analyze_buildings(
     object_name: str,
     buffer: float,
     verbose: bool = False,
-    min_damage_estimate: float = env.PALISADES_MIN_DAMAGE,
 ) -> bool:
     prediction_filename = get_from_object(
         object_name,
@@ -62,13 +61,12 @@ def analyze_buildings(
     footprint_filename = footprint_filename_list[0]
 
     logger.info(
-        "{}.analyze_buildings({:.0} m): {} / {} : {} > {:.2f}%".format(
+        "{}.analyze_buildings({:.0} m): {} / {} : {}".format(
             NAME,
             buffer,
             object_name,
             prediction_filename,
             file.name_and_extension(footprint_filename),
-            100 * min_damage_estimate,
         )
     )
 
@@ -103,9 +101,6 @@ def analyze_buildings(
         for index, building_geom in tqdm(enumerate(projected_building_geoms)):
             building_info = {
                 "id": index,
-                "area": 0.0,
-                "damage": 0.0,
-                "thumbnail": "",
             }
 
             building_shape = shapely.geometry.shape(building_geom)
@@ -119,13 +114,7 @@ def analyze_buildings(
                 filled=True,
             )
             prediction_mask = prediction_mask[0].astype(np.float32) / 255
-
-            damage_estimate = float(np.mean(prediction_mask))
-
-            if damage_estimate <= min_damage_estimate:
-                list_of_building_info += [building_info]
-                continue
-            building_info["damage"] = damage_estimate
+            building_info["damage"] = float(np.mean(prediction_mask))
 
             rasterized_shape = rasterize(
                 [(building_shape, 1)],  # value 1 to all pixels inside the shape
