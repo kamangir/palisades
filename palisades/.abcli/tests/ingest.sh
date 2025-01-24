@@ -26,4 +26,18 @@ function test_palisades_ingest() {
         ~upload \
         target=Palisades-Maxar-test \
         scope=rgb
+    [[ $? -ne 0 ]] && return 1
+
+    abcli_hr
+
+    abcli_eval ,$options \
+        palisades_ingest \
+        - \
+        target=Palisades-Maxar-test \
+        scope=rgb \
+        predict,count=1 \
+        profile=VALIDATION \
+        - \
+        country_code=US,source=microsoft \
+        -
 }
