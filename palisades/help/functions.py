@@ -100,7 +100,10 @@ def help_predict(
     analyze_options = "".join(
         [
             xtra("~analyze | ", mono=mono),
-            building_analyze_options(mono=mono),
+            building_analyze_options(
+                mono=mono,
+                cascade=True,
+            ),
         ]
     )
 

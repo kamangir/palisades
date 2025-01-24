@@ -14,7 +14,7 @@ def analyze_options(
             []
             if cascade
             else [
-                xtra(",~download,dryrun,", mono=mono),
+                xtra(",~download,dryrun,~ingest,", mono=mono),
                 "upload",
             ]
         )
