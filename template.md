@@ -37,6 +37,7 @@ graph LR
     query_object --> datacube_2
     query_object --> datacube_3
 
+    model_object --> palisades_ingest_query_ingest
     query_object --> palisades_ingest_query_ingest
     palisades_ingest_query_ingest --> datacube_1
     palisades_ingest_query_ingest --> datacube_2
@@ -45,6 +46,7 @@ graph LR
     palisades_ingest_query_ingest --> prediction_object_2
     palisades_ingest_query_ingest --> prediction_object_3
 
+    model_object --> palisades_ingest_target_ingest
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
     palisades_ingest_target_ingest --> datacube_1
