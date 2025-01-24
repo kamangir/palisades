@@ -162,11 +162,8 @@ def analyze_buildings(
                     info=reference_filename,
                     object_name=datacube_id,
                 )
-                + objects.signature(
-                    info=f"{index:06}",
-                    object_name=object_name,
-                )
                 + [
+                    f"{object_name} / {index:06}",
                     file.name_and_extension(footprint_filename),
                     "area: {:.1f} sq. m".format(building_info["area"]),
                     "damage: {:03.2f}%".format(
