@@ -73,15 +73,12 @@ def analyze_buildings(
             projected_building_geoms.append(projected_geom)
 
     logger.info("analyzing {:,} building(s)".format(len(projected_building_geoms)))
-    damage_vals_per_geom = []
     list_of_building_info: List[Any] = []
     with rasterio.open(prediction_full_filename) as f:
         for index, building_geom in tqdm(enumerate(projected_building_geoms)):
-            t_dmg_vals = []
-
             building_shape = shapely.geometry.shape(building_geom).buffer(buffer)
 
-            building_mask, transform = rasterio.mask.mask(
+            building_mask, _ = rasterio.mask.mask(
                 f,
                 [building_shape],
                 crop=True,
