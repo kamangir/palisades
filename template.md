@@ -35,7 +35,6 @@ graph LR
     palisades_ingest_target --> palisades_ingest_query
     palisades_ingest_target --> query_object
 
-    model_object --> palisades_ingest_query
     query_object --> palisades_ingest_query
     palisades_ingest_query --> datacube
     palisades_ingest_query --> prediction_object
