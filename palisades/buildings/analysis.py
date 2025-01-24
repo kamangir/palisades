@@ -289,7 +289,7 @@ def analyze_buildings(
     )
     plt.bar(
         bin_centers + 2 * bar_width,
-        damaged_area_hist,
+        non_damaged_area_hist,
         width=bar_width,
         label="Not Damaged",
         align="center",
@@ -298,7 +298,7 @@ def analyze_buildings(
     )
     plt.bar(
         bin_centers + 3 * bar_width,
-        non_damaged_area_hist,
+        damaged_area_hist,
         width=bar_width,
         label="Damaged",
         align="center",
