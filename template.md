@@ -25,36 +25,29 @@ graph LR
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
     datacube_1["🧊 datacube 1"]:::folder
-    datacube_2["🧊 datacube 2"]:::folder
-    datacube_3["🧊 datacube 3"]:::folder
+    datacube_n["🧊 datacube n"]:::folder
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object_1["📂 prediction object 1"]:::folder
-    prediction_object_2["📂 prediction object 2"]:::folder
-    prediction_object_3["📂 prediction object 3"]:::folder
+    prediction_object_n["📂 prediction object n"]:::folder
 
     query_object --> datacube_1
-    query_object --> datacube_2
-    query_object --> datacube_3
+    query_object --> datacube_n
 
     model_object --> palisades_ingest_query_ingest
     query_object --> palisades_ingest_query_ingest
     palisades_ingest_query_ingest --> datacube_1
-    palisades_ingest_query_ingest --> datacube_2
-    palisades_ingest_query_ingest --> datacube_3
+    palisades_ingest_query_ingest --> datacube_n
     palisades_ingest_query_ingest --> prediction_object_1
-    palisades_ingest_query_ingest --> prediction_object_2
-    palisades_ingest_query_ingest --> prediction_object_3
+    palisades_ingest_query_ingest --> prediction_object_n
 
     model_object --> palisades_ingest_target_ingest
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
     palisades_ingest_target_ingest --> datacube_1
-    palisades_ingest_target_ingest --> datacube_2
-    palisades_ingest_target_ingest --> datacube_3
+    palisades_ingest_target_ingest --> datacube_n
     palisades_ingest_target_ingest --> prediction_object_1
-    palisades_ingest_target_ingest --> prediction_object_2
-    palisades_ingest_target_ingest --> prediction_object_3
+    palisades_ingest_target_ingest --> prediction_object_n
 
     query_object --> palisades_label
     palisades_label --> datacube_1
