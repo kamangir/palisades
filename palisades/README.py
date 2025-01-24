@@ -23,11 +23,17 @@ list_of_menu_item = {
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true",
         "title": "[segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)",
     },
-    "Analytics: Building Damage": {
+    "Building Damage Analysis": {
         "ICON": ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true",
-        "title": "Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
+        "title": "using Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
+    },
+    "Analytics": {
+        "ICON": ICON,
+        "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md",
+        "marquee": "https://github.com/kamangir/assets/blob/main/palisades/building-analysis-5.png?raw=true",
+        "title": "Damage information for multi-datacube areas.",
     },
     "template": {
         "ICON": ICON,
@@ -83,6 +89,10 @@ def build():
             (
                 [],
                 "docs/building-analysis.md",
+            ),
+            (
+                [],
+                "docs/damage-analytics.md",
             ),
         ]
     )
