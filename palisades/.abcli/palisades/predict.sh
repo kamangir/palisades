@@ -76,7 +76,7 @@ function palisades_predict() {
     local do_analyze=$(abcli_option_int "$analysis_options" analyze 1)
     if [[ "$do_analyze" == 1 ]]; then
         palisades_buildings_analyze \
-            ~download,$analysis_options \
+            ~download,~ingest,$analysis_options \
             $prediction_object_name
         [[ $? -ne 0 ]] && return 1
     fi
