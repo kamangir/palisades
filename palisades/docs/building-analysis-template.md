@@ -1,4 +1,4 @@
-# building analysis: dev
+# building analysis
 
 ```bash
 @select building-analysis-$(@@timestamp)
@@ -18,7 +18,7 @@ palisades predict ingest \
 palisades.load
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-4.png?raw=true)
 
 | Damaged | Not Damaged |
 |-|-|
@@ -30,6 +30,8 @@ palisades.load
 | ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/area-damage-histogram.png?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/area-damage-scatter.png?raw=true) |
 
 
-object:::building-analysis-2025-01-23-mdtggz
+[building-analysis-2025-01-23-mdtggz](https://kamangir-public.s3.ca-central-1.amazonaws.com/building-analysis-2025-01-23-mdtggz.tar.gz)
 
-🔥
+![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-3.png?raw=true)
+
+✅
