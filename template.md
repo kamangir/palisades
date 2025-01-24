@@ -8,9 +8,9 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_target["palisades ingest~~- target=<target> scope=<scope> predict~~-~~- source=microsoft|osm|google buffer=<buffer>"]
+    palisades_ingest_target["palisades ingest~~- target=<target>~~- predict~~-~~- source=microsoft|osm|google buffer=<buffer>"]
 
-    palisades_ingest_query["palisades ingest~~- <query-object-name> scope=<scope> predict~~-~~-	source=microsoft|osm|google buffer=<buffer>"]
+    palisades_ingest_query["palisades ingest~~- <query-object-name>~~- predict~~-~~- source=microsoft|osm|google buffer=<buffer>"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
 
