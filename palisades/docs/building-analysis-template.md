@@ -22,13 +22,5 @@ palisades.load
 
 
 object:::building-analysis-2025-01-23-mdtggz
+
 🔥
-
-```bash
-palisades buildings analyze - .
-```
-
-
-🚧
-
-copy, give credit, and refactor merge_with_building_footprints.py
