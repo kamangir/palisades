@@ -37,6 +37,7 @@ graph LR
 
     query_object --> palisades_ingest_query
     palisades_ingest_query --> datacube
+    palisades_ingest_query --> palisades_predict
 
     query_object --> palisades_label
     palisades_label --> datacube
