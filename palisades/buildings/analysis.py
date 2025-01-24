@@ -173,7 +173,9 @@ def analyze_buildings(
                     blue_geo_fullname(),
                     roofai_fullname(),
                 ],
-                colormap=cv2.COLORMAP_SPRING,
+                colormap=cv2.COLORMAP_HOT,
+                invert_color_map=False,
+                invert_color_map_rgb=False,
                 dynamic_range=[0, 1],
                 filename=objects.path_of(
                     building_info["thumbnail"],
