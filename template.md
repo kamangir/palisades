@@ -24,47 +24,40 @@ graph LR
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
-    datacube_1["🧊 datacube 1"]:::folder
-    datacube_n["🧊 datacube n"]:::folder
+    datacube["🧊 datacube"]:::folder
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
-    prediction_object_1["📂 prediction object 1"]:::folder
-    prediction_object_n["📂 prediction object n"]:::folder
+    prediction_object["📂 prediction object"]:::folder
 
-    query_object --> datacube_1
-    query_object --> datacube_n
+    query_object --> datacube
 
     model_object --> palisades_ingest_query_ingest
     query_object --> palisades_ingest_query_ingest
-    palisades_ingest_query_ingest --> datacube_1
-    palisades_ingest_query_ingest --> datacube_n
-    palisades_ingest_query_ingest --> prediction_object_1
-    palisades_ingest_query_ingest --> prediction_object_n
+    palisades_ingest_query_ingest --> datacube
+    palisades_ingest_query_ingest --> prediction_object
 
     model_object --> palisades_ingest_target_ingest
     target --> palisades_ingest_target_ingest
     palisades_ingest_target_ingest --> query_object
-    palisades_ingest_target_ingest --> datacube_1
-    palisades_ingest_target_ingest --> datacube_n
-    palisades_ingest_target_ingest --> prediction_object_1
-    palisades_ingest_target_ingest --> prediction_object_n
+    palisades_ingest_target_ingest --> datacube
+    palisades_ingest_target_ingest --> prediction_object
 
     query_object --> palisades_label
-    palisades_label --> datacube_1
+    palisades_label --> datacube
 
     query_object --> palisades_train
     palisades_train --> dataset_object
     palisades_train --> model_object
 
     model_object --> palisades_predict
-    datacube_1 --> palisades_predict
-    palisades_predict --> prediction_object_1
+    datacube --> palisades_predict
+    palisades_predict --> prediction_object
 
-    prediction_object_1 --> palisades_buildings_download_footprints
-    palisades_buildings_download_footprints --> prediction_object_1
+    prediction_object --> palisades_buildings_download_footprints
+    palisades_buildings_download_footprints --> prediction_object
 
-    prediction_object_1 --> palisades_buildings_analyze
-    palisades_buildings_analyze --> prediction_object_1
+    prediction_object --> palisades_buildings_analyze
+    palisades_buildings_analyze --> prediction_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
