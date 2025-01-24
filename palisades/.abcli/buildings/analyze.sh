@@ -16,6 +16,7 @@ function palisades_buildings_analyze() {
     abcli_eval dryrun=$do_dryrun \
         python3 -m palisades.buildings analyze \
         --object_name $object_name \
+        --buffer $buffer \
         "${@:3}"
     [[ $? -ne 0 ]] && return 1
 
