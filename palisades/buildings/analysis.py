@@ -96,9 +96,14 @@ def analyze_buildings(
     ) as prediction_raster, rasterio.open(
         reference_full_filename,
     ) as reference_raster:
+        pixel_size = prediction_raster.res
+        pixel_area = pixel_size[0] * pixel_size[1]
+        logger.info(f"pixel size: {pixel_size} m = {pixel_area:.2f} m^2")
+
         for index, building_geom in tqdm(enumerate(projected_building_geoms)):
             building_info = {
                 "id": index,
+                "area": 0.0,
                 "damage": 0.0,
                 "thumbnail": "",
             }
@@ -120,6 +125,7 @@ def analyze_buildings(
             if damage_estimate <= min_damage_estimate:
                 list_of_building_info += [building_info]
                 continue
+            building_info["damage"] = damage_estimate
 
             rasterized_shape = rasterize(
                 [(building_shape, 1)],  # value 1 to all pixels inside the shape
@@ -128,8 +134,7 @@ def analyze_buildings(
                 fill=0,  # background
                 dtype="uint8",
             )
-
-            building_info["damage"] = damage_estimate
+            building_info["area"] = float(np.sum(rasterized_shape) * pixel_area)
 
             building_info["thumbnail"] = "thumbnail-{}{:06}.png".format(
                 file.name(prediction_filename),
@@ -163,8 +168,14 @@ def analyze_buildings(
                 )
                 + [
                     file.name_and_extension(footprint_filename),
+                    "area: {:.1f} sq. m".format(building_info["area"]),
                     "damage: {:03.2f}%".format(
                         100 * building_info["damage"],
+                    ),
+                    "pixel_size: {}".format(
+                        " x ".join(
+                            ["{:.2f} cm".format(10 * value) for value in pixel_size]
+                        )
                     ),
                 ],
                 footer=[
@@ -191,6 +202,7 @@ def analyze_buildings(
         "geometry": "MultiPolygon",
         "properties": {
             "id": "int",
+            "area": "float",
             "damage": "float",
             "thumbnail": "str",
         },
@@ -226,6 +238,7 @@ def analyze_buildings(
                 "geometry": geom,
                 "properties": {
                     "id": index,
+                    "area": building_info["area"],
                     "damage": building_info["damage"],
                     "thumbnail": building_info["thumbnail"],
                 },
