@@ -18,6 +18,7 @@ from blue_objects.logger.matrix import log_matrix
 from blue_geo import fullname as blue_geo_fullname
 from roofai import fullname as roofai_fullname
 
+from palisades import env
 from palisades import NAME
 from palisades import fullname
 from palisades.logger import logger
@@ -30,6 +31,7 @@ def analyze_buildings(
     object_name: str,
     buffer: float,
     verbose: bool = False,
+    min_damage_estimate: float = env.PALISADES_MIN_DAMAGE,
 ) -> bool:
     prediction_filename = get_from_object(
         object_name,
@@ -60,12 +62,13 @@ def analyze_buildings(
     footprint_filename = footprint_filename_list[0]
 
     logger.info(
-        "{}.analyze_buildings({:.0} m): {} / {} : {}".format(
+        "{}.analyze_buildings({:.0} m): {} / {} : {} > {:.2f}%".format(
             NAME,
             buffer,
             object_name,
             prediction_filename,
             file.name_and_extension(footprint_filename),
+            100 * min_damage_estimate,
         )
     )
 
@@ -94,6 +97,12 @@ def analyze_buildings(
         reference_full_filename,
     ) as reference_raster:
         for index, building_geom in tqdm(enumerate(projected_building_geoms)):
+            building_info = {
+                "id": index,
+                "damage": 0.0,
+                "thumbnail": "",
+            }
+
             building_shape = shapely.geometry.shape(building_geom)
             building_shape_buffered = building_shape.buffer(buffer)
 
@@ -104,45 +113,45 @@ def analyze_buildings(
                 nodata=0,
                 filled=True,
             )
+            prediction_mask = prediction_mask[0].astype(np.float32) / 255
+
+            damage_estimate = float(np.mean(prediction_mask))
+
+            if damage_estimate <= min_damage_estimate:
+                list_of_building_info += [building_info]
+                continue
 
             rasterized_shape = rasterize(
                 [(building_shape, 1)],  # value 1 to all pixels inside the shape
-                out_shape=prediction_mask.shape[1:],
+                out_shape=prediction_mask.shape,
                 transform=transform,
                 fill=0,  # background
                 dtype="uint8",
             )
 
-            building_info = {
-                "id": index,
-                "damage": 0.0,
-                "thumbnail": "",
-            }
-
-            if np.all(prediction_mask == 0):
-                list_of_building_info += [building_info]
-                continue
+            building_info["damage"] = damage_estimate
 
             building_info["thumbnail"] = "thumbnail-{}{:06}.png".format(
                 file.name(prediction_filename),
                 index,
             )
 
+            building_halo = (rasterized_shape.astype(np.float32) + 1) / 2
+
             reference_mask, transform = rasterio.mask.mask(
                 reference_raster,
                 [building_shape_buffered],
                 crop=True,
-                nodata=-1,
+                nodata=0,
                 filled=True,
             )
             reference_mask = np.transpose(reference_mask, (1, 2, 0))
-
-            prediction_mask = prediction_mask[0].astype(np.float32) / 255
-
-            building_info["damage"] = float(np.mean(prediction_mask))
+            reference_mask = (
+                reference_mask.astype(np.float32) * building_halo[:, :, np.newaxis]
+            )
 
             if not log_matrix(
-                matrix=prediction_mask,
+                matrix=prediction_mask * building_halo,
                 suffix=[reference_mask],
                 header=objects.signature(
                     info=reference_filename,

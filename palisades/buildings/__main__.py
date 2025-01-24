@@ -31,6 +31,7 @@ parser.add_argument(
     default=0,
     help="0|1",
 )
+
 args = parser.parse_args()
 
 success = False

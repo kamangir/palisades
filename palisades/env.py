@@ -48,3 +48,12 @@ try:
     PALISADES_DEFAULT_BUFFER_M = float(PALISADES_DEFAULT_BUFFER_M_str)
 except Exception:
     PALISADES_DEFAULT_BUFFER_M = 50
+
+PALISADES_MIN_DAMAGE_str = os.getenv(
+    "PALISADES_MIN_DAMAGE",
+    "",
+)
+try:
+    PALISADES_MIN_DAMAGE = float(PALISADES_MIN_DAMAGE_str)
+except Exception:
+    PALISADES_MIN_DAMAGE = 0.02
