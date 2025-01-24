@@ -37,7 +37,6 @@ graph LR
 
     query_object --> palisades_ingest_query
     palisades_ingest_query --> datacube
-    palisades_ingest_query --> prediction_object
 
     query_object --> palisades_label
     palisades_label --> datacube
@@ -50,6 +49,7 @@ graph LR
     datacube --> palisades_predict
     palisades_predict --> palisades_buildings_download_footprints
     palisades_predict --> palisades_buildings_analyze
+    palisades_predict --> prediction_object
 
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
