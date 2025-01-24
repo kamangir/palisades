@@ -61,8 +61,8 @@ items = [
 def build():
     return all(
         README.build(
-            items=items,
-            path=os.path.join(file.path(__file__), path),
+            items=readme.get("items", []),
+            path=os.path.join(file.path(__file__), readme["path"]),
             ICON=ICON,
             NAME=NAME,
             help_function=lambda tokens: get_help(
@@ -73,26 +73,22 @@ def build():
             VERSION=VERSION,
             REPO_NAME=REPO_NAME,
         )
-        for items, path in [
-            (
-                items,
-                "..",
-            ),
-            (
-                [],
-                "docs/step-by-step.md",
-            ),
-            (
-                [],
-                "docs/release-one.md",
-            ),
-            (
-                [],
-                "docs/building-analysis.md",
-            ),
-            (
-                [],
-                "docs/damage-analytics.md",
-            ),
+        for readme in [
+            {
+                "items": items,
+                "path": "..",
+            },
+            {
+                "path": "docs/step-by-step.md",
+            },
+            {
+                "path": "docs/release-one.md",
+            },
+            {
+                "path": "docs/building-analysis.md",
+            },
+            {
+                "path": "docs/damage-analytics.md",
+            },
         ]
     )
