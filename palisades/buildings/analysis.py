@@ -10,14 +10,17 @@ from tqdm import tqdm
 import glob
 import cv2
 from rasterio.features import rasterize
+import matplotlib.pyplot as plt
 
 from blueness import module
 from blue_objects import objects, file
-from blue_objects.metadata import get_from_object
+from blue_objects.metadata import get_from_object, post_to_object
 from blue_objects.logger.matrix import log_matrix
+from blue_objects.graphics.signature import sign_filename
 from blue_geo import fullname as blue_geo_fullname
 from roofai import fullname as roofai_fullname
 
+from palisades.host import signature
 from palisades import env
 from palisades import NAME
 from palisades import fullname
@@ -233,5 +236,134 @@ def analyze_buildings(
             f.write(row)
 
     logger.info(f"-> {output_filename}")
+
+    if not post_to_object(
+        object_name,
+        "analysis",
+        {
+            "building-count": len(list_of_building_info),
+            "damaged-count": len(
+                [
+                    building_info
+                    for building_info in list_of_building_info
+                    if building_info["damage"] > 0
+                ]
+            ),
+            "output_filename": output_filename,
+        },
+    ):
+        return False
+
+    all_area = [building_info["area"] for building_info in list_of_building_info]
+    all_area_hist, bin_edges = np.histogram(all_area, bins=10)
+    damaged_area_hist = np.histogram(
+        [
+            building_info["area"]
+            for building_info in list_of_building_info
+            if building_info["damage"] > 0
+        ],
+        bins=bin_edges,
+    )[0]
+    non_damaged_area_hist = np.histogram(
+        [
+            building_info["area"]
+            for building_info in list_of_building_info
+            if building_info["damage"] == 0
+        ],
+        bins=bin_edges,
+    )[0]
+
+    plt.figure(figsize=(10, 5))
+    bar_width = (bin_edges[1] - bin_edges[0]) / 5
+    bin_centers = 0.5 * (bin_edges[:-1] + bin_edges[1:])
+    plt.bar(
+        bin_centers + bar_width,
+        all_area_hist,
+        width=bar_width,
+        label="All",
+        align="center",
+        color="black",
+        alpha=0.5,
+    )
+    plt.bar(
+        bin_centers + 2 * bar_width,
+        damaged_area_hist,
+        width=bar_width,
+        label="Not Damaged",
+        align="center",
+        color="green",
+        alpha=0.5,
+    )
+    plt.bar(
+        bin_centers + 3 * bar_width,
+        non_damaged_area_hist,
+        width=bar_width,
+        label="Damaged",
+        align="center",
+        color="red",
+        alpha=0.5,
+    )
+    plt.title("Distribution of Building Areas")
+    plt.xlabel("Building Area (sq m)")
+    plt.ylabel("Frequency")
+    plt.grid(True)
+    plt.legend()
+    filename = objects.path_of(
+        "area-damage-histogram.png",
+        object_name,
+    )
+    if not file.save_fig(filename):
+        return False
+    if not sign_filename(
+        filename=filename,
+        header=objects.signature(
+            info=reference_filename,
+            object_name=datacube_id,
+        )
+        + [
+            f"{object_name}",
+            file.name_and_extension(footprint_filename),
+            "{} building(s)".format(len(list_of_building_info)),
+        ],
+        footer=signature(),
+    ):
+        return False
+
+    plt.figure(figsize=(10, 5))
+    colors = [
+        "red" if building_info["damage"] > 0 else "green"
+        for building_info in list_of_building_info
+    ]
+    plt.scatter(
+        all_area,
+        [building_info["damage"] for building_info in list_of_building_info],
+        c=colors,
+        alpha=0.5,
+    )
+    plt.title("Scatter Plot of Building Area vs Damage")
+    plt.xlabel("Building Area (sq m)")
+    plt.ylabel("Damage")
+    plt.ylim(0, 1)
+    plt.grid(True)
+    filename = objects.path_of(
+        "area-damage-scatter.png",
+        object_name,
+    )
+    if not file.save_fig(filename):
+        return False
+    if not sign_filename(
+        filename=filename,
+        header=objects.signature(
+            info=reference_filename,
+            object_name=datacube_id,
+        )
+        + [
+            f"{object_name}",
+            file.name_and_extension(footprint_filename),
+            "{} building(s)".format(len(list_of_building_info)),
+        ],
+        footer=signature(),
+    ):
+        return False
 
     return True
