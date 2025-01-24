@@ -177,6 +177,7 @@ def analyze_buildings(
                             ["{:.2f} cm".format(10 * value) for value in pixel_size]
                         )
                     ),
+                    f"buffer: {buffer:.1f} m",
                 ],
                 footer=[
                     fullname(),
