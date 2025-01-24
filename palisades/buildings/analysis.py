@@ -249,7 +249,7 @@ def analyze_buildings(
                     if building_info["damage"] > 0
                 ]
             ),
-            "output_filename": output_filename,
+            "output_filename": file.name_and_extension(output_filename),
         },
     ):
         return False
