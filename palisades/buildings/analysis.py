@@ -128,7 +128,7 @@ def analyze_buildings(
             )
             building_info["area"] = float(np.sum(rasterized_shape) * pixel_area)
 
-            building_info["thumbnail"] = "thumbnail-{}{:06}.png".format(
+            building_info["thumbnail"] = "thumbnail-{}-{:06}.png".format(
                 file.name(prediction_filename),
                 index,
             )
