@@ -9,7 +9,9 @@ function test_palisades_predict() {
         - \
         - \
         $PALISADES_TEST_DATACUBE \
-        test_palisades_predict-$(abcli_string_timestamp_short)
+        test_palisades_predict-$(abcli_string_timestamp_short) \
+        - \
+        count=3
 
     [[ $? -ne 0 ]] && return 1
 
@@ -21,5 +23,7 @@ function test_palisades_predict() {
         - \
         - \
         $PALISADES_TEST_DATACUBE \
-        test_palisades_predict-$(abcli_string_timestamp_short)
+        test_palisades_predict-$(abcli_string_timestamp_short) \
+        - \
+        count=3
 }

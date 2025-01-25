@@ -31,6 +31,12 @@ parser.add_argument(
     default=0,
     help="0|1",
 )
+parser.add_argument(
+    "--max_count",
+    type=int,
+    default=-1,
+    help="-1: all",
+)
 
 args = parser.parse_args()
 
@@ -40,6 +46,7 @@ if args.task == "analyze":
         object_name=args.object_name,
         buffer=args.buffer,
         verbose=args.verbose == 1,
+        max_count=args.max_count,
     )
 else:
     success = None

@@ -7,6 +7,7 @@ function palisades_buildings_analyze() {
     local do_ingest=$(abcli_option_int "$options" ingest $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload 0)
     local buffer=$(abcli_option "$options" buffer $PALISADES_DEFAULT_BUFFER_M)
+    local max_count=$(abcli_option "$options" count -1)
 
     local object_name=$(abcli_clarify_object $2 .)
     [[ "$do_download" == 1 ]] &&
@@ -29,6 +30,7 @@ function palisades_buildings_analyze() {
         python3 -m palisades.buildings analyze \
         --object_name $object_name \
         --buffer $buffer \
+        --max_count $max_count \
         "${@:3}"
     [[ $? -ne 0 ]] && return 1
 
