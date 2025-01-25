@@ -30,15 +30,16 @@ function palisades_ingest() {
         [[ $? -ne 0 ]] && return 1
     fi
 
-    local do_ingest_datacubes=$(abcli_option_int "$datacube_ingest_options" ingest_datacubes 1)
-    if [[ "$do_ingest_datacubes" == 1 ]]; then
+    local do_ingest_datacubes=$(abcli_option_int "$datacube_ingest_options" ingest 1)
+    local do_predict=$(abcli_option_int "$batch_options" predict 0)
+
+    if [[ "$do_ingest_datacubes" == 1 ]] && [[ "$do_predict" == 0 ]]; then
         blue_geo_catalog_query_ingest - \
             $query_object_name \
             ,$datacube_ingest_options
         [[ $? -ne 0 ]] && return 1
     fi
 
-    local do_predict=$(abcli_option_int "$batch_options" predict 0)
     [[ "$do_predict" == 0 ]] &&
         return 0
 
@@ -62,6 +63,7 @@ function palisades_ingest() {
 
         palisades_predict \
             tag=$do_tag \
+            ,$datacube_ingest_options \
             ,$predict_options \
             "$model_object_name" \
             $datacube_id \

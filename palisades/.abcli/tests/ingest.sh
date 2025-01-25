@@ -7,7 +7,7 @@ function test_palisades_ingest() {
         palisades_ingest \
         ~upload \
         target=Palisades-Maxar-test \
-        ~ingest_datacubes
+        ~ingest
     [[ $? -ne 0 ]] && return 1
 
     abcli_hr
@@ -16,7 +16,7 @@ function test_palisades_ingest() {
         palisades_ingest \
         ~upload \
         $PALISADES_QUERY_OBJECT_PALISADES_MAXAR_TEST \
-        ~ingest_datacubes
+        ~ingest
     [[ $? -ne 0 ]] && return 1
 
     abcli_hr

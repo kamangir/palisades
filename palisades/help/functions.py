@@ -44,6 +44,15 @@ def building_analyze_options_(mono: bool):
     )
 
 
+def datacube_ingest_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~ingest | ", mono=mono),
+            datacube_ingest_options(mono=mono),
+        ]
+    )
+
+
 def help_ingest(
     tokens: List[str],
     mono: bool,
@@ -54,13 +63,6 @@ def help_ingest(
         [
             "target=<target>",
             xtra(" | <query-object-name>", mono),
-        ]
-    )
-
-    ingest_options = "".join(
-        [
-            xtra("~ingest_datacubes | ", mono=mono),
-            datacube_ingest_options(mono=mono),
         ]
     )
 
@@ -77,7 +79,7 @@ def help_ingest(
             "ingest",
             f"[{options}]",
             f"[{target_options}]",
-            f"[{ingest_options}]",
+            f"[{datacube_ingest_options_(mono=mono)}]",
             f"[{batch_options}]",
             "[{}]".format(predict_options(mono=mono, cascade=True)),
             xtra("[-|<model-object-name>]", mono=mono),
@@ -119,18 +121,14 @@ def help_predict(
     tokens: List[str],
     mono: bool,
 ) -> str:
-    options = "".join(
-        [
-            "ingest",
-            xtra(",~tag", mono=mono),
-        ]
-    )
+    options = xtra("~tag", mono=mono)
 
     return show_usage(
         [
             "palisades",
             "predict",
             f"[{options}]",
+            f"[{datacube_ingest_options_(mono=mono)}]",
             "[{}]".format(predict_options(mono=mono, cascade=True)),
             xtra("[-|<model-object-name>]", mono=mono),
             "[.|<datacube-id>]",

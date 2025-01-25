@@ -16,7 +16,7 @@ graph LR
 
     palisades_train["palisades<br>train -<br>&lt;query-object-name&gt; -<br>&lt;dataset-object-name&gt; -<br>&lt;model-object-name&gt;"]
 
-    palisades_predict["palisades<br>predict ingest -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;"]
+    palisades_predict["palisades<br>predict - - -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;"]
 
     palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints -<br>&lt;input-object-name&gt; -<br>&lt;output-object-name&gt;"]
 
@@ -69,7 +69,7 @@ palisades \
 	ingest \
 	[~download,dryrun] \
 	[target=<target> | <query-object-name>] \
-	[~ingest_datacubes | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
+	[~ingest | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
 	[predict,count=<count>,~tag] \
 	[device=<device>,profile=<profile>,upload] \
 	[-|<model-object-name>] \
@@ -118,7 +118,8 @@ palisades \
 ```bash
 palisades \
 	predict \
-	[ingest,~tag] \
+	[~tag] \
+	[~ingest | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
 	[device=<device>,profile=<profile>,upload] \
 	[-|<model-object-name>] \
 	[.|<datacube-id>] \
@@ -153,4 +154,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.115.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.116.1`](https://github.com/kamangir/palisades).
