@@ -5,9 +5,9 @@
 ```bash
 palisades ingest - \
     target=Palisades-Maxar \
-    scope=rgb,upload \
+    scope=rgb \
     predict \
-    profile=FULL
+    profile=FULL,upload
 ```
 
 🚧
