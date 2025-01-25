@@ -5,8 +5,7 @@
 
 palisades predict ingest \
     profile=FULL - \
-    $PALISADES_TEST_DATACUBE . \
-    country_code=US,source=microsoft
+    $PALISADES_TEST_DATACUBE .
 ```
 
 ```bash

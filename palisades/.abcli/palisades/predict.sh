@@ -5,7 +5,7 @@ function palisades_predict() {
     local do_tag=$(abcli_option_int "$options" tag 1)
 
     local ingest_options=$2
-    local do_ingest=$(abcli_option_int "$ingest_options" ingest 0)
+    local do_ingest=$(abcli_option_int "$ingest_options" ingest 1)
 
     local predict_options=$3
     $abcli_gpu_status_cache && local device=cuda || local device=cpu

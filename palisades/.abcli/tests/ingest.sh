@@ -5,7 +5,7 @@ function test_palisades_ingest() {
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         target=Palisades-Maxar-test \
         ~ingest
     [[ $? -ne 0 ]] && return 1
@@ -14,7 +14,7 @@ function test_palisades_ingest() {
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         $PALISADES_QUERY_OBJECT_PALISADES_MAXAR_TEST \
         ~ingest
     [[ $? -ne 0 ]] && return 1
@@ -23,7 +23,7 @@ function test_palisades_ingest() {
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         target=Palisades-Maxar-test \
         scope=rgb
     [[ $? -ne 0 ]] && return 1
@@ -36,8 +36,5 @@ function test_palisades_ingest() {
         target=Palisades-Maxar-test \
         scope=rgb \
         predict,count=1 \
-        profile=VALIDATION \
-        - \
-        country_code=US,source=microsoft \
-        -
+        profile=VALIDATION
 }
