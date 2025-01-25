@@ -47,6 +47,7 @@ graph LR
     palisades_train --> dataset_object
     palisades_train --> model_object
 
+    datacube --> palisades_predict
     model_object --> palisades_predict
     datacube --> palisades_predict
     palisades_predict --> palisades_buildings_download_footprints
@@ -56,6 +57,7 @@ graph LR
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
 
+    datacube --> palisades_buildings_analyze
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
 
