@@ -3,7 +3,7 @@ name: pylint
 on: [push]
 
 jobs:
-  build:
+  pylint:
     runs-on: ubuntu-latest
     if: "! contains(github.event.head_commit.message, 'no-workflow')"
     strategy:
