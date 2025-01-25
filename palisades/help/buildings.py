@@ -9,7 +9,7 @@ def analyze_options(
     cascade: bool = False,
 ):
     return "".join(
-        ["buffer=<buffer>"]
+        [xtra("buffer=<buffer>", mono=mono)]
         + (
             []
             if cascade
@@ -46,12 +46,9 @@ def help_analyze(
 
 
 def query_options(mono: bool):
-    return "".join(
-        [
-            "country_code=<iso-code>",
-            xtra(",country_name=<country-name>,overwrite,", mono=mono),
-            "source=<source>",
-        ]
+    return xtra(
+        "country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>",
+        mono=mono,
     )
 
 

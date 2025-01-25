@@ -5,25 +5,36 @@ function test_palisades_ingest() {
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         target=Palisades-Maxar-test \
-        ~ingest_datacubes
+        ~ingest
     [[ $? -ne 0 ]] && return 1
 
     abcli_hr
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         $PALISADES_QUERY_OBJECT_PALISADES_MAXAR_TEST \
-        ~ingest_datacubes
+        ~ingest
     [[ $? -ne 0 ]] && return 1
 
     abcli_hr
 
     abcli_eval ,$options \
         palisades_ingest \
-        ~upload \
+        - \
         target=Palisades-Maxar-test \
         scope=rgb
+    [[ $? -ne 0 ]] && return 1
+
+    abcli_hr
+
+    abcli_eval ,$options \
+        palisades_ingest \
+        - \
+        target=Palisades-Maxar-test \
+        scope=rgb \
+        predict,count=1 \
+        profile=VALIDATION
 }

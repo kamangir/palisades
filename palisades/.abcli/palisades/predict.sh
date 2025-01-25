@@ -2,10 +2,12 @@
 
 function palisades_predict() {
     local options=$1
-    local do_ingest=$(abcli_option_int "$options" ingest 0)
     local do_tag=$(abcli_option_int "$options" tag 1)
 
-    local predict_options=$2
+    local ingest_options=$2
+    local do_ingest=$(abcli_option_int "$ingest_options" ingest 1)
+
+    local predict_options=$3
     $abcli_gpu_status_cache && local device=cuda || local device=cpu
     local device=$(abcli_option "$predict_options" device $device)
     local do_dryrun=$(abcli_option_int "$predict_options" dryrun 0)
@@ -13,25 +15,39 @@ function palisades_predict() {
     local do_upload=$(abcli_option_int "$predict_options" upload 0)
     local profile=$(abcli_option "$predict_options" profile VALIDATION)
 
-    local model_object_name=$(abcli_clarify_object $3 $PALISADES_DEFAULT_FIRE_MODEL)
+    local model_object_name=$(abcli_clarify_object $4 $PALISADES_DEFAULT_FIRE_MODEL)
+
+    local datacube_id=$(abcli_clarify_object $5 .)
+
+    if [[ "$do_tag" == 1 ]]; then
+        local previous_prediction=$(abcli_mlflow_tags_search \
+            contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile \
+            --log 0 \
+            --count 1)
+
+        if [[ ! -z "$previous_prediction" ]]; then
+            abcli_log "✅  $previous_prediction: $datacube_id @ $model_object_name @ $profile"
+            return 0
+        fi
+    fi
+
     [[ "$do_download" == 1 ]] &&
         abcli_download - $model_object_name
 
-    local datacube_id=$(abcli_clarify_object $4 .)
     [[ "$do_ingest" == 1 ]] &&
         blue_geo_datacube_ingest \
-            scope=rgb \
+            ,$ingest_options \
             $datacube_id
 
-    local prediction_object_name=$(abcli_clarify_object $5 predict-$datacube_id-$(abcli_string_timestamp_short))
+    local prediction_object_name=$(abcli_clarify_object $6 predict-$datacube_id-$(abcli_string_timestamp_short))
     abcli_clone \
         - \
         $PALISADES_QGIS_TEMPLATE_PREDICT \
         $prediction_object_name
 
-    local buildings_query_options=$6
+    local buildings_query_options=$7
 
-    local analysis_options=$7
+    local analysis_options=$8
 
     abcli_log "semseg[$model_object_name].predict($datacube_id) -$device-@-$profile-> $prediction_object_name."
 
@@ -62,7 +78,7 @@ function palisades_predict() {
     local do_analyze=$(abcli_option_int "$analysis_options" analyze 1)
     if [[ "$do_analyze" == 1 ]]; then
         palisades_buildings_analyze \
-            ~download,$analysis_options \
+            ~download,~ingest,$analysis_options \
             $prediction_object_name
         [[ $? -ne 0 ]] && return 1
     fi

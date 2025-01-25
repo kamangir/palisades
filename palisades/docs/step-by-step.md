@@ -5,7 +5,7 @@
 ```bash
 palisades ingest ~upload \
   target=Palisades-Maxar  \
-  ~ingest_datacubes
+  ~ingest
 ```
 
 ```bash

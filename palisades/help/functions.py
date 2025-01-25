@@ -23,6 +23,36 @@ from palisades import ALIAS
 target_list = TargetList(catalog="maxar_open_data")
 
 
+def building_query_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~download_footprints | ", mono=mono),
+            building_query_options(mono=mono),
+        ]
+    )
+
+
+def building_analyze_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~analyze | ", mono=mono),
+            building_analyze_options(
+                mono=mono,
+                cascade=True,
+            ),
+        ]
+    )
+
+
+def datacube_ingest_options_(mono: bool):
+    return "".join(
+        [
+            xtra("~ingest | ", mono=mono),
+            datacube_ingest_options(mono=mono),
+        ]
+    )
+
+
 def help_ingest(
     tokens: List[str],
     mono: bool,
@@ -36,10 +66,10 @@ def help_ingest(
         ]
     )
 
-    ingest_options = "".join(
+    batch_options = "".join(
         [
-            xtra("~ingest_datacubes | ", mono=mono),
-            datacube_ingest_options(mono=mono),
+            "predict",
+            xtra(",count=<count>,~tag", mono=mono),
         ]
     )
 
@@ -49,12 +79,20 @@ def help_ingest(
             "ingest",
             f"[{options}]",
             f"[{target_options}]",
-            f"[{ingest_options}]",
+            f"[{datacube_ingest_options_(mono=mono)}]",
+            f"[{batch_options}]",
+            "[{}]".format(predict_options(mono=mono, cascade=True)),
+            xtra("[-|<model-object-name>]", mono=mono),
+            f"[{building_query_options_(mono=mono)}]",
+            f"[{building_analyze_options_(mono=mono)}]",
         ],
         "ingest <target>.",
         {
             "target: {}".format(" | ".join(target_list.get_list())): [],
             **scope_details,
+            **device_and_profile_details,
+            **building_query_details,
+            **building_analyze_details,
         },
         mono=mono,
     )
@@ -83,41 +121,20 @@ def help_predict(
     tokens: List[str],
     mono: bool,
 ) -> str:
-    options = "".join(
-        [
-            "ingest",
-            xtra(",~tag", mono=mono),
-        ]
-    )
-
-    query_options = "".join(
-        [
-            xtra("~download_footprints | ", mono=mono),
-            building_query_options(mono=mono),
-        ]
-    )
-
-    analyze_options = "".join(
-        [
-            xtra("~analyze | ", mono=mono),
-            building_analyze_options(
-                mono=mono,
-                cascade=True,
-            ),
-        ]
-    )
+    options = xtra("~tag", mono=mono)
 
     return show_usage(
         [
             "palisades",
             "predict",
             f"[{options}]",
-            f"[{predict_options(mono=mono)}]",
-            "[-|<model-object-name>]",
+            f"[{datacube_ingest_options_(mono=mono)}]",
+            "[{}]".format(predict_options(mono=mono, cascade=True)),
+            xtra("[-|<model-object-name>]", mono=mono),
             "[.|<datacube-id>]",
             "[-|<prediction-object-name>]",
-            f"[{query_options}]",
-            f"[{analyze_options}]",
+            f"[{building_query_options_(mono=mono)}]",
+            f"[{building_analyze_options_(mono=mono)}]",
         ],
         "<datacube-id> -<model-object-name>-> <prediction-object-name>",
         {

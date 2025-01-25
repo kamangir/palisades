@@ -23,11 +23,17 @@ list_of_menu_item = {
         "marquee": "https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true",
         "title": "[segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch)",
     },
-    "Analytics: Building Damage": {
+    "Building Damage Analysis": {
         "ICON": ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md",
+        "marquee": "https://github.com/kamangir/assets/blob/main/palisades/building-analysis-5.png?raw=true",
+        "title": "using Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
+    },
+    "Analytics": {
+        "ICON": ICON,
+        "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true",
-        "title": "Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment)",
+        "title": "Damage information for multi-datacube areas.",
     },
     "template": {
         "ICON": ICON,
@@ -55,8 +61,9 @@ items = [
 def build():
     return all(
         README.build(
-            items=items,
-            path=os.path.join(file.path(__file__), path),
+            items=readme.get("items", []),
+            cols=readme.get("cols", 3),
+            path=os.path.join(file.path(__file__), readme["path"]),
             ICON=ICON,
             NAME=NAME,
             help_function=lambda tokens: get_help(
@@ -67,22 +74,23 @@ def build():
             VERSION=VERSION,
             REPO_NAME=REPO_NAME,
         )
-        for items, path in [
-            (
-                items,
-                "..",
-            ),
-            (
-                [],
-                "docs/step-by-step.md",
-            ),
-            (
-                [],
-                "docs/release-one.md",
-            ),
-            (
-                [],
-                "docs/building-analysis.md",
-            ),
+        for readme in [
+            {
+                "cols": 2,
+                "items": items,
+                "path": "..",
+            },
+            {
+                "path": "docs/step-by-step.md",
+            },
+            {
+                "path": "docs/release-one.md",
+            },
+            {
+                "path": "docs/building-analysis.md",
+            },
+            {
+                "path": "docs/damage-analytics.md",
+            },
         ]
     )

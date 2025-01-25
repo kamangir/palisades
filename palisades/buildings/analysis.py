@@ -128,7 +128,7 @@ def analyze_buildings(
             )
             building_info["area"] = float(np.sum(rasterized_shape) * pixel_area)
 
-            building_info["thumbnail"] = "thumbnail-{}{:06}.png".format(
+            building_info["thumbnail"] = "thumbnail-{}-{:06}.png".format(
                 file.name(prediction_filename),
                 index,
             )
@@ -173,7 +173,9 @@ def analyze_buildings(
                     blue_geo_fullname(),
                     roofai_fullname(),
                 ],
-                colormap=cv2.COLORMAP_SPRING,
+                colormap=cv2.COLORMAP_HOT,
+                invert_color_map=False,
+                invert_color_map_rgb=False,
                 dynamic_range=[0, 1],
                 filename=objects.path_of(
                     building_info["thumbnail"],
@@ -287,7 +289,7 @@ def analyze_buildings(
     )
     plt.bar(
         bin_centers + 2 * bar_width,
-        damaged_area_hist,
+        non_damaged_area_hist,
         width=bar_width,
         label="Not Damaged",
         align="center",
@@ -296,7 +298,7 @@ def analyze_buildings(
     )
     plt.bar(
         bin_centers + 3 * bar_width,
-        non_damaged_area_hist,
+        damaged_area_hist,
         width=bar_width,
         label="Damaged",
         align="center",

@@ -8,53 +8,48 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_query_ingest["palisades<br>ingest -<br>&lt;query-object-name&gt;<br>scope=&lt;scope&gt;"]
+    palisades_ingest_target["palisades<br>ingest -<br>target=&lt;target&gt; -<br>predict"]
 
-    palisades_ingest_target_ingest["palisades<br>ingest -<br>target=&lt;target&gt;<br>scope=&lt;scope&gt;"]
+    palisades_ingest_query["palisades<br>ingest -<br>&lt;query-object-name&gt; -<br>predict"]
 
     palisades_label["palisades<br>label<br>offset=&lt;offset&gt; -<br>&lt;query-object-name&gt;"]
 
-    palisades_train["palisades<br>train -<br>&lt;query-object-name&gt;<br>count=&lt;count&gt;<br>&lt;dataset-object-name&gt;<br>epochs=&lt;5&gt;<br>&lt;model-object-name&gt;"]
+    palisades_train["palisades<br>train -<br>&lt;query-object-name&gt; -<br>&lt;dataset-object-name&gt; -<br>&lt;model-object-name&gt;"]
 
-    palisades_predict["palisades<br>predict ingest -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google<br>buffer=&lt;buffer&gt;"]
+    palisades_predict["palisades<br>predict - - -<br>&lt;model-object-name&gt;<br>&lt;datacube-id&gt;<br>&lt;prediction-object-name&gt;"]
 
-    palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints<br>filename=&lt;filename&gt;<br>&lt;input-object-name&gt;<br>country_code=&lt;iso-code&gt;,source=microsoft|osm|google<br>&lt;output-object-name&gt;"]
+    palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints -<br>&lt;input-object-name&gt; -<br>&lt;output-object-name&gt;"]
 
-    palisades_buildings_analyze["palisades<br>buildings<br>analyze<br>buffer=&lt;buffer&gt;<br>&lt;object-name&gt;"]
+    palisades_buildings_analyze["palisades<br>buildings<br>analyze -<br>&lt;object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
-    datacube_1["🧊 datacube 1"]:::folder
-    datacube_2["🧊 datacube 2"]:::folder
-    datacube_3["🧊 datacube 3"]:::folder
+    datacube["🧊 datacube"]:::folder
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object["📂 prediction object"]:::folder
 
-    query_object --> datacube_1
-    query_object --> datacube_2
-    query_object --> datacube_3
+    query_object --> datacube
 
-    query_object --> palisades_ingest_query_ingest
-    palisades_ingest_query_ingest --> datacube_1
-    palisades_ingest_query_ingest --> datacube_2
-    palisades_ingest_query_ingest --> datacube_3
+    target --> palisades_ingest_target
+    palisades_ingest_target --> palisades_ingest_query
+    palisades_ingest_target --> query_object
 
-    target --> palisades_ingest_target_ingest
-    palisades_ingest_target_ingest --> query_object
-    palisades_ingest_target_ingest --> datacube_1
-    palisades_ingest_target_ingest --> datacube_2
-    palisades_ingest_target_ingest --> datacube_3
+    query_object --> palisades_ingest_query
+    palisades_ingest_query --> datacube
+    palisades_ingest_query --> palisades_predict
 
     query_object --> palisades_label
-    palisades_label --> datacube_1
+    palisades_label --> datacube
 
     query_object --> palisades_train
     palisades_train --> dataset_object
     palisades_train --> model_object
 
     model_object --> palisades_predict
-    datacube_1 --> palisades_predict
+    datacube --> palisades_predict
+    palisades_predict --> palisades_buildings_download_footprints
+    palisades_predict --> palisades_buildings_analyze
     palisades_predict --> prediction_object
 
     prediction_object --> palisades_buildings_download_footprints
@@ -74,7 +69,12 @@ palisades \
 	ingest \
 	[~download,dryrun] \
 	[target=<target> | <query-object-name>] \
-	[~ingest_datacubes | ~copy_template,dryrun,overwrite,scope=<scope>,upload]
+	[~ingest | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
+	[predict,count=<count>,~tag] \
+	[device=<device>,profile=<profile>,upload] \
+	[-|<model-object-name>] \
+	[~download_footprints | country_code=<iso-code>,country_name=<country-name>,overwrite,source=<source>] \
+	[~analyze | buffer=<buffer>]
  . ingest <target>.
    target: Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | Palisades-Maxar | Palisades-Maxar-test
    scope: all + metadata + raster + rgb + rgbx + <.jp2> + <.tif> + <.tiff>
@@ -84,6 +84,15 @@ palisades \
       rgb: rgb.
       rgbx: rgb and what is needed to build rgb.
       <suffix>: any *<suffix>.
+   device: cpu | cuda
+   profile: FULL | DECENT | QUICK | DEBUG | VALIDATION
+   country-name: for Microsoft, optional, overrides <iso-code>.
+   iso-code: Country Alpha2 ISO code: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+      Canada: CA
+      US: US
+   source: microsoft | osm | google
+   calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
+   buffer: in meters.
 ```
 ```bash
 palisades \
@@ -109,8 +118,9 @@ palisades \
 ```bash
 palisades \
 	predict \
-	[ingest,~tag] \
-	[device=<device>,~download,dryrun,profile=<profile>,upload] \
+	[~tag] \
+	[~ingest | ~copy_template,dryrun,overwrite,scope=<scope>,upload] \
+	[device=<device>,profile=<profile>,upload] \
 	[-|<model-object-name>] \
 	[.|<datacube-id>] \
 	[-|<prediction-object-name>] \
@@ -130,9 +140,10 @@ palisades \
 
 </details>
 
-|   |   |   |
-| --- | --- | --- |
-| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Vision Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) | 🧑🏽‍🚒[`Analytics: Building Damage`](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) [![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) |
+|   |   |
+| --- | --- |
+| 🌐[`STAC Catalog: Maxar Open Data`](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) [![image](https://github.com/kamangir/assets/blob/main/blue-geo/Maxar-Open-Datacube.png?raw=true)](https://github.com/kamangir/blue-geo/tree/main/blue_geo/catalog/maxar_open_data) ["Satellite imagery for select sudden onset major crisis events"](https://www.maxar.com/open-data/) | 🏛️[`Vision Algo: Semantic Segmentation`](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [![image](https://github.com/kamangir/assets/raw/main/palisades/prediction-lres.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/step-by-step.md) [segmentation_models.pytorch](https://github.com/qubvel-org/segmentation_models.pytorch) |
+| 🧑🏽‍🚒[`Building Damage Analysis`](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) [![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-5.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/building-analysis.md) using Microsoft, OSM, and Google footprints through [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) | 🧑🏽‍🚒[`Analytics`](https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md) [![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true)](https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md) Damage information for multi-datacube areas. |
 
 ---
 
@@ -143,4 +154,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.82.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.118.1`](https://github.com/kamangir/palisades).
