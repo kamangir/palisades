@@ -49,7 +49,7 @@ function palisades_ingest() {
         --job_name $job_name \
         --query_object_name $query_object_name \
         --count $count \
-        --tag $do_tag \
+        --do_tag $do_tag \
         --datacube_ingest_options ,$datacube_ingest_options \
         --predict_options ,$predict_options \
         --model_object_name $model_object_name \

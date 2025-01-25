@@ -61,15 +61,17 @@ def generate_ingest_workflow(
         include_time=False,
         unique=True,
     )
-    for datacube_id in list_of_datacube_id:
-        workflow.G.add_node(datacube_id)
+    for index, datacube_id in enumerate(list_of_datacube_id):
+        node = f"{index:04d}"
+
+        workflow.G.add_node(node)
 
         prediction_object_name = f"predict-{datacube_id}-{suffix}"
 
-        workflow.G.nodes[datacube_id]["command_line"] = " ".join(
+        workflow.G.nodes[node]["command_line"] = " ".join(
             [
                 "blueflow_workflow monitor",
-                f"node={datacube_id}",
+                f"node={node}",
                 job_name,
                 "palisades_predict",
                 f"tag={int(do_tag)}",
