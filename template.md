@@ -20,7 +20,7 @@ graph LR
 
     palisades_buildings_download_footprints["palisades buildings download_footprints~~- <input-object-name>~~- <output-object-name>"]
 
-    palisades_buildings_analyze["palisades buildings analyze~~- <object-name>"]
+    palisades_buildings_analyze["palisades buildings analyze~~- <prediction-object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
