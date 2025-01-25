@@ -36,7 +36,7 @@ parser.add_argument(
     type=int,
 )
 parser.add_argument(
-    "--tag",
+    "--do_tag",
     type=int,
 )
 parser.add_argument(
