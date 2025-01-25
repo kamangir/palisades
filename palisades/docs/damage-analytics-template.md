@@ -1,5 +1,7 @@
 # damage analytics
 
+![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-1.png?raw=true)
+
 🔥
 
 ```bash
