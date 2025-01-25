@@ -13,6 +13,7 @@ setup(
         f"{NAME}.geo",
         f"{NAME}.help",
         f"{NAME}.semseg",
+        f"{NAME}.workflow",
     ],
     include_package_data=True,
     package_data={

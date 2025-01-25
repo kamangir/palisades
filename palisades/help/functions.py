@@ -7,7 +7,8 @@ from roofai.help.semseg import (
     device_and_profile_details,
     predict_options,
 )
-
+from blueflow.help.workflow import submit_options as workflow_submit_options
+from blueflow.help.workflow import runner_details
 from blue_geo.watch.targets.target_list import TargetList
 from blue_geo.help.datacube import scope_details
 from blue_geo.help.datacube import ingest_options as datacube_ingest_options
@@ -73,6 +74,16 @@ def help_ingest(
         ]
     )
 
+    workflow_options = "".join(
+        [
+            xtra("~submit | ", mono=mono),
+            workflow_submit_options(
+                mono=mono,
+                cascade=True,
+            ),
+        ]
+    )
+
     return show_usage(
         [
             "palisades",
@@ -85,6 +96,7 @@ def help_ingest(
             xtra("[-|<model-object-name>]", mono=mono),
             f"[{building_query_options_(mono=mono)}]",
             f"[{building_analyze_options_(mono=mono)}]",
+            f"[{workflow_options}]",
         ],
         "ingest <target>.",
         {
@@ -93,6 +105,7 @@ def help_ingest(
             **device_and_profile_details,
             **building_query_details,
             **building_analyze_details,
+            **runner_details,
         },
         mono=mono,
     )
