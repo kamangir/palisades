@@ -35,6 +35,9 @@ function test_palisades_ingest() {
         - \
         target=Palisades-Maxar-test \
         scope=rgb \
-        predict,count=1 \
-        profile=VALIDATION
+        predict,count=1,~tag \
+        profile=VALIDATION \
+        - \
+        - \
+        count=3
 }

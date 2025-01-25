@@ -34,6 +34,7 @@ def analyze_buildings(
     object_name: str,
     buffer: float,
     verbose: bool = False,
+    max_count: int = -1,
 ) -> bool:
     prediction_filename = get_from_object(
         object_name,
@@ -88,6 +89,9 @@ def analyze_buildings(
                 footprints_crs, predictions_crs, row["geometry"]
             )
             projected_building_geoms.append(projected_geom)
+
+            if max_count != -1 and len(projected_building_geoms) >= max_count:
+                break
 
     logger.info("analyzing {:,} building(s)".format(len(projected_building_geoms)))
     list_of_building_info: List[Any] = []

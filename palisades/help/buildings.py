@@ -9,7 +9,7 @@ def analyze_options(
     cascade: bool = False,
 ):
     return "".join(
-        [xtra("buffer=<buffer>", mono=mono)]
+        [xtra("buffer=<buffer>,count=<count>", mono=mono)]
         + (
             []
             if cascade

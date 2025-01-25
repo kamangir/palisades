@@ -44,7 +44,7 @@ function palisades_ingest() {
         return 0
 
     local count=$(abcli_option "$batch_options" count -1)
-    local do_tag=$(abcli_option "$batch_options" tag 1)
+    local do_tag=$(abcli_option_int "$batch_options" tag 1)
 
     local list_of_datacubes=$(blue_geo_catalog_query_read \
         all \
