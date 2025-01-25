@@ -42,6 +42,7 @@ graph LR
     query_object --> palisades_label
     palisades_label --> datacube
 
+    datacube --> palisades_train
     query_object --> palisades_train
     palisades_train --> dataset_object
     palisades_train --> model_object
