@@ -56,7 +56,7 @@ analytics:
 
 [palisades-analytics-2025-01-26-13-27-24-5062kl](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-26-13-27-24-5062kl.tar.gz)
 
-## 2️⃣ a closer look at one property,
+## 2️⃣ review of the history of a few properties,
 
 ```bash
 palisades analytics render \

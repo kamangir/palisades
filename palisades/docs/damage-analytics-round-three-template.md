@@ -56,7 +56,7 @@ analytics:
 
 object:::palisades-analytics-2025-01-26-13-27-24-5062kl
 
-## 2️⃣ a closer look at one property,
+## 2️⃣ review of the history of a few properties,
 
 ```bash
 palisades analytics render \
