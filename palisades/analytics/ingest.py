@@ -18,6 +18,7 @@ NAME = module.name(__file__, NAME)
 
 def ingest_analytics(
     object_name: str,
+    generate_gifs: bool = False,
     acq_count: int = -1,
     building_count: int = -1,
     verbose: bool = False,
@@ -60,24 +61,25 @@ def ingest_analytics(
             logger.warning("analysis.datetime not found.")
             continue
 
-        if not objects.download(prediction_object_name):
-            continue
+        if generate_gifs:
+            if not objects.download(prediction_object_name):
+                continue
 
-        for filename in tqdm(
-            glob.glob(
-                objects.path_of(
-                    "thumbnail-*.png",
-                    prediction_object_name,
+            for filename in tqdm(
+                glob.glob(
+                    objects.path_of(
+                        "thumbnail-*.png",
+                        prediction_object_name,
+                    )
                 )
-            )
-        ):
-            shutil.copy(
-                filename,
-                objects.path_of(
-                    file.name_and_extension(filename),
-                    object_name,
-                ),
-            )
+            ):
+                shutil.copy(
+                    filename,
+                    objects.path_of(
+                        file.name_and_extension(filename),
+                        object_name,
+                    ),
+                )
 
         success, gdf = file.load_geodataframe(
             objects.path_of(
@@ -132,7 +134,8 @@ def ingest_analytics(
         }
         success_count += 1
 
-    logger.info("generating combined views...")
+    if generate_gifs:
+        logger.info("generating combined views...")
     observation_count: Dict[int:int] = {}
     for index in trange(len(list_of_building_ids)):
         building_id = list_of_building_ids[index]
@@ -149,7 +152,7 @@ def ingest_analytics(
             observation_count.get(len(building_metadata), 0) + 1
         )
 
-        if len(building_metadata) > 1:
+        if len(building_metadata) > 1 and generate_gifs:
             thumbnail_filename = objects.path_of(
                 f"thumbnail-{building_id}-{object_name}.gif",
                 object_name,

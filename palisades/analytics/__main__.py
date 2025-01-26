@@ -37,12 +37,19 @@ parser.add_argument(
     default=0,
     help="0 | 1",
 )
+parser.add_argument(
+    "--generate_gifs",
+    type=int,
+    default=0,
+    help="0 | 1",
+)
 args = parser.parse_args()
 
 success = False
 if args.task == "ingest":
     success = ingest_analytics(
         object_name=args.object_name,
+        generate_gifs=args.generate_gifs == 1,
         acq_count=args.acq_count,
         building_count=args.building_count,
         verbose=args.verbose == 1,

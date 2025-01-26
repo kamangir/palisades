@@ -67,10 +67,10 @@ source: catalog_query
 ---
 
 ```bash
-palisades ingest analytics ~upload
+palisades ingest analytics
 ```
 
-object:::palisades-analytics-2025-01-25-23-23-42-i35w48
+object:::palisades-analytics-2025-01-26-00-28-19-4otw88
 
 ```yaml
 '2025-01-14T18:30:58Z':
