@@ -15,7 +15,10 @@ function palisades_ingest_analytics() {
         --object_name $object_name \
         --acq_count $acq_count \
         --building_count $building_count
+    [[ $? -ne 0 ]] && return 1
 
     [[ "$do_upload" == 1 ]] &&
         abcli_upload - $do_upload
+
+    return 0
 }

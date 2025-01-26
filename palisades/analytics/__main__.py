@@ -34,7 +34,7 @@ parser.add_argument(
 parser.add_argument(
     "--verbose",
     type=int,
-    default=1,
+    default=0,
     help="0 | 1",
 )
 args = parser.parse_args()
