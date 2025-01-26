@@ -1,12 +1,14 @@
 from typing import Dict, Any
-from tqdm import tqdm
+from tqdm import tqdm, trange
 import geopandas as gpd
+import glob
+import shutil
 
 from blueness import module
 from blue_objects import mlflow, objects, file
 from blue_objects.metadata import post_to_object, get_from_object
 from blue_objects.mlflow.tags import create_filter_string
-from blue_objects.storage import instance as storage
+from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
 from palisades.logger import logger
@@ -38,10 +40,11 @@ def ingest_analytics(
 
     object_metadata: Dict[str, Any] = {}
     success_count: int = 0
-    unique_polygons = []
-    unique_ids = []
-    area_values = []
-    damage_values = []
+    list_of_polygons = []
+    list_of_building_ids = []
+    list_of_area = []
+    list_of_damage = []
+    list_of_thumbnail = []
     crs = ""
     observation_count: Dict[int:int] = {}
     for prediction_object_name in tqdm(list_of_prediction_objects):
@@ -52,21 +55,30 @@ def ingest_analytics(
         prediction_datetime = get_from_object(
             prediction_object_name,
             "analysis.datetime",
+            download=True,
         )
         if not prediction_datetime:
             logger.warning("analysis.datetime not found.")
             continue
 
-        if not storage.exists(f"{prediction_object_name}/analysis.gpkg"):
-            logger.warning("analysis.gkpg not found.")
+        if not objects.download(prediction_object_name):
             continue
 
-        if not storage.download_file(
-            object_name=f"bolt/{prediction_object_name}/analysis.gpkg",
-            filename="object",
-            log=verbose,
+        for filename in tqdm(
+            glob.glob(
+                objects.path_of(
+                    "thumbnail-*.png",
+                    prediction_object_name,
+                )
+            )
         ):
-            continue
+            shutil.copy(
+                filename,
+                objects.path_of(
+                    file.name_and_extension(filename),
+                    object_name,
+                ),
+            )
 
         success, gdf = file.load_geodataframe(
             objects.path_of(
@@ -93,14 +105,15 @@ def ingest_analytics(
                 object_name,
             )
 
-            if row["building_id"] in unique_ids:
+            if row["building_id"] in list_of_building_ids:
                 success, building_metadata = file.load_yaml(building_metadata_filename)
                 assert success
             else:
-                unique_polygons.append(row["geometry"])
-                unique_ids.append(row["building_id"])
-                area_values.append(row["area"])
-                damage_values.append(row["damage"])
+                list_of_thumbnail.append(row["thumbnail"])
+                list_of_polygons.append(row["geometry"])
+                list_of_building_ids.append(row["building_id"])
+                list_of_area.append(row["area"])
+                list_of_damage.append(row["damage"])
 
             building_metadata[prediction_datetime] = {
                 "area": row["area"],
@@ -124,12 +137,51 @@ def ingest_analytics(
         }
         success_count += 1
 
+    logger.info("generating combined views...")
+    for index in trange(len(list_of_building_ids)):
+        building_id = list_of_building_ids[index]
+
+        success, building_metadata = file.load_yaml(
+            objects.path_of(
+                f"metadata-{building_id}.yaml",
+                object_name,
+            )
+        )
+        assert success
+
+        if len(building_metadata) > 1:
+            thumbnail_filename = objects.path_of(
+                f"thumbnail-{building_id}-{object_name}.gif",
+                object_name,
+            )
+
+            list_of_images = [
+                objects.path_of(
+                    building_metadata[datacube_datetime]["thumbnail"],
+                    building_metadata[datacube_datetime]["object_name"],
+                )
+                for datacube_datetime in building_metadata
+            ]
+
+            assert generate_animated_gif(
+                list_of_images=list_of_images,
+                output_filename=thumbnail_filename,
+                frame_duration=1000,
+                log=verbose,
+            )
+
+            for filename in list_of_images:
+                assert file.delete(filename)
+
+            list_of_thumbnail[index] = file.name_and_extension(thumbnail_filename)
+
     output_gdf = gpd.GeoDataFrame(
         data={
-            "building_id": unique_ids,
-            "geometry": unique_polygons,
-            "area": area_values,
-            "damage": damage_values,
+            "building_id": list_of_building_ids,
+            "geometry": list_of_polygons,
+            "area": list_of_area,
+            "damage": list_of_damage,
+            "thumbnail": list_of_thumbnail,
         },
     )
     output_gdf.crs = crs
