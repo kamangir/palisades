@@ -22,12 +22,15 @@ graph LR
 
     palisades_buildings_analyze["palisades<br>buildings<br>analyze -<br>&lt;prediction-object-name&gt;"]
 
+    palisades_ingest analytics["palisades<br>ingest<br>analytics -<br>&lt;object-name&gt;"]
+
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
     datacube["🧊 datacube"]:::folder
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object["📂 prediction object"]:::folder
+    analytics_object["📂 analytics object"]:::folder
 
     query_object --> datacube
 
@@ -58,6 +61,9 @@ graph LR
     datacube --> palisades_buildings_analyze
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
+
+    prediction_object --> palisades_ingest
+    palisades_ingest --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -163,4 +169,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.151.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.152.1`](https://github.com/kamangir/palisades).

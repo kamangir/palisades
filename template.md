@@ -22,12 +22,15 @@ graph LR
 
     palisades_buildings_analyze["palisades buildings analyze~~- <prediction-object-name>"]
 
+    palisades_ingest analytics["palisades ingest analytics~~- <object-name>"]
+
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
     datacube["🧊 datacube"]:::folder
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object["📂 prediction object"]:::folder
+    analytics_object["📂 analytics object"]:::folder
 
     query_object --> datacube
 
@@ -58,6 +61,9 @@ graph LR
     datacube --> palisades_buildings_analyze
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
+
+    prediction_object --> palisades_ingest
+    palisades_ingest --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
