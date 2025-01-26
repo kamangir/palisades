@@ -4,7 +4,7 @@ import geopandas as gpd
 
 from blueness import module
 from blue_objects import mlflow, objects, file
-from blue_objects.metadata import post_to_object
+from blue_objects.metadata import post_to_object, get_from_object
 from blue_objects.mlflow.tags import create_filter_string
 from blue_objects.storage import instance as storage
 
@@ -43,8 +43,17 @@ def ingest_analytics(
     area_values = []
     damage_values = []
     crs = ""
+    observation_count: Dict[int:int] = {}
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
+
+        prediction_datetime = get_from_object(
+            prediction_object_name,
+            "analysis.datetime",
+        )
+        if not prediction_datetime:
+            logger.warning("analysis.datetime not found.")
+            continue
 
         object_metadata[prediction_object_name] = {"success": False}
 
@@ -78,16 +87,36 @@ def ingest_analytics(
             continue
 
         for _, row in tqdm(gdf.iterrows()):
-            if row["building_id"] in unique_ids:
-                # ToDO: create building_id-metadata
-                ...
-            else:
-                # ToDO: update building_id-metadata
+            building_metadata: Dict[str, Any] = {}
+            building_metadata_filename = objects.path_of(
+                "metadata-{}.yaml".format(row["building_id"]),
+                object_name,
+            )
 
+            if row["building_id"] in unique_ids:
+                success, building_metadata = file.load_yaml(building_metadata_filename)
+                assert success
+            else:
                 unique_polygons.append(row["geometry"])
                 unique_ids.append(row["building_id"])
                 area_values.append(row["area"])
                 damage_values.append(row["damage"])
+
+            building_metadata[prediction_datetime] = {
+                "area": row["area"],
+                "damage": row["damage"],
+                "thumbnail": row["thumbnail"],
+                "object_name": prediction_object_name,
+            }
+            assert file.save_yaml(
+                building_metadata_filename,
+                building_metadata,
+                log=verbose,
+            )
+
+            observation_count[len(building_metadata)] = (
+                observation_count.get(len(building_metadata), 0) + 1
+            )
 
         object_metadata[prediction_object_name] = {
             "success": True,
@@ -120,10 +149,19 @@ def ingest_analytics(
         )
     )
 
+    logger.info(
+        "observation counts: {}".format(
+            ", ".join(
+                [f"{rounds}X: {count}" for rounds, count in observation_count.items()]
+            )
+        )
+    )
+
     return post_to_object(
         object_name,
         "analytics.ingest",
         {
             "objects": object_metadata,
+            "observation_count": observation_count,
         },
     )
