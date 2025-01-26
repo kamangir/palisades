@@ -40,6 +40,7 @@ def ingest_analytics(
     success_count: int = 0
     unique_polygons = []
     unique_ids = []
+    crs = ""
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
 
@@ -65,6 +66,8 @@ def ingest_analytics(
         )
         if not success:
             continue
+        if not crs:
+            crs = gdf.crs
         if building_count != -1:
             gdf = gdf.head(building_count)
 
@@ -89,21 +92,19 @@ def ingest_analytics(
         success_count += 1
 
     output_gdf = gpd.GeoDataFrame(
-        {
+        data={
             "building_id": unique_ids,
             "geometry": unique_polygons,
-        }
+        },
     )
-    output_gdf.crs = "EPSG:4326"
-    if not file.save_geojson(
+    output_gdf.crs = crs
+    output_gdf.to_file(
         objects.path_of(
             "analytics.geojson",
             object_name,
         ),
-        output_gdf,
-        log=verbose,
-    ):
-        return False
+        driver="GeoJSON",
+    )
 
     logger.info(
         "{} object(s) -> {} ingested -> {:,} buildings(s).".format(
