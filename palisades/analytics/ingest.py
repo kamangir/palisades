@@ -46,7 +46,6 @@ def ingest_analytics(
     list_of_damage = []
     list_of_thumbnail = []
     crs = ""
-    observation_count: Dict[int:int] = {}
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
 
@@ -127,10 +126,6 @@ def ingest_analytics(
                 log=verbose,
             )
 
-            observation_count[len(building_metadata)] = (
-                observation_count.get(len(building_metadata), 0) + 1
-            )
-
         object_metadata[prediction_object_name] = {
             "success": True,
             "building_count": len(gdf),
@@ -138,6 +133,7 @@ def ingest_analytics(
         success_count += 1
 
     logger.info("generating combined views...")
+    observation_count: Dict[int:int] = {}
     for index in trange(len(list_of_building_ids)):
         building_id = list_of_building_ids[index]
 
@@ -148,6 +144,10 @@ def ingest_analytics(
             )
         )
         assert success
+
+        observation_count[len(building_metadata)] = (
+            observation_count.get(len(building_metadata), 0) + 1
+        )
 
         if len(building_metadata) > 1:
             thumbnail_filename = objects.path_of(
@@ -174,6 +174,13 @@ def ingest_analytics(
                 assert file.delete(filename)
 
             list_of_thumbnail[index] = file.name_and_extension(thumbnail_filename)
+    logger.info(
+        "observation counts: {}".format(
+            ", ".join(
+                [f"{rounds}X: {count}" for rounds, count in observation_count.items()]
+            )
+        )
+    )
 
     output_gdf = gpd.GeoDataFrame(
         data={
@@ -198,14 +205,6 @@ def ingest_analytics(
             len(object_metadata),
             success_count,
             len(output_gdf),
-        )
-    )
-
-    logger.info(
-        "observation counts: {}".format(
-            ", ".join(
-                [f"{rounds}X: {count}" for rounds, count in observation_count.items()]
-            )
         )
     )
 
