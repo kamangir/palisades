@@ -35,8 +35,9 @@ palisades ingest - \
 ## 3️⃣ reviewing one prediction,
 
 ```bash
-@select predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4
-@download - . open,QGIS
+@download - \
+    predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4 \
+    open,QGIS
 ```
 
 ```python
