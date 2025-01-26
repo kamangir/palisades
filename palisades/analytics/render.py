@@ -2,6 +2,7 @@ import geopandas as gpd
 
 from blueness import module
 from blue_objects import objects, file
+from blue_objects.metadata import get_from_object
 from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
@@ -36,15 +37,11 @@ def render_analytics(
     if not success:
         return success
 
-    success, list_of_buildings = file.load_yaml(
-        objects.path_of(
-            "list_of_buildings.yaml",
-            object_name,
-        )
+    list_of_buildings = get_from_object(
+        object_name,
+        "analytics.list_of_buildings",
+        [],
     )
-    if not success:
-        return False
-
     if building_id not in list_of_buildings:
         logger.error(f"{building_id}: building-id not found.")
         return False
@@ -81,6 +78,8 @@ def render_analytics(
     gdf.loc[gdf["building_id"] == building_id, "thumbnail"] = file.name_and_extension(
         thumbnail_filename
     )
+
+    return True
 
     return file.save_geojson(
         geojson_filename,

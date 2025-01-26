@@ -147,7 +147,7 @@ def ingest_analytics(
 
     return post_to_object(
         object_name,
-        "analytics.ingest",
+        "analytics",
         {
             "list_of_buildings": list_of_buildings,
             "building_count": len(list_of_buildings),

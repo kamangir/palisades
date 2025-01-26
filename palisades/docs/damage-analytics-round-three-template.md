@@ -10,7 +10,7 @@ palisades analytics ingest upload
 ```
 
 ```yaml
-analytics.ingest:
+analytics:
   building_count: 2977
   list_of_buildings:
 ...

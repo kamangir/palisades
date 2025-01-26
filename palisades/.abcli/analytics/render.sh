@@ -2,7 +2,7 @@
 
 function palisades_analytics_render() {
     local options=$1
-    local building_id=$(abcli_option "$options" building_id void)
+    local building_id=$(abcli_option "$options" building void)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload 0)

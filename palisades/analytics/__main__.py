@@ -33,6 +33,10 @@ parser.add_argument(
     help="-1: all",
 )
 parser.add_argument(
+    "--building_id",
+    type=str,
+)
+parser.add_argument(
     "--verbose",
     type=int,
     default=0,
