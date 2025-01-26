@@ -52,14 +52,18 @@ analytics:
     5: 1770
 ```
 
+![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-4.png?raw=true)
+
 object:::palisades-analytics-2025-01-26-13-27-24-5062kl
 
-🔥
+## 2️⃣ a closer look at one property,
 
-
+```bash
+palisades analytics render \
+  building=035501-377213,~download \
+  palisades-analytics-2025-01-26-13-27-24-5062kl
+```
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035511-377166-palisades-analytics-2025-01-25-23-23-42-i35w48.gif?raw=true)
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035584-377098-palisades-analytics-2025-01-25-23-23-42-i35w48.gif?raw=true)
-
-🔥

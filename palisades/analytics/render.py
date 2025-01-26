@@ -1,4 +1,5 @@
 import geopandas as gpd
+from tqdm import tqdm
 
 from blueness import module
 from blue_objects import objects, file
@@ -48,7 +49,7 @@ def render_analytics(
     building_metadata = list_of_buildings[building_id]
 
     list_of_images: List[str] = []
-    for prediction_info in building_metadata.values():
+    for prediction_info in tqdm(building_metadata.values()):
         if not objects.download(
             filename=prediction_info["thumbnail"],
             object_name=prediction_info["object_name"],
@@ -62,24 +63,21 @@ def render_analytics(
             )
         ]
 
-    thumbnail_filename = objects.path_of(
-        f"thumbnail-{building_id}-{object_name}.gif",
-        object_name,
-    )
+    thumbnail_filename = f"thumbnail-{building_id}-{object_name}.gif"
 
     if not generate_animated_gif(
         list_of_images=list_of_images,
-        output_filename=thumbnail_filename,
+        output_filename=objects.path_of(
+            thumbnail_filename,
+            object_name,
+        ),
         frame_duration=1000,
-        log=verbose,
+        log=log,
     ):
         return False
 
-    gdf.loc[gdf["building_id"] == building_id, "thumbnail"] = file.name_and_extension(
-        thumbnail_filename
-    )
-
-    return True
+    gdf.loc[gdf["building_id"] == building_id, "thumbnail"] = thumbnail_filename
+    gdf.loc[gdf["building_id"] == building_id, "thumbnail_object"] = object_name
 
     return file.save_geojson(
         geojson_filename,
