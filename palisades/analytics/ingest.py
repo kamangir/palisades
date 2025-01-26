@@ -40,6 +40,8 @@ def ingest_analytics(
     success_count: int = 0
     unique_polygons = []
     unique_ids = []
+    area_values = []
+    damage_values = []
     crs = ""
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
@@ -84,6 +86,8 @@ def ingest_analytics(
 
                 unique_polygons.append(row["geometry"])
                 unique_ids.append(row["building_id"])
+                area_values.append(row["area"])
+                damage_values.append(row["damage"])
 
         object_metadata[prediction_object_name] = {
             "success": True,
@@ -95,6 +99,8 @@ def ingest_analytics(
         data={
             "building_id": unique_ids,
             "geometry": unique_polygons,
+            "area": area_values,
+            "damage": damage_values,
         },
     )
     output_gdf.crs = crs
