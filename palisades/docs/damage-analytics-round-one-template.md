@@ -1,6 +1,6 @@
 # Damage Analytics - Round One
 
-## 1️⃣ ingesting a few datacubes from a target
+## 1️⃣ ingesting a few datacubes from a target,
 
 ```bash
 palisades ingest - \
@@ -10,7 +10,7 @@ palisades ingest - \
     profile=FULL,upload
 ```
 
-## 2️⃣ finding the predictions in mlflow
+## 2️⃣ finding the predictions in mlflow,
 
 ```bash
 @mlflow tags search \
@@ -32,7 +32,7 @@ palisades ingest - \
 🌀  #  12 - predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-za5ba5
 ```
 
-# 3️⃣ reviewing one prediction.
+# 3️⃣ reviewing one prediction,
 
 ```bash
 @select predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4

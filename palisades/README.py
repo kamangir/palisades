@@ -82,14 +82,15 @@ def build():
             },
         ]
         + [
-            {"path": path}
-            for path in [
-                "docs/step-by-step.md",
-                "docs/release-one.md",
-                "docs/building-analysis.md",
-                "docs/damage-analytics-round-one.md",
-                "docs/damage-analytics-round-two.md",
-                "docs/damage-analytics.md",
+            {"path": f"docs/{doc}.md"}
+            for doc in [
+                "step-by-step",
+                "release-one",
+                "building-analysis",
+                "damage-analytics-round-one",
+                "damage-analytics-round-two",
+                "damage-analytics-round-three",
+                "damage-analytics",
             ]
         ]
     )
