@@ -51,6 +51,12 @@ def analyze_buildings(
         "predict.datacube_id",
         "",
     )
+    datacube_datetime = get_from_object(datacube_id, "item_info.properties.datetime")
+    logger.info(f"📆  {datacube_datetime}")
+    if not datacube_datetime:
+        logger.error("datacube datetime not found.")
+        return False
+
     reference_filename = get_from_object(
         object_name,
         "predict.reference_filename",
@@ -257,6 +263,7 @@ def analyze_buildings(
         object_name,
         "analysis",
         {
+            "datetime": datacube_datetime,
             "building-count": len(list_of_building_info),
             "damaged-count": len(
                 [
