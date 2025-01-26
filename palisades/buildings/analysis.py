@@ -238,7 +238,7 @@ def analyze_buildings(
                     "area": building_info["area"],
                     "building_id": "-".join(
                         [
-                            "{:06d}".format(int(value))
+                            "{:06d}".format(round(value / 10))  # 10 m precision
                             for value in np.array(geom["coordinates"])
                             .squeeze()
                             .mean(axis=0)
