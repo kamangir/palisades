@@ -8,7 +8,6 @@ from blueness import module
 from blue_objects import mlflow, objects, file
 from blue_objects.metadata import post_to_object, get_from_object
 from blue_objects.mlflow.tags import create_filter_string
-from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
 from palisades.logger import logger
@@ -39,6 +38,7 @@ def ingest_analytics(
     logger.info(f"{len(list_of_prediction_objects)} acq(s) to process.")
 
     object_metadata: Dict[str, Any] = {}
+    list_of_buildings: Dict[str, Any] = {}
     success_count: int = 0
     list_of_polygons = []
     list_of_building_ids = []
@@ -60,26 +60,6 @@ def ingest_analytics(
             logger.warning("analysis.datetime not found.")
             continue
 
-        if generate_gifs:
-            if not objects.download(prediction_object_name):
-                continue
-
-            for filename in tqdm(
-                glob.glob(
-                    objects.path_of(
-                        "thumbnail-*.png",
-                        prediction_object_name,
-                    )
-                )
-            ):
-                shutil.copy(
-                    filename,
-                    objects.path_of(
-                        file.name_and_extension(filename),
-                        object_name,
-                    ),
-                )
-
         success, gdf = file.load_geodataframe(
             objects.path_of(
                 "analysis.gpkg",
@@ -99,33 +79,21 @@ def ingest_analytics(
             continue
 
         for _, row in tqdm(gdf.iterrows()):
-            building_metadata: Dict[str, Any] = {}
-            building_metadata_filename = objects.path_of(
-                "metadata-{}.yaml".format(row["building_id"]),
-                object_name,
-            )
+            if row["building_id"] not in list_of_building_ids:
+                list_of_buildings[row["building_id"]] = {}
 
-            if row["building_id"] in list_of_building_ids:
-                success, building_metadata = file.load_yaml(building_metadata_filename)
-                assert success
-            else:
-                list_of_thumbnail.append(row["thumbnail"])
-                list_of_polygons.append(row["geometry"])
-                list_of_building_ids.append(row["building_id"])
                 list_of_area.append(row["area"])
                 list_of_damage.append(row["damage"])
+                list_of_building_ids.append(row["building_id"])
+                list_of_polygons.append(row["geometry"])
+                list_of_thumbnail.append(row["thumbnail"])
 
-            building_metadata[prediction_datetime] = {
+            list_of_buildings[row["building_id"]][prediction_datetime] = {
                 "area": row["area"],
                 "damage": row["damage"],
                 "thumbnail": row["thumbnail"],
                 "object_name": prediction_object_name,
             }
-            assert file.save_yaml(
-                building_metadata_filename,
-                building_metadata,
-                log=verbose,
-            )
 
         object_metadata[prediction_object_name] = {
             "success": True,
@@ -133,49 +101,11 @@ def ingest_analytics(
         }
         success_count += 1
 
-    if generate_gifs:
-        logger.info("generating combined views...")
     observation_count: Dict[int:int] = {}
-    for index in trange(len(list_of_building_ids)):
-        building_id = list_of_building_ids[index]
-
-        success, building_metadata = file.load_yaml(
-            objects.path_of(
-                f"metadata-{building_id}.yaml",
-                object_name,
-            )
-        )
-        assert success
-
+    for building_metadata in list_of_buildings:
         observation_count[len(building_metadata)] = (
             observation_count.get(len(building_metadata), 0) + 1
         )
-
-        if len(building_metadata) > 1 and generate_gifs:
-            thumbnail_filename = objects.path_of(
-                f"thumbnail-{building_id}-{object_name}.gif",
-                object_name,
-            )
-
-            list_of_images = [
-                objects.path_of(
-                    building_metadata[datacube_datetime]["thumbnail"],
-                    building_metadata[datacube_datetime]["object_name"],
-                )
-                for datacube_datetime in building_metadata
-            ]
-
-            assert generate_animated_gif(
-                list_of_images=list_of_images,
-                output_filename=thumbnail_filename,
-                frame_duration=1000,
-                log=verbose,
-            )
-
-            for filename in list_of_images:
-                assert file.delete(filename)
-
-            list_of_thumbnail[index] = file.name_and_extension(thumbnail_filename)
     logger.info(
         "observation counts: {}".format(
             ", ".join(
@@ -201,6 +131,15 @@ def ingest_analytics(
         ),
         driver="GeoJSON",
     )
+
+    if not file.save_yaml(
+        objects.path_of(
+            "list_of_buildings.yaml",
+            object_name,
+        ),
+        list_of_buildings,
+    ):
+        return False
 
     logger.info(
         "{} object(s) -> {} ingested -> {:,} buildings(s).".format(

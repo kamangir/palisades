@@ -2,13 +2,6 @@
 
 function palisades_ingest() {
     local options=$1
-
-    local do_analytics=$(abcli_option_int "$options" analytics 0)
-    if [[ "$do_analytics" == 1 ]]; then
-        palisades_ingest_analytics "${@:2}"
-        return
-    fi
-
     local target_options=$2
     local datacube_ingest_options=$3
     local batch_options=$4
