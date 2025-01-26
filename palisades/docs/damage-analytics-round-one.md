@@ -1,5 +1,15 @@
 # Damage Analytics - Round One 1️⃣
 
+ℹ️ objectives:
+
+ - 1️⃣ to ingest a few datacubes from a target.
+ - 2️⃣ to find the predictions.
+ - 3️⃣ to review one prediction.
+
+---
+
+1️⃣
+
 ```bash
 palisades ingest - \
     target=Palisades-Maxar \
@@ -7,6 +17,8 @@ palisades ingest - \
     predict \
     profile=FULL,upload
 ```
+
+2️⃣
 
 ```bash
 @mlflow tags search \
@@ -26,6 +38,13 @@ palisades ingest - \
 🌀  #  10 - predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-10400100A0B73800-2025-01-21-jeko6i
 🌀  #  11 - predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc
 🌀  #  12 - predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-za5ba5
+```
+
+3️⃣
+
+```bash
+@select predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4
+@download - . open,QGIS
 ```
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-1.png?raw=true)
