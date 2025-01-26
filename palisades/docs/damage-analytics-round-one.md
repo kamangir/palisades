@@ -1,4 +1,4 @@
-# Damage Analytics - Round One 1️⃣
+# Damage Analytics - Round One
 
 ℹ️ objectives:
 
