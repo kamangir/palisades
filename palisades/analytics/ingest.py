@@ -102,7 +102,7 @@ def ingest_analytics(
         success_count += 1
 
     observation_count: Dict[int:int] = {}
-    for building_metadata in list_of_buildings:
+    for building_metadata in list_of_buildings.values():
         observation_count[len(building_metadata)] = (
             observation_count.get(len(building_metadata), 0) + 1
         )
@@ -124,28 +124,21 @@ def ingest_analytics(
         },
     )
     output_gdf.crs = crs
+    geojson_filename = objects.path_of(
+        "analytics.geojson",
+        object_name,
+    )
     output_gdf.to_file(
-        objects.path_of(
-            "analytics.geojson",
-            object_name,
-        ),
+        geojson_filename,
         driver="GeoJSON",
     )
 
-    if not file.save_yaml(
-        objects.path_of(
-            "list_of_buildings.yaml",
-            object_name,
-        ),
-        list_of_buildings,
-    ):
-        return False
-
     logger.info(
-        "{} object(s) -> {} ingested -> {:,} buildings(s).".format(
+        "{} object(s) -> {} ingested -> {:,} buildings(s) -> {}.".format(
             len(object_metadata),
             success_count,
             len(output_gdf),
+            file.name_and_extension(geojson_filename),
         )
     )
 
@@ -153,6 +146,8 @@ def ingest_analytics(
         object_name,
         "analytics.ingest",
         {
+            "list_of_buildings": list_of_buildings,
+            "building_count": len(list_of_buildings),
             "objects": object_metadata,
             "observation_count": observation_count,
         },

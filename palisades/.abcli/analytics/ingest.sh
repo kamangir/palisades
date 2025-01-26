@@ -8,6 +8,10 @@ function palisades_analytics_ingest() {
     local do_upload=$(abcli_option_int "$options" upload 0)
 
     local object_name=$(abcli_clarify_object $2 palisades-analytics-$(abcli_string_timestamp))
+    abcli_clone \
+        - \
+        $PALISADES_QGIS_TEMPLATE_ANALYTICS \
+        $object_name
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m palisades.analytics \
