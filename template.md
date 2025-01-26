@@ -80,6 +80,7 @@ graph LR
 --help-- palisades label
 --help-- palisades train
 --help-- palisades predict
+--help-- palisades analytics
 
 </details>
 
