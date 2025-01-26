@@ -45,6 +45,7 @@ def ingest_analytics(
     list_of_area = []
     list_of_damage = []
     list_of_thumbnail = []
+    list_of_thumbnail_object = []
     crs = ""
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
@@ -87,6 +88,7 @@ def ingest_analytics(
                 list_of_building_ids.append(row["building_id"])
                 list_of_polygons.append(row["geometry"])
                 list_of_thumbnail.append(row["thumbnail"])
+                list_of_thumbnail_object.append(prediction_object_name)
 
             list_of_buildings[row["building_id"]][prediction_datetime] = {
                 "area": row["area"],
@@ -121,6 +123,7 @@ def ingest_analytics(
             "area": list_of_area,
             "damage": list_of_damage,
             "thumbnail": list_of_thumbnail,
+            "thumbnail_object": list_of_thumbnail_object,
         },
     )
     output_gdf.crs = crs
