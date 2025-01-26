@@ -3,7 +3,7 @@
 ℹ️ objectives:
 
  - 1️⃣ to ingest a few datacubes from a target.
- - 2️⃣ to find the predictions.
+ - 2️⃣ to find the predictions in mlflow.
  - 3️⃣ to review one prediction.
 
 ---
@@ -17,6 +17,8 @@ palisades ingest - \
     predict \
     profile=FULL,upload
 ```
+
+---
 
 2️⃣
 
