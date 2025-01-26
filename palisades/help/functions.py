@@ -115,7 +115,7 @@ def help_ingest_analytics(
     tokens: List[str],
     mono: bool,
 ) -> str:
-    options = xtra("acq=<-1>,buildings=<-1>,dryrun,~upload", mono=mono)
+    options = xtra("acq=<-1>,buildings=<-1>,dryrun,gif,~upload", mono=mono)
 
     return show_usage(
         [
