@@ -22,7 +22,7 @@ graph LR
 
     palisades_buildings_analyze["palisades buildings analyze~~- <prediction-object-name>"]
 
-    palisades_ingest analytics["palisades ingest analytics~~- <object-name>"]
+    palisades_ingest_analytics["palisades ingest analytics~~- <object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
