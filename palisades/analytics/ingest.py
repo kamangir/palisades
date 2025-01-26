@@ -47,6 +47,8 @@ def ingest_analytics(
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
 
+        object_metadata[prediction_object_name] = {"success": False}
+
         prediction_datetime = get_from_object(
             prediction_object_name,
             "analysis.datetime",
@@ -54,8 +56,6 @@ def ingest_analytics(
         if not prediction_datetime:
             logger.warning("analysis.datetime not found.")
             continue
-
-        object_metadata[prediction_object_name] = {"success": False}
 
         if not storage.exists(f"{prediction_object_name}/analysis.gpkg"):
             logger.warning("analysis.gkpg not found.")
