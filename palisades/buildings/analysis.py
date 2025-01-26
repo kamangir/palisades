@@ -199,6 +199,7 @@ def analyze_buildings(
         "properties": {
             "id": "int",
             "area": "float",
+            "building_id": "str",
             "damage": "float",
             "thumbnail": "str",
         },
@@ -235,6 +236,15 @@ def analyze_buildings(
                 "properties": {
                     "id": index,
                     "area": building_info["area"],
+                    "building_id": "-".join(
+                        [
+                            "{:06d}".format(int(value))
+                            for value in np.array(geom["coordinates"])
+                            .squeeze()
+                            .mean(axis=0)
+                            .tolist()
+                        ]
+                    ),
                     "damage": building_info["damage"],
                     "thumbnail": building_info["thumbnail"],
                 },
