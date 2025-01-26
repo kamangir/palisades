@@ -13,6 +13,6 @@ function test_palisades_analytics_ingest_and_render() {
 
     abcli_eval ,$options \
         palisades_analytics_render \
-        building=TBA,~download \
+        building=035681-376987,~download \
         $object_name
 }
