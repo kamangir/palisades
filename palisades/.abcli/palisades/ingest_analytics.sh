@@ -7,7 +7,7 @@ function palisades_ingest_analytics() {
     local building_count=$(abcli_option "$options" buildings -1)
     local do_upload=$(abcli_option_int "$options" upload $(abcli_not $do_dryrun))
 
-    local object_name=$(abcli_clarify_object $7 palisades-analytics-$(abcli_string_timestamp))
+    local object_name=$(abcli_clarify_object $2 palisades-analytics-$(abcli_string_timestamp))
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m palisades.analytics \
@@ -18,7 +18,7 @@ function palisades_ingest_analytics() {
     [[ $? -ne 0 ]] && return 1
 
     [[ "$do_upload" == 1 ]] &&
-        abcli_upload - $do_upload
+        abcli_upload - $object_name
 
     return 0
 }

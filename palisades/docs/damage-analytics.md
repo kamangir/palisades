@@ -66,6 +66,10 @@ source: catalog_query
 
 ---
 
+```bash
+palisades ingest analytics ~upload
+```
+
 🔥
 
 ```bash
@@ -79,11 +83,6 @@ source: catalog_query
 ```
 
 🚧
-
-```bash
-palisades ingest analytics \
-    TBA
-```
 
 ---
 
