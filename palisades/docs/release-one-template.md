@@ -1,4 +1,4 @@
-# 🧑🏽‍🚒 `palisades`: release one
+# 🧑🏽‍🚒 `palisades`: Release One
 
 ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
 
