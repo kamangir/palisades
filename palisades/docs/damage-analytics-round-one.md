@@ -51,6 +51,10 @@ palisades ingest - \
 @download - . open,QGIS
 ```
 
+```python
+palisades.load
+```
+
 ![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-1.png?raw=true)
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-2.png?raw=true)
