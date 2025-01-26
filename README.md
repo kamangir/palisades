@@ -175,10 +175,11 @@ palisades \
 
 ---
 
-Disclosures: 
+## Acknowledgments
+ 
 1. The concept and workflow of this tool is heavily affected by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment).
 2. `palisades buildings download_footprints` calls [`download_building_footprints.py`](https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py).
-3. `palisades buildings analyze` is based on [`merge_with_building_footprints.py](https://github.com/microsoft/building-damage-assessment/blob/main/merge_with_building_footprints.py).
+3. `palisades buildings analyze` is based on [`merge_with_building_footprints.py`](https://github.com/microsoft/building-damage-assessment/blob/main/merge_with_building_footprints.py).
 4. Through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
@@ -186,4 +187,4 @@ Disclosures:
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.173.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.174.1`](https://github.com/kamangir/palisades).
