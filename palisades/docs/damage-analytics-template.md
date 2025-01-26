@@ -67,7 +67,7 @@ source: catalog_query
 ---
 
 ```bash
-palisades ingest analytics
+palisades analytics ingest 
 ```
 
 object:::palisades-analytics-2025-01-26-00-28-19-4otw88

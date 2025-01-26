@@ -67,7 +67,7 @@ source: catalog_query
 ---
 
 ```bash
-palisades ingest analytics
+palisades analytics ingest 
 ```
 
 [palisades-analytics-2025-01-26-00-28-19-4otw88](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-26-00-28-19-4otw88.tar.gz)

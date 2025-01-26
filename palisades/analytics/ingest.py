@@ -18,7 +18,6 @@ NAME = module.name(__file__, NAME)
 
 def ingest_analytics(
     object_name: str,
-    generate_gifs: bool = False,
     acq_count: int = -1,
     building_count: int = -1,
     verbose: bool = False,
