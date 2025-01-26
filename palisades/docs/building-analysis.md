@@ -1,4 +1,4 @@
-# building analysis
+# Building Damage Analysis
 
 ```bash
 @select building-analysis-$(@@timestamp)
