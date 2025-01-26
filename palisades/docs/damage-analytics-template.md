@@ -80,6 +80,11 @@ source: catalog_query
 
 🚧
 
+```bash
+palisades ingest analytics \
+    TBA
+```
+
 ---
 
 also see: [round one](./damage-analytics-round-one.md)

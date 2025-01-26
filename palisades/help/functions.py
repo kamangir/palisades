@@ -111,6 +111,30 @@ def help_ingest(
     )
 
 
+def help_ingest_analytics(
+    tokens: List[str],
+    mono: bool,
+) -> str:
+    options = "".join(
+        [
+            "count=<-1>",
+            xtra(",dryrun,~upload", mono=mono),
+        ]
+    )
+
+    return show_usage(
+        [
+            "palisades",
+            "ingest",
+            "analytics",
+            f"[{options}]",
+            "[-|<object-name>]",
+        ],
+        "ingest analytics.",
+        mono=mono,
+    )
+
+
 def help_label(
     tokens: List[str],
     mono: bool,
@@ -199,7 +223,10 @@ help_functions = generic_help_functions(plugin_name=ALIAS)
 help_functions.update(
     {
         "buildings": help_buildings,
-        "ingest": help_ingest,
+        "ingest": {
+            "": help_ingest,
+            "analytics": help_ingest_analytics,
+        },
         "label": help_label,
         "predict": help_predict,
         "train": help_train,

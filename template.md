@@ -65,10 +65,10 @@ graph LR
 <details>
 <summary>palisades help</summary>
 
---help-- palisades ingest help
---help-- palisades label help
---help-- palisades train help
---help-- palisades predict help
+--help-- palisades ingest
+--help-- palisades label
+--help-- palisades train
+--help-- palisades predict
 
 </details>
 
