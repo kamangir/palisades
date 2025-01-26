@@ -8,9 +8,9 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_target["palisades<br>ingest -<br>target=&lt;target&gt; -<br>predict"]
+    palisades_ingest_target["palisades<br>ingest -<br>target=&lt;target&gt; -<br>predict - - - -<br>to=&lt;runner&gt;"]
 
-    palisades_ingest_query["palisades<br>ingest -<br>&lt;query-object-name&gt; -<br>predict"]
+    palisades_ingest_query["palisades<br>ingest -<br>&lt;query-object-name&gt; -<br>predict - - - -<br>to=&lt;runner&gt;"]
 
     palisades_label["palisades<br>label<br>offset=&lt;offset&gt; -<br>&lt;query-object-name&gt;"]
 
@@ -20,7 +20,9 @@ graph LR
 
     palisades_buildings_download_footprints["palisades<br>buildings<br>download_footprints -<br>&lt;input-object-name&gt; -<br>&lt;output-object-name&gt;"]
 
-    palisades_buildings_analyze["palisades<br>buildings<br>analyze -<br>&lt;object-name&gt;"]
+    palisades_buildings_analyze["palisades<br>buildings<br>analyze -<br>&lt;prediction-object-name&gt;"]
+
+    palisades_ingest_analytics["palisades<br>ingest<br>analytics -<br>&lt;analytics-object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -28,6 +30,7 @@ graph LR
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object["📂 prediction object"]:::folder
+    analytics_object["📂 analytics object"]:::folder
 
     query_object --> datacube
 
@@ -36,12 +39,12 @@ graph LR
     palisades_ingest_target --> query_object
 
     query_object --> palisades_ingest_query
-    palisades_ingest_query --> datacube
     palisades_ingest_query --> palisades_predict
 
     query_object --> palisades_label
     palisades_label --> datacube
 
+    datacube --> palisades_train
     query_object --> palisades_train
     palisades_train --> dataset_object
     palisades_train --> model_object
@@ -55,8 +58,12 @@ graph LR
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
 
+    datacube --> palisades_buildings_analyze
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
+
+    prediction_object --> palisades_ingest_analytics
+    palisades_ingest_analytics --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -77,7 +84,7 @@ palisades \
 	[~analyze | buffer=<buffer>,count=<count>] \
 	[~submit | dryrun,to=<runner>]
  . ingest <target>.
-   target: Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | Palisades-Maxar | Palisades-Maxar-test
+   target: Altadena | Altadena-test | Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | Palisades-Maxar | Palisades-Maxar-test
    scope: all + metadata + raster + rgb + rgbx + <.jp2> + <.tif> + <.tiff>
       all: ALL files.
       metadata (default): any < 1 MB.
@@ -95,6 +102,12 @@ palisades \
    calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
    buffer: in meters.
    runner: aws_batch | generic | local
+palisades \
+	ingest \
+	analytics \
+	[acq=<-1>,buildings=<-1>,dryrun,~upload] \
+	[-|<object-name>]
+ . ingest analytics.
 ```
 ```bash
 palisades \
@@ -156,4 +169,4 @@ This workflow is inspired by [microsoft/building-damage-assessment](https://gith
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.135.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.163.1`](https://github.com/kamangir/palisades).

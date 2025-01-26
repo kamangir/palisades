@@ -1,4 +1,4 @@
-# 🧑🏽‍🚒 `palisades`: step by step
+# 🧑🏽‍🚒 `palisades`: Step by Step
 
 ## 1️⃣ running a query,
 

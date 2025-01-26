@@ -8,9 +8,9 @@ pip install palisades
 
 ```mermaid
 graph LR
-    palisades_ingest_target["palisades ingest~~- target=<target>~~- predict"]
+    palisades_ingest_target["palisades ingest~~- target=<target>~~- predict~~-~~-~~-~~- to=<runner>"]
 
-    palisades_ingest_query["palisades ingest~~- <query-object-name>~~- predict"]
+    palisades_ingest_query["palisades ingest~~- <query-object-name>~~- predict~~-~~-~~-~~- to=<runner>"]
 
     palisades_label["palisades label offset=<offset>~~- <query-object-name>"]
 
@@ -20,7 +20,9 @@ graph LR
 
     palisades_buildings_download_footprints["palisades buildings download_footprints~~- <input-object-name>~~- <output-object-name>"]
 
-    palisades_buildings_analyze["palisades buildings analyze~~- <object-name>"]
+    palisades_buildings_analyze["palisades buildings analyze~~- <prediction-object-name>"]
+
+    palisades_ingest_analytics["palisades ingest analytics~~- <analytics-object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -28,6 +30,7 @@ graph LR
     dataset_object["🏛️ dataset object"]:::folder
     model_object["🏛️ model object"]:::folder
     prediction_object["📂 prediction object"]:::folder
+    analytics_object["📂 analytics object"]:::folder
 
     query_object --> datacube
 
@@ -36,12 +39,12 @@ graph LR
     palisades_ingest_target --> query_object
 
     query_object --> palisades_ingest_query
-    palisades_ingest_query --> datacube
     palisades_ingest_query --> palisades_predict
 
     query_object --> palisades_label
     palisades_label --> datacube
 
+    datacube --> palisades_train
     query_object --> palisades_train
     palisades_train --> dataset_object
     palisades_train --> model_object
@@ -55,8 +58,12 @@ graph LR
     prediction_object --> palisades_buildings_download_footprints
     palisades_buildings_download_footprints --> prediction_object
 
+    datacube --> palisades_buildings_analyze
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
+
+    prediction_object --> palisades_ingest_analytics
+    palisades_ingest_analytics --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -64,10 +71,10 @@ graph LR
 <details>
 <summary>palisades help</summary>
 
---help-- palisades ingest help
---help-- palisades label help
---help-- palisades train help
---help-- palisades predict help
+--help-- palisades ingest
+--help-- palisades label
+--help-- palisades train
+--help-- palisades predict
 
 </details>
 

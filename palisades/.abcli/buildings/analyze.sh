@@ -3,7 +3,7 @@
 function palisades_buildings_analyze() {
     local options=$1
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
-    local do_download=$(abcli_option_int "$options" dryrun $(abcli_not $do_dryrun))
+    local do_download=$(abcli_option_int "$options" download $(abcli_not $do_dryrun))
     local do_ingest=$(abcli_option_int "$options" ingest $(abcli_not $do_dryrun))
     local do_upload=$(abcli_option_int "$options" upload 0)
     local buffer=$(abcli_option "$options" buffer $PALISADES_DEFAULT_BUFFER_M)

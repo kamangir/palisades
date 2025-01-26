@@ -20,6 +20,7 @@ function test_palisades_help() {
         "palisades test list" \
         \
         "palisades ingest" \
+        "palisades ingest analytics" \
         "palisades label" \
         "palisades predict" \
         "palisades train" \

@@ -51,6 +51,12 @@ def analyze_buildings(
         "predict.datacube_id",
         "",
     )
+    datacube_datetime = get_from_object(datacube_id, "item_info.properties.datetime")
+    logger.info(f"📆  {datacube_datetime}")
+    if not datacube_datetime:
+        logger.error("datacube datetime not found.")
+        return False
+
     reference_filename = get_from_object(
         object_name,
         "predict.reference_filename",
@@ -113,6 +119,14 @@ def analyze_buildings(
             building_shape = shapely.geometry.shape(building_geom)
             building_shape_buffered = building_shape.buffer(buffer)
 
+            centroid = shapely.geometry.shape(building_geom).centroid
+            building_info["building_id"] = "-".join(
+                [
+                    "{:06.0f}".format(round(value / 10))
+                    for value in [centroid.x, centroid.y]
+                ]
+            )
+
             prediction_mask, transform = rasterio.mask.mask(
                 prediction_raster,
                 [building_shape_buffered],
@@ -154,12 +168,18 @@ def analyze_buildings(
             if not log_matrix(
                 matrix=prediction_mask * building_halo,
                 suffix=[reference_mask],
-                header=objects.signature(
+                header=[
+                    "{} / {}".format(
+                        building_info["building_id"],
+                        datacube_datetime,
+                    )
+                ]
+                + objects.signature(
                     info=reference_filename,
                     object_name=datacube_id,
                 )
                 + [
-                    f"{object_name} / {index:06}",
+                    object_name,
                     file.name_and_extension(footprint_filename),
                     "area: {:.1f} sq. m".format(building_info["area"]),
                     "damage: {:03.2f}%".format(
@@ -199,6 +219,7 @@ def analyze_buildings(
         "properties": {
             "id": "int",
             "area": "float",
+            "building_id": "str",
             "damage": "float",
             "thumbnail": "str",
         },
@@ -235,6 +256,7 @@ def analyze_buildings(
                 "properties": {
                     "id": index,
                     "area": building_info["area"],
+                    "building_id": building_info["building_id"],
                     "damage": building_info["damage"],
                     "thumbnail": building_info["thumbnail"],
                 },
@@ -247,6 +269,7 @@ def analyze_buildings(
         object_name,
         "analysis",
         {
+            "datetime": datacube_datetime,
             "building-count": len(list_of_building_info),
             "damaged-count": len(
                 [
@@ -322,7 +345,8 @@ def analyze_buildings(
         return False
     if not sign_filename(
         filename=filename,
-        header=objects.signature(
+        header=[datacube_datetime]
+        + objects.signature(
             info=reference_filename,
             object_name=datacube_id,
         )
@@ -359,7 +383,8 @@ def analyze_buildings(
         return False
     if not sign_filename(
         filename=filename,
-        header=objects.signature(
+        header=[datacube_datetime]
+        + objects.signature(
             info=reference_filename,
             object_name=datacube_id,
         )

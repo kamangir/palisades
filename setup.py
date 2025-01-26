@@ -9,6 +9,7 @@ setup(
     description=DESCRIPTION,
     packages=[
         NAME,
+        f"{NAME}.analytics",
         f"{NAME}.buildings",
         f"{NAME}.geo",
         f"{NAME}.help",
