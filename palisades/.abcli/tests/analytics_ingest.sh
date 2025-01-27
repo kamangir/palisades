@@ -5,5 +5,5 @@ function test_palisades_analytics_ingest() {
 
     abcli_eval ,$options \
         palisades_analytics_ingest \
-        acq=2,buildings=20
+        acq_count=2,building_count=20
 }

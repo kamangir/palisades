@@ -2,8 +2,8 @@
 
 function palisades_analytics_ingest() {
     local options=$1
-    local acq_count=$(abcli_option "$options" acq -1)
-    local building_count=$(abcli_option "$options" buildings -1)
+    local acq_count=$(abcli_option "$options" acq_count -1)
+    local building_count=$(abcli_option "$options" building_count -1)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_upload=$(abcli_option_int "$options" upload 0)
 

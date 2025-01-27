@@ -9,7 +9,7 @@ def help_ingest(
 ) -> str:
     options = "".join(
         [
-            xtra("acq=<-1>,buildings=<-1>,dryrun,", mono=mono),
+            xtra("acq_count=<-1>,building_count=<-1>,dryrun,", mono=mono),
             "upload",
         ]
     )
