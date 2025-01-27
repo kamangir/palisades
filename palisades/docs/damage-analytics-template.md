@@ -6,8 +6,6 @@
 
 ## 1️⃣ ingesting from the target,
 
-🔥
-
 ```bash
 @batch eval - \
   palisades ingest - \
@@ -18,6 +16,8 @@
   to=aws_batch
 ```
 
+🎰
+
 ## 2️⃣  ingesting analytics,
 
 🔥
@@ -25,6 +25,8 @@
 ```bash
 palisades analytics ingest upload
 ```
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-18-10-00-b4q5wj/damage-history.png?raw=true)
 
 ```yaml
     035521-377202:
@@ -45,8 +47,14 @@ palisades analytics ingest upload
         thumbnail: thumbnail-11-031311102213-103001010C12B000-103001010C12B000-visual-prediction-000690.png
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+```bash
+@download - \
+  palisades-analytics-2025-01-26-17-13-55-jl0par \
+  open,QGIS
+```
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
 
-object:::palisades-analytics-2025-01-26-17-13-55-jl0par
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+
+object:::palisades-analytics-2025-01-26-18-10-00-b4q5wj

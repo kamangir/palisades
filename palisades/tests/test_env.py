@@ -22,3 +22,4 @@ def test_palisades_env():
     assert env.PALISADES_TEST_DATACUBE
 
     assert env.PALISADES_DEFAULT_BUFFER_M > 0
+    assert env.PALISADES_DAMAGE_THRESHOLD > 0
