@@ -28,6 +28,17 @@ palisades analytics ingest upload
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-18-10-00-b4q5wj/damage-history.png?raw=true)
 
+
+```bash
+@download - \
+  palisades-analytics-2025-01-26-17-13-55-jl0par \
+  open,QGIS
+```
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+
 ```yaml
     035521-377202:
       '2025-01-14T18:30:58Z':
@@ -46,15 +57,5 @@ palisades analytics ingest upload
         object_name: predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010C12B000-2025-01-24-511jt9
         thumbnail: thumbnail-11-031311102213-103001010C12B000-103001010C12B000-visual-prediction-000690.png
 ```
-
-```bash
-@download - \
-  palisades-analytics-2025-01-26-17-13-55-jl0par \
-  open,QGIS
-```
-
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
-
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
 
 [palisades-analytics-2025-01-26-18-10-00-b4q5wj](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-26-18-10-00-b4q5wj.tar.gz)
