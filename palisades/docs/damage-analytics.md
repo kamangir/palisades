@@ -16,9 +16,9 @@
   to=aws_batch
 ```
 
-🎰
+also for `Palisades-Maxar`.
 
-also for `Palisades-Maxar`. 🚧
+🎰
 
 ## 2️⃣  ingesting analytics,
 
