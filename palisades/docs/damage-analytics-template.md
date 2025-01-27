@@ -11,12 +11,14 @@
   palisades ingest - \
   target=Altadena \
   scope=rgb \
-  predict,count=3 \
+  predict \
   profile=FULL,upload - - - \
   to=aws_batch
 ```
 
 🎰
+
+also for `Palisades-Maxar`. 🚧
 
 ## 2️⃣  ingesting analytics,
 
@@ -26,7 +28,7 @@
 palisades analytics ingest upload
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-18-10-00-b4q5wj/damage-history.png?raw=true)
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-20-56-48-s6bgo4/damage-history.png?raw=true)
 
 
 ```bash
@@ -34,6 +36,10 @@ palisades analytics ingest upload
   palisades-analytics-2025-01-26-17-13-55-jl0par \
   open,QGIS
 ```
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-20-56-48-s6bgo4/QGIS.png?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-20-56-48-s6bgo4/QGIS-2.png?raw=true)
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
 
