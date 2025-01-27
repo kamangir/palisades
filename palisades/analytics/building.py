@@ -13,14 +13,14 @@ from typing import List
 NAME = module.name(__file__, NAME)
 
 
-def render_analytics(
+def ingest_building(
     object_name: str,
     building_id: str,
     log: bool = True,
     verbose: bool = False,
 ) -> bool:
     logger.info(
-        "{}.render_analytics: {} @ {}".format(
+        "{}.ingest_building: {} @ {}".format(
             NAME,
             building_id,
             object_name,

@@ -21,7 +21,7 @@ function test_palisades_help() {
         \
         "palisades analytics" \
         "palisades analytics ingest" \
-        "palisades analytics render" \
+        "palisades analytics ingest_building" \
         "palisades ingest" \
         "palisades label" \
         "palisades predict" \

@@ -24,7 +24,7 @@ graph LR
 
     palisades_analytics_ingest["palisades analytics ingest~~- <analytics-object-name>"]
 
-    palisades_analytics_render["palisades analytics render building=<building-id> <analytics-object-name>"]
+    palisades_analytics_ingest_building["palisades analytics ingest_building building=<building-id> <analytics-object-name>"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -67,8 +67,8 @@ graph LR
     prediction_object --> palisades_analytics_ingest
     palisades_analytics_ingest --> analytics_object
 
-    analytics_object --> palisades_analytics_render
-    palisades_analytics_render --> analytics_object
+    analytics_object --> palisades_analytics_ingest_building
+    palisades_analytics_ingest_building --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```

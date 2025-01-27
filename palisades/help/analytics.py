@@ -27,7 +27,7 @@ def help_ingest(
     )
 
 
-def help_render(
+def help_ingest_building(
     tokens: List[str],
     mono: bool,
 ) -> str:
@@ -43,16 +43,16 @@ def help_render(
         [
             "palisades",
             "analytics",
-            "render",
+            "ingest_building",
             f"[{options}]",
             "[.|<object-name>]",
         ],
-        "render analytics.",
+        "ingest building analytics.",
         mono=mono,
     )
 
 
 help_functions = {
     "ingest": help_ingest,
-    "render": help_render,
+    "ingest_building": help_ingest_building,
 }

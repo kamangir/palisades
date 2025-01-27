@@ -64,7 +64,7 @@ palisades analytics ingest upload
 ```
 
 ```bash
-palisades analytics render \
+palisades analytics ingest_building \
   building=035501-377213,~download \
   palisades-analytics-2025-01-26-17-13-55-jl0par
 ```

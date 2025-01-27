@@ -5,7 +5,7 @@ from blueness.argparse.generic import sys_exit
 
 from palisades import NAME
 from palisades.analytics.ingest import ingest_analytics
-from palisades.analytics.render import render_analytics
+from palisades.analytics.building import ingest_building
 from palisades.logger import logger
 
 NAME = module.name(__file__, NAME)
@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help="ingest | render",
+    help="ingest | ingest_building",
 )
 parser.add_argument(
     "--object_name",
@@ -52,8 +52,8 @@ if args.task == "ingest":
         building_count=args.building_count,
         verbose=args.verbose == 1,
     )
-elif args.task == "render":
-    success = render_analytics(
+elif args.task == "ingest_building":
+    success = ingest_building(
         object_name=args.object_name,
         building_id=args.building_id,
         verbose=args.verbose == 1,
