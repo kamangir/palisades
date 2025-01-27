@@ -1,8 +1,7 @@
 from typing import Dict, Any
 from tqdm import tqdm, trange
 import geopandas as gpd
-import glob
-import shutil
+import numpy as np
 
 from blueness import module
 from blue_objects import mlflow, objects, file
@@ -42,8 +41,6 @@ def ingest_analytics(
     success_count: int = 0
     list_of_polygons = []
     list_of_building_ids = []
-    list_of_area = []
-    list_of_damage = []
     list_of_thumbnail = []
     list_of_thumbnail_object = []
     crs = ""
@@ -89,8 +86,6 @@ def ingest_analytics(
             if row["building_id"] not in list_of_building_ids:
                 list_of_buildings[row["building_id"]] = {}
 
-                list_of_area.append(row["area"])
-                list_of_damage.append(row["damage"])
                 list_of_building_ids.append(row["building_id"])
                 list_of_polygons.append(row["geometry"])
                 list_of_thumbnail.append(row["thumbnail"])
@@ -126,10 +121,56 @@ def ingest_analytics(
         data={
             "building_id": list_of_building_ids,
             "geometry": list_of_polygons,
-            "area": list_of_area,
-            "damage": list_of_damage,
+            "area": [
+                float(
+                    np.mean(
+                        [
+                            building_info["area"]
+                            for building_info in building_metadata.values()
+                        ]
+                    )
+                )
+                for building_metadata in list_of_buildings.values()
+            ],
+            "area_std": [
+                float(
+                    np.std(
+                        [
+                            building_info["area"]
+                            for building_info in building_metadata.values()
+                        ]
+                    )
+                )
+                for building_metadata in list_of_buildings.values()
+            ],
+            "damage": [
+                float(
+                    np.mean(
+                        [
+                            building_info["damage"]
+                            for building_info in building_metadata.values()
+                        ]
+                    )
+                )
+                for building_metadata in list_of_buildings.values()
+            ],
+            "damage_std": [
+                float(
+                    np.std(
+                        [
+                            building_info["damage"]
+                            for building_info in building_metadata.values()
+                        ]
+                    )
+                )
+                for building_metadata in list_of_buildings.values()
+            ],
             "thumbnail": list_of_thumbnail,
             "thumbnail_object": list_of_thumbnail_object,
+            "observation_count": [
+                len(building_metadata)
+                for building_metadata in list_of_buildings.values()
+            ],
         },
     )
     output_gdf.crs = crs

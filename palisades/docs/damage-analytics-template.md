@@ -4,7 +4,7 @@
 - [round two](./damage-analytics-round-two.md)
 - [round two](./damage-analytics-round-three.md)
 
-🚧
+🔥
 
 ```bash
 @batch eval - \
@@ -18,5 +18,17 @@
 
 🚧
 
----
+```bash
+palisades analytics ingest upload
+```
 
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
+
+object:::palisades-analytics-2025-01-26-17-13-55-jl0par
+
+
+
+
+🔥
