@@ -72,4 +72,22 @@ palisades analytics render \
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
 
 
+```yaml
+analytics:
+  building_count: 45515
+...
+  list_of_prediction_datetime:
+  - '2025-01-13T19:06:55Z'
+  - '2025-01-14T18:30:37Z'
+  - '2025-01-14T18:30:37Z'
+  - '2025-01-14T18:30:58Z'
+  - '2025-01-14T18:30:58Z'
+  - '2025-01-14T18:36:40Z'
+  - '2025-01-14T18:36:40Z'
+  - '2025-01-16T18:58:02Z'
+  - '2025-01-16T18:58:02Z'
+  - '2025-01-19T18:47:58Z'
+  - '2025-01-19T18:49:13Z'
+```
+
 object:::palisades-analytics-2025-01-26-18-10-00-b4q5wj
