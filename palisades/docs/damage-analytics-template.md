@@ -4,6 +4,8 @@
 - [round two](./damage-analytics-round-two.md)
 - [round two](./damage-analytics-round-three.md)
 
+## 1️⃣ ingesting from the target,
+
 🔥
 
 ```bash
@@ -16,7 +18,9 @@
   to=aws_batch
 ```
 
-🚧
+## 2️⃣  ingesting analytics,
+
+🔥
 
 ```bash
 palisades analytics ingest upload
@@ -46,8 +50,3 @@ palisades analytics ingest upload
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/QGIS.png?raw=true)
 
 object:::palisades-analytics-2025-01-26-17-13-55-jl0par
-
-
-
-
-🔥
