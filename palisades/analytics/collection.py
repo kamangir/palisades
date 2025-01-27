@@ -136,6 +136,7 @@ def collect_analytics(
             "success": True,
             "building_count": len(gdf),
         }
+        logger.info(f"ingested {len(df):,} buildings so far...")
 
     metadata["datetime"] = sorted(metadata["datetime"])
 
