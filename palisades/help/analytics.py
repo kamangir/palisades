@@ -2,6 +2,8 @@ from typing import List
 
 from blue_options.terminal import show_usage, xtra
 
+from palisades import env
+
 
 def help_ingest(
     tokens: List[str],
@@ -9,7 +11,12 @@ def help_ingest(
 ) -> str:
     options = "".join(
         [
-            xtra("acq_count=<-1>,building_count=<-1>,dryrun,", mono=mono),
+            xtra(
+                "acq_count=<-1>,building_count=<-1>,damage=<{:.1f}>,dryrun,".format(
+                    env.PALISADES_DAMAGE_THRESHOLD
+                ),
+                mono=mono,
+            ),
             "upload",
         ]
     )

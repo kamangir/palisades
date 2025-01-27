@@ -4,6 +4,7 @@ from blueness import module
 from blueness.argparse.generic import sys_exit
 
 from palisades import NAME
+from palisades import env
 from palisades.analytics.ingest import ingest_analytics
 from palisades.analytics.building import ingest_building
 from palisades.logger import logger
@@ -37,6 +38,12 @@ parser.add_argument(
     type=str,
 )
 parser.add_argument(
+    "--damage_threshold",
+    type=float,
+    default=env.PALISADES_DAMAGE_THRESHOLD,
+    help="0..1",
+)
+parser.add_argument(
     "--verbose",
     type=int,
     default=0,
@@ -50,6 +57,7 @@ if args.task == "ingest":
         object_name=args.object_name,
         acq_count=args.acq_count,
         building_count=args.building_count,
+        damage_threshold=args.damage_threshold,
         verbose=args.verbose == 1,
     )
 elif args.task == "ingest_building":
