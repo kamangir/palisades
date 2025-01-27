@@ -25,12 +25,12 @@ def collect_analytics(
     building_id: str = "",
 ) -> Tuple[bool, pd.DataFrame, gpd.GeoDataFrame, Dict]:
     logger.info(
-        "{}.collect_analytics: damage > {:.1f}: {}{}".format(
+        "{}.collect_analytics: damage > {:.1f}: {}{}{}".format(
             NAME,
             damage_threshold,
             f"{acq_count} acq(s)-" if acq_count != -1 else "",
             f"{building_count} buildings(s)-" if building_count != -1 else "",
-            f"for {building_id}" if building_id else "",
+            f" for {building_id}" if building_id else "",
         )
     )
 
@@ -176,7 +176,7 @@ def collect_analytics(
 
     success_count = len(
         [
-            _
+            object_metadata
             for object_metadata in metadata["objects"].values()
             if object_metadata["success"]
         ]
