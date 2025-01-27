@@ -121,7 +121,12 @@ def ingest_analytics(
     logger.info(
         "observation counts: {}".format(
             ", ".join(
-                [f"{rounds}X: {count}" for rounds, count in observation_count.items()]
+                sorted(
+                    [
+                        f"{rounds}X: {count}"
+                        for rounds, count in observation_count.items()
+                    ]
+                )
             )
         )
     )
