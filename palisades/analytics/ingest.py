@@ -49,6 +49,7 @@ def ingest_analytics(
             object_name,
         ),
         gdf,
+        log=log,
     ):
         return False
 
@@ -58,6 +59,7 @@ def ingest_analytics(
             object_name,
         ),
         df,
+        log=log,
     ):
         return False
 

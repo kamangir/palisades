@@ -3,6 +3,7 @@ import pandas as pd
 from tqdm import tqdm
 import geopandas as gpd
 from collections import Counter
+import numpy as np
 
 from blueness import module
 from blue_objects import mlflow, objects, file
@@ -104,9 +105,10 @@ def collect_analytics(
             if building_id and row["building_id"] != building_id:
                 continue
 
+            if row["damage"] < damage_threshold:
+                continue
+
             if row["building_id"] not in df["building_id"].values:
-                if row["damage"] < damage_threshold:
-                    continue
 
                 list_of_polygons.append(row["geometry"])
 
@@ -125,12 +127,12 @@ def collect_analytics(
             df.loc[
                 df["building_id"] == row["building_id"],
                 f"{prediction_datetime}-thumbnail",
-            ] = str(row["thumbnail"])
+            ] = row["thumbnail"]
 
             df.loc[
                 df["building_id"] == row["building_id"],
                 f"{prediction_datetime}-object_name",
-            ] = str(prediction_object_name)
+            ] = prediction_object_name
 
         metadata["objects"][prediction_object_name] = {
             "success": True,
@@ -140,9 +142,12 @@ def collect_analytics(
 
     metadata["datetime"] = sorted(metadata["datetime"])
 
-    df["observation_count"] = df[metadata["datetime"]].notna().sum(axis=1)
-    df["damage"] = df[metadata["datetime"]].notna().mean(axis=1)
-    df["damage_std"] = df[metadata["datetime"]].notna().std(axis=1)
+    df["observation_count"] = df[metadata["datetime"]].apply(
+        lambda row: row.count(),
+        axis=1,
+    )
+    df["damage"] = df[metadata["datetime"]].mean(axis=1)
+    df["damage_std"] = df[metadata["datetime"]].std(axis=1)
 
     metadata["observation_count"] = {
         int(key): int(value)
