@@ -19,6 +19,8 @@ function palisades_predict() {
 
     local datacube_id=$(abcli_clarify_object $5 .)
 
+    local prediction_object_name=$(abcli_clarify_object $6 predict-$datacube_id-$(abcli_string_timestamp_short))
+
     if [[ "$do_tag" == 1 ]]; then
         local previous_prediction=$(abcli_mlflow_tags_search \
             contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile \
@@ -29,6 +31,10 @@ function palisades_predict() {
             abcli_log "✅  $previous_prediction: $datacube_id @ $model_object_name @ $profile"
             return 0
         fi
+
+        abcli_mlflow_tags_set \
+            $prediction_object_name \
+            contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile
     fi
 
     [[ "$do_download" == 1 ]] &&
@@ -39,7 +45,6 @@ function palisades_predict() {
             ,$ingest_options \
             $datacube_id
 
-    local prediction_object_name=$(abcli_clarify_object $6 predict-$datacube_id-$(abcli_string_timestamp_short))
     abcli_clone \
         - \
         $PALISADES_QGIS_TEMPLATE_PREDICT \
@@ -59,11 +64,6 @@ function palisades_predict() {
         --prediction_object_name $prediction_object_name \
         --profile $profile
     [[ $? -ne 0 ]] && return 1
-
-    [[ "$do_tag" == 1 ]] &&
-        abcli_mlflow_tags_set \
-            $prediction_object_name \
-            contains=palisades.prediction,datacube_id=$datacube_id,model=$model_object_name,profile=$profile
 
     local do_download_building_footprints=$(abcli_option_int "$buildings_query_options" download_footprints 1)
     if [[ "$do_download_building_footprints" == 1 ]]; then
