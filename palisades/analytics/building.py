@@ -62,6 +62,9 @@ def ingest_building(
     list_of_images: List[str] = []
     for prediction_datetime in tqdm(list_of_prediction_datetime):
         thumbnail_filename = str(row[f"{prediction_datetime}-thumbnail"].values[0])
+        if thumbnail_filename == "nan":
+            continue
+
         thumbnail_object_name = str(row[f"{prediction_datetime}-object_name"].values[0])
 
         if not objects.download(

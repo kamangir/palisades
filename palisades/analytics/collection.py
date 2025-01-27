@@ -73,9 +73,11 @@ def collect_analytics(
             logger.warning("analysis.datetime not found.")
             continue
         metadata["datetime"] += [prediction_datetime]
-        df[prediction_datetime] = pd.NA
-        df[f"{prediction_datetime}-thumbnail"] = pd.Series(dtype="object")
-        df[f"{prediction_datetime}-object_name"] = pd.Series(dtype="object")
+
+        if prediction_datetime not in df.columns:
+            df[prediction_datetime] = pd.NA
+            df[f"{prediction_datetime}-thumbnail"] = pd.Series(dtype="object")
+            df[f"{prediction_datetime}-object_name"] = pd.Series(dtype="object")
 
         if not objects.download(
             filename="analysis.gpkg",
@@ -140,14 +142,16 @@ def collect_analytics(
         }
         logger.info(f"ingested {len(df):,} buildings so far...")
 
-    metadata["datetime"] = sorted(metadata["datetime"])
+    metadata["datetime"] = sorted(list(set(metadata["datetime"])))
 
     df["observation_count"] = df[metadata["datetime"]].apply(
         lambda row: row.count(),
         axis=1,
     )
-    df["damage"] = df[metadata["datetime"]].mean(axis=1)
-    df["damage_std"] = df[metadata["datetime"]].std(axis=1)
+    df["damage"] = df[metadata["datetime"]].mean(axis=1, skipna=True)
+
+    df["damage_std"] = df[metadata["datetime"]].std(axis=1, skipna=True)
+    df["damage_std"].fillna(0, inplace=True)
 
     metadata["observation_count"] = {
         int(key): int(value)
