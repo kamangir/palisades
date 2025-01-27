@@ -80,17 +80,17 @@ def build():
                 "items": items,
                 "path": "..",
             },
-            {
-                "path": "docs/step-by-step.md",
-            },
-            {
-                "path": "docs/release-one.md",
-            },
-            {
-                "path": "docs/building-analysis.md",
-            },
-            {
-                "path": "docs/damage-analytics.md",
-            },
+        ]
+        + [
+            {"path": f"docs/{doc}.md"}
+            for doc in [
+                "step-by-step",
+                "release-one",
+                "building-analysis",
+                "damage-analytics-round-one",
+                "damage-analytics-round-two",
+                "damage-analytics-round-three",
+                "damage-analytics",
+            ]
         ]
     )

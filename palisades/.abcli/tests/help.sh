@@ -19,8 +19,10 @@ function test_palisades_help() {
         "palisades test" \
         "palisades test list" \
         \
+        "palisades analytics" \
+        "palisades analytics ingest" \
+        "palisades analytics render" \
         "palisades ingest" \
-        "palisades ingest analytics" \
         "palisades label" \
         "palisades predict" \
         "palisades train" \

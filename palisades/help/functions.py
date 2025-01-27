@@ -19,6 +19,7 @@ from palisades.help.buildings import query_options as building_query_options
 from palisades.help.buildings import query_details as building_query_details
 from palisades.help.buildings import analyze_options as building_analyze_options
 from palisades.help.buildings import analyze_details as building_analyze_details
+from palisades.help.analytics import help_functions as help_analytics
 from palisades import ALIAS
 
 target_list = TargetList(catalog="maxar_open_data")
@@ -111,25 +112,6 @@ def help_ingest(
     )
 
 
-def help_ingest_analytics(
-    tokens: List[str],
-    mono: bool,
-) -> str:
-    options = xtra("acq=<-1>,buildings=<-1>,dryrun,gif,~upload", mono=mono)
-
-    return show_usage(
-        [
-            "palisades",
-            "ingest",
-            "analytics",
-            f"[{options}]",
-            "[-|<object-name>]",
-        ],
-        "ingest analytics.",
-        mono=mono,
-    )
-
-
 def help_label(
     tokens: List[str],
     mono: bool,
@@ -218,10 +200,8 @@ help_functions = generic_help_functions(plugin_name=ALIAS)
 help_functions.update(
     {
         "buildings": help_buildings,
-        "ingest": {
-            "": help_ingest,
-            "analytics": help_ingest_analytics,
-        },
+        "ingest": help_ingest,
+        "analytics": help_analytics,
         "label": help_label,
         "predict": help_predict,
         "train": help_train,

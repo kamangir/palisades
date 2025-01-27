@@ -48,4 +48,4 @@ palisades.load
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-2.png?raw=true)
 
-[predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4](https://kamangir-public.s3.ca-central-1.amazonaws.com/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4.tar.gz)
+object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4

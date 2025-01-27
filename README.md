@@ -22,7 +22,9 @@ graph LR
 
     palisades_buildings_analyze["palisades<br>buildings<br>analyze -<br>&lt;prediction-object-name&gt;"]
 
-    palisades_ingest_analytics["palisades<br>ingest<br>analytics -<br>&lt;analytics-object-name&gt;"]
+    palisades_analytics_ingest["palisades<br>analytics<br>ingest -<br>&lt;analytics-object-name&gt;"]
+
+    palisades_analytics_render["palisades<br>analytics<br>render<br>building=&lt;building-id&gt;<br>&lt;analytics-object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -62,8 +64,11 @@ graph LR
     prediction_object --> palisades_buildings_analyze
     palisades_buildings_analyze --> prediction_object
 
-    prediction_object --> palisades_ingest_analytics
-    palisades_ingest_analytics --> analytics_object
+    prediction_object --> palisades_analytics_ingest
+    palisades_analytics_ingest --> analytics_object
+
+    analytics_object --> palisades_analytics_render
+    palisades_analytics_render --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -102,12 +107,6 @@ palisades \
    calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
    buffer: in meters.
    runner: aws_batch | generic | local
-palisades \
-	ingest \
-	analytics \
-	[acq=<-1>,buildings=<-1>,dryrun,gif,~upload] \
-	[-|<object-name>]
- . ingest analytics.
 ```
 ```bash
 palisades \
@@ -152,6 +151,20 @@ palisades \
    calls: https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py
    buffer: in meters.
 ```
+```bash
+palisades \
+	analytics \
+	ingest \
+	[acq=<-1>,buildings=<-1>,dryrun,upload] \
+	[-|<object-name>]
+ . ingest analytics.
+palisades \
+	analytics \
+	render \
+	[building=<building-id>,~download,dryrun,upload] \
+	[.|<object-name>]
+ . render analytics.
+```
 
 </details>
 
@@ -162,11 +175,16 @@ palisades \
 
 ---
 
-This workflow is inspired by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment) and `palisades buildings download_footprints` calls `download_building_footprints.py` from the same repo - through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
+## Acknowledgments
+ 
+1. The concept and workflow of this tool is heavily affected by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment).
+2. `palisades buildings download_footprints` calls [`download_building_footprints.py`](https://github.com/microsoft/building-damage-assessment/blob/main/download_building_footprints.py).
+3. `palisades buildings analyze` is based on [`merge_with_building_footprints.py`](https://github.com/microsoft/building-damage-assessment/blob/main/merge_with_building_footprints.py).
+4. Through [satellite-image-deep-learning](https://www.satellite-image-deep-learning.com/p/building-damage-assessment).
 
 ---
 
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.169.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.199.1`](https://github.com/kamangir/palisades).
