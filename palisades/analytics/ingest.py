@@ -61,10 +61,16 @@ def ingest_analytics(
             logger.warning("analysis.datetime not found.")
             continue
 
+        if not objects.download(
+            filename="analysis.gpkg",
+            object_name=prediction_object_name,
+        ):
+            continue
+
         success, gdf = file.load_geodataframe(
             objects.path_of(
-                "analysis.gpkg",
-                prediction_object_name,
+                filename="analysis.gpkg",
+                object_name=prediction_object_name,
             ),
             log=verbose,
         )
