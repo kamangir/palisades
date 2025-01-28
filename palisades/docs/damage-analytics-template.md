@@ -316,6 +316,10 @@ analytics:
     7: 90
 ```
 
+```bash
+~open QGIS palisades-analytics-2025-01-28-09-27-20-itglyy
+```
+
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/QGIS.png
 
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/LA.png
