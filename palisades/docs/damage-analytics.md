@@ -340,6 +340,8 @@ palisades analytics ingest_building \
   palisades-analytics-2025-01-28-09-27-20-itglyy
 ```
 
+ℹ️ notice that the building is intact in the first observation.
+
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-palisades-analytics-2025-01-28-09-27-20-itglyy.gif?raw=true)
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-damage-history.png?raw=true)
