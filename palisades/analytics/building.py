@@ -1,13 +1,15 @@
-import geopandas as gpd
+from typing import Dict
 from tqdm import tqdm
+import pandas as pd
 
 from blueness import module
 from blue_objects import objects, file
-from blue_objects.metadata import get_from_object
+from blue_objects.metadata import get_from_object, post_to_object
 from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
 from palisades.analytics.logging import log_building_analytics
+from palisades.analytics.collection import collect_analytics
 from palisades.logger import logger
 from typing import List
 
@@ -17,14 +19,18 @@ NAME = module.name(__file__, NAME)
 def ingest_building(
     object_name: str,
     building_id: str,
+    acq_count: int = -1,
+    building_count: int = -1,
+    do_deep: bool = False,
     log: bool = True,
     verbose: bool = False,
 ) -> bool:
     logger.info(
-        "{}.ingest_building: {} @ {}".format(
+        "{}.ingest_building: {} @ {}{}".format(
             NAME,
             building_id,
             object_name,
+            " - 🤿  deep" if do_deep else "",
         )
     )
 
@@ -39,25 +45,39 @@ def ingest_building(
     if not success:
         return success
 
-    success, df = file.load_dataframe(
-        objects.path_of(
-            "analytics.csv",
+    if do_deep:
+        success, df, _, metadata = collect_analytics(
+            acq_count=acq_count,
+            building_count=building_count,
+            damage_threshold=-1,
+            building_id=building_id,
+            log=log,
+            verbose=verbose,
+        )
+        if not success:
+            return False
+
+        list_of_prediction_datetime = metadata["datetime"]
+    else:
+        success, df = file.load_dataframe(
+            objects.path_of(
+                "analytics.csv",
+                object_name,
+            ),
+            log=log,
+        )
+        if not success:
+            return False
+
+        list_of_prediction_datetime = get_from_object(
             object_name,
-        ),
-        log=log,
-    )
-    if not success:
-        return False
+            "analytics.datetime",
+        )
 
     if building_id not in df["building_id"].values:
-        logger.error(f"{building_id}: building-id not found.")
-        return False
+        logger.warning(f"{building_id}: building-id not found.")
+        return True
     row = df[df["building_id"] == building_id]
-
-    list_of_prediction_datetime = get_from_object(
-        object_name,
-        "analytics.datetime",
-    )
 
     list_of_images: List[str] = []
     for prediction_datetime in tqdm(list_of_prediction_datetime):
@@ -103,8 +123,27 @@ def ingest_building(
     ):
         return False
 
-    return log_building_analytics(
-        row=row,
+    history: Dict[str, float] = {
+        prediction_date_time: float(damage_value)
+        for prediction_date_time, damage_value in zip(
+            list_of_prediction_datetime,
+            row[list_of_prediction_datetime].values.squeeze(),
+        )
+        if not pd.isna(damage_value)
+    }
+
+    if not log_building_analytics(
+        building_id=building_id,
+        history=history,
         list_of_prediction_datetime=list_of_prediction_datetime,
         object_name=object_name,
+    ):
+        return False
+
+    return post_to_object(
+        object_name,
+        building_id,
+        {
+            "history": history,
+        },
     )

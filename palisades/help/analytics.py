@@ -40,7 +40,8 @@ def help_ingest_building(
 ) -> str:
     options = "".join(
         [
-            "building=<building-id>",
+            xtra("acq_count=<-1>,building_count=<-1>,", mono=mono),
+            "building=<building-id>,deep",
             xtra(",~download,dryrun,", mono=mono),
             "upload",
         ]

@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Tuple
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -47,37 +47,26 @@ def log_analytics(
 
 
 def log_building_analytics(
-    row: pd.DataFrame,
+    building_id: str,
+    history: Dict[str, float],
     list_of_prediction_datetime: List[str],
     object_name: str,
 ) -> bool:
-    building_id = str(row["building_id"].values[0])
-
     plt.figure(figsize=(10, 5))
 
-    list_of_damage_values = row[list_of_prediction_datetime]
-
-    history = [
-        (prediction_date_time, float(damage_value))
-        for prediction_date_time, damage_value in zip(
-            list_of_prediction_datetime, list_of_damage_values.squeeze()
-        )
-        if not np.isnan(damage_value)
-    ]
-
     logger.info(f"{len(history)} acquisition(s)")
-    for index, item in enumerate(history):
+    for index, (prediction_date_time, damage_value) in enumerate(history.items()):
         logger.info(
             "#{:02d}: {} - {:.1f}%".format(
                 index + 1,
-                item[0],
-                100 * item[1],
+                prediction_date_time,
+                100 * damage_value,
             )
         )
 
     plt.bar(
         range(len(history)),
-        [item[1] for item in history],
+        list(history.values()),
         color="gray",
     )
     plt.title(f"Damage History | {building_id}")
@@ -86,7 +75,7 @@ def log_building_analytics(
     plt.ylim(0, 1)
     plt.xticks(
         range(len(history)),
-        [item[0] for item in history],
+        list(history.keys()),
         rotation=90,
     )
     plt.grid(True)
