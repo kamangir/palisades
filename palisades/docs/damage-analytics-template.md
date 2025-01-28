@@ -299,6 +299,9 @@ palisades analytics ingest upload
 
 object:::palisades-analytics-2025-01-28-09-27-20-itglyy
 
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png
+
+
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
 
 

@@ -302,6 +302,9 @@ palisades analytics ingest upload
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
 
 
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
+
+
 🔥
 
 ## 6️⃣ ingesting a few buildings,
