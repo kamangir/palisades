@@ -317,7 +317,7 @@ analytics:
 ```
 
 ```bash
-~open QGIS palisades-analytics-2025-01-28-09-27-20-itglyy
+@open QGIS palisades-analytics-2025-01-28-09-27-20-itglyy
 ```
 
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/QGIS.png
