@@ -32,8 +32,8 @@ list_of_menu_item = {
     "Analytics": {
         "ICON": ICON,
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md",
-        "marquee": "https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2.png?raw=true",
-        "title": "Damage information for multi-datacube areas.",
+        "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true",
+        "title": "",
     },
     "template": {
         "ICON": ICON,
