@@ -7,7 +7,7 @@ from blue_objects.metadata import get_from_object
 from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
-from palisades.analytics.collection import collect_analytics
+from palisades.analytics.logging import log_building_analytics
 from palisades.logger import logger
 from typing import List
 
@@ -96,8 +96,15 @@ def ingest_building(
     gdf.loc[gdf["building_id"] == building_id, "thumbnail"] = thumbnail_filename
     gdf.loc[gdf["building_id"] == building_id, "thumbnail_object"] = object_name
 
-    return file.save_geojson(
+    if not file.save_geojson(
         geojson_filename,
         gdf,
         log=log,
+    ):
+        return False
+
+    return log_building_analytics(
+        row=row,
+        list_of_prediction_datetime=list_of_prediction_datetime,
+        object_name=object_name,
     )
