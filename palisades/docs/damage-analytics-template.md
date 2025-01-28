@@ -316,6 +316,16 @@ analytics:
     7: 90
 ```
 
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/LA.png
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/Altadena.png
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/Palisades.png
+
+False positives,
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png
+
 🔥
 
 ## 6️⃣ ingesting a few buildings,

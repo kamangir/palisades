@@ -316,6 +316,16 @@ analytics:
     7: 90
 ```
 
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/LA.png?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/Altadena.png?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/Palisades.png?raw=true)
+
+False positives,
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png?raw=true)
+
 🔥
 
 ## 6️⃣ ingesting a few buildings,
