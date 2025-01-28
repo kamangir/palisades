@@ -289,7 +289,7 @@ source: catalog_query
 🌀  # 113 - predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7DD700-2025-01-24-5ferpu
 ```
 
-</detail>
+</details>
 
 ## 5️⃣ ingesting analytics,
 
