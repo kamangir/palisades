@@ -302,8 +302,19 @@ palisades analytics ingest upload
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
 
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
-
+```yaml
+analytics:
+  building_count: 10133
+...
+  observation_count:
+    1: 1864
+    2: 5799
+    3: 1722
+    4: 294
+    5: 339
+    6: 25
+    7: 90
+```
 
 🔥
 
