@@ -173,7 +173,9 @@ source: catalog_query
 palisades analytics ingest upload
 ```
 
-:::TBA
+:::palisades-analytics-2025-01-27-20-55-12-6qykkv
+
+🔥
 
 ## 5️⃣ ingesting one building,
 
@@ -181,6 +183,6 @@ palisades analytics ingest upload
 
 ```bash
 palisades analytics ingest_building \
-  building=<...>,~download \
+  building=<...>,deep,~download \
   <...>
 ```

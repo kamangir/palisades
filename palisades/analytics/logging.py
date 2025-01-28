@@ -3,12 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+from palisades import NAME
+from blueness import module
 from blue_objects import file, objects
-
 from blue_objects.graphics.signature import sign_filename
 
 from palisades.host import signature
 from palisades.logger import logger
+
+NAME = module.name(__file__, NAME)
 
 
 def log_analytics(
@@ -16,6 +19,10 @@ def log_analytics(
     metadata: Dict,
     object_name: str,
 ) -> bool:
+    if df.empty:
+        logger.warning(f"{NAME}.log_analytics: empty dataframe, skipped.")
+        return True
+
     plt.figure(figsize=(10, 5))
     df[metadata["datetime"]].count().plot(
         kind="bar",
