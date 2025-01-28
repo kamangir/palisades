@@ -4,10 +4,9 @@
 
 ---
 
-Analytics of 🚧 damaged buildings: 
-[TBA](https://kamangir-public.s3.ca-central-1.amazonaws.com/TBA.tar.gz)
-
+Analytics of 10,133 damaged buildings: 
+[palisades-analytics-2025-01-28-09-27-20-itglyy](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-28-09-27-20-itglyy.tar.gz)
 
 ---
 
-total: 🚧 files, 🚧 MB.
+total: 1 file, 9.50 MB.

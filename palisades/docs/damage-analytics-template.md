@@ -332,6 +332,11 @@ False positives,
 
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png
 
+`analytics.csv`
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/analytics.png
+
+
 ## 6️⃣ ingesting a few buildings,
 
 ```bash

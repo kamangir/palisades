@@ -332,6 +332,11 @@ False positives,
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png?raw=true)
 
+`analytics.csv`
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/analytics.png?raw=true)
+
+
 ## 6️⃣ ingesting a few buildings,
 
 ```bash
