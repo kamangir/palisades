@@ -2,6 +2,8 @@ from typing import List
 
 from blue_options.terminal import show_usage, xtra
 
+from palisades import env
+
 
 def help_ingest(
     tokens: List[str],
@@ -9,7 +11,12 @@ def help_ingest(
 ) -> str:
     options = "".join(
         [
-            xtra("acq=<-1>,buildings=<-1>,dryrun,", mono=mono),
+            xtra(
+                "acq_count=<-1>,building_count=<-1>,damage=<{:.1f}>,dryrun,".format(
+                    env.PALISADES_DAMAGE_THRESHOLD
+                ),
+                mono=mono,
+            ),
             "upload",
         ]
     )
@@ -27,7 +34,7 @@ def help_ingest(
     )
 
 
-def help_render(
+def help_ingest_building(
     tokens: List[str],
     mono: bool,
 ) -> str:
@@ -43,16 +50,16 @@ def help_render(
         [
             "palisades",
             "analytics",
-            "render",
+            "ingest_building",
             f"[{options}]",
             "[.|<object-name>]",
         ],
-        "render analytics.",
+        "ingest building analytics.",
         mono=mono,
     )
 
 
 help_functions = {
     "ingest": help_ingest,
-    "render": help_render,
+    "ingest_building": help_ingest_building,
 }

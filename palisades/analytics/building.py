@@ -7,20 +7,21 @@ from blue_objects.metadata import get_from_object
 from blue_objects.graphics.gif import generate_animated_gif
 
 from palisades import NAME
+from palisades.analytics.collection import collect_analytics
 from palisades.logger import logger
 from typing import List
 
 NAME = module.name(__file__, NAME)
 
 
-def render_analytics(
+def ingest_building(
     object_name: str,
     building_id: str,
     log: bool = True,
     verbose: bool = False,
 ) -> bool:
     logger.info(
-        "{}.render_analytics: {} @ {}".format(
+        "{}.ingest_building: {} @ {}".format(
             NAME,
             building_id,
             object_name,
@@ -38,28 +39,44 @@ def render_analytics(
     if not success:
         return success
 
-    list_of_buildings = get_from_object(
-        object_name,
-        "analytics.list_of_buildings",
-        [],
+    success, df = file.load_dataframe(
+        objects.path_of(
+            "analytics.csv",
+            object_name,
+        ),
+        log=log,
     )
-    if building_id not in list_of_buildings:
+    if not success:
+        return False
+
+    if building_id not in df["building_id"].values:
         logger.error(f"{building_id}: building-id not found.")
         return False
-    building_metadata = list_of_buildings[building_id]
+    row = df[df["building_id"] == building_id]
+
+    list_of_prediction_datetime = get_from_object(
+        object_name,
+        "analytics.datetime",
+    )
 
     list_of_images: List[str] = []
-    for prediction_info in tqdm(building_metadata.values()):
+    for prediction_datetime in tqdm(list_of_prediction_datetime):
+        thumbnail_filename = str(row[f"{prediction_datetime}-thumbnail"].values[0])
+        if thumbnail_filename == "nan":
+            continue
+
+        thumbnail_object_name = str(row[f"{prediction_datetime}-object_name"].values[0])
+
         if not objects.download(
-            filename=prediction_info["thumbnail"],
-            object_name=prediction_info["object_name"],
+            filename=thumbnail_filename,
+            object_name=thumbnail_object_name,
         ):
             return False
 
         list_of_images += [
             objects.path_of(
-                filename=prediction_info["thumbnail"],
-                object_name=prediction_info["object_name"],
+                filename=thumbnail_filename,
+                object_name=thumbnail_object_name,
             )
         ]
 

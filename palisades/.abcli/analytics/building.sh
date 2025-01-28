@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function palisades_analytics_render() {
+function palisades_analytics_ingest_building() {
     local options=$1
     local building_id=$(abcli_option "$options" building void)
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
@@ -13,7 +13,7 @@ function palisades_analytics_render() {
 
     abcli_eval dryrun=$do_dryrun \
         python3 -m palisades.analytics \
-        render \
+        ingest_building \
         --object_name $object_name \
         --building_id $building_id
     [[ $? -ne 0 ]] && return 1

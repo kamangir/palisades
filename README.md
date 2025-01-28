@@ -24,7 +24,7 @@ graph LR
 
     palisades_analytics_ingest["palisades<br>analytics<br>ingest -<br>&lt;analytics-object-name&gt;"]
 
-    palisades_analytics_render["palisades<br>analytics<br>render<br>building=&lt;building-id&gt;<br>&lt;analytics-object-name&gt;"]
+    palisades_analytics_ingest_building["palisades<br>analytics<br>ingest_building<br>building=&lt;building-id&gt;<br>&lt;analytics-object-name&gt;"]
 
     target["🎯 target"]:::folder
     query_object["📂 query object"]:::folder
@@ -67,8 +67,8 @@ graph LR
     prediction_object --> palisades_analytics_ingest
     palisades_analytics_ingest --> analytics_object
 
-    analytics_object --> palisades_analytics_render
-    palisades_analytics_render --> analytics_object
+    analytics_object --> palisades_analytics_ingest_building
+    palisades_analytics_ingest_building --> analytics_object
 
     classDef folder fill:#999,stroke:#333,stroke-width:2px;
 ```
@@ -155,15 +155,15 @@ palisades \
 palisades \
 	analytics \
 	ingest \
-	[acq=<-1>,buildings=<-1>,dryrun,upload] \
+	[acq_count=<-1>,building_count=<-1>,damage=<0.1>,dryrun,upload] \
 	[-|<object-name>]
  . ingest analytics.
 palisades \
 	analytics \
-	render \
+	ingest_building \
 	[building=<building-id>,~download,dryrun,upload] \
 	[.|<object-name>]
- . render analytics.
+ . ingest building analytics.
 ```
 
 </details>
@@ -187,4 +187,4 @@ palisades \
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.200.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.197.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.219.1`](https://github.com/kamangir/palisades).
