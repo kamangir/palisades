@@ -332,14 +332,18 @@ False positives,
 
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png
 
-🔥
-
 ## 6️⃣ ingesting a few buildings,
-
-🚧
 
 ```bash
 palisades analytics ingest_building \
-  building=<...>,deep,~download \
-  <...>
+  building=039462-378510,deep,~download \
+  palisades-analytics-2025-01-28-09-27-20-itglyy
 ```
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-palisades-analytics-2025-01-28-09-27-20-itglyy.gif
+
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-damage-history.png
+
+
+
+🔥

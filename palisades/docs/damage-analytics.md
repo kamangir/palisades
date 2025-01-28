@@ -332,14 +332,18 @@ False positives,
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/false-positive.png?raw=true)
 
-🔥
-
 ## 6️⃣ ingesting a few buildings,
-
-🚧
 
 ```bash
 palisades analytics ingest_building \
-  building=<...>,deep,~download \
-  <...>
+  building=039462-378510,deep,~download \
+  palisades-analytics-2025-01-28-09-27-20-itglyy
 ```
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-palisades-analytics-2025-01-28-09-27-20-itglyy.gif?raw=true)
+
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/thumbnail-039462-378510-damage-history.png?raw=true)
+
+
+
+🔥
