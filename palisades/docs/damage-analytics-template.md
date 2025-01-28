@@ -316,6 +316,8 @@ analytics:
     7: 90
 ```
 
+assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/QGIS.png
+
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/LA.png
 
 assets:::palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/Altadena.png
