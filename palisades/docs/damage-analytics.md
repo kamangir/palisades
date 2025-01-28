@@ -6,7 +6,7 @@
 - [round four](./damage-analytics-round-four.md)
 
 
-## 1️⃣ adding the 🎯 target: LA,
+## 1️⃣ 🎯 adding the target: LA,
 
 ```yaml
 LA:
