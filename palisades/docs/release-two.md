@@ -13,3 +13,6 @@ Analytics of 10,133 damaged buildings:
 ---
 
 total: 2 files, 9.50 MB.
+
+💰 cost: $350.
+

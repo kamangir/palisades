@@ -13,3 +13,5 @@ object:::blue-geo-target-list-v1
 ---
 
 total: 2 files, 9.50 MB.
+
+💰 cost: $350.
