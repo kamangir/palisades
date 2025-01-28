@@ -44,6 +44,12 @@ parser.add_argument(
     help="0..1",
 )
 parser.add_argument(
+    "--do_deep",
+    type=int,
+    default=0,
+    help="0 | 1",
+)
+parser.add_argument(
     "--verbose",
     type=int,
     default=0,
@@ -64,6 +70,9 @@ elif args.task == "ingest_building":
     success = ingest_building(
         object_name=args.object_name,
         building_id=args.building_id,
+        acq_count=args.acq_count,
+        building_count=args.building_count,
+        do_deep=args.do_deep == 1,
         verbose=args.verbose == 1,
     )
 else:

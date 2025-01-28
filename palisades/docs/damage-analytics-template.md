@@ -2,79 +2,187 @@
 
 - [round one](./damage-analytics-round-one.md)
 - [round two](./damage-analytics-round-two.md)
-- [round two](./damage-analytics-round-three.md)
+- [round three](./damage-analytics-round-three.md)
+- [round four](./damage-analytics-round-four.md)
 
-## 1️⃣ ingesting from the target,
+
+## 1️⃣ adding the 🎯 target: LA,
+
+```yaml
+LA:
+  catalog: maxar_open_data
+  collection: collection
+  params:
+    height: 0.5
+    width: 1
+  query_args:
+    count: 100
+    collection_id: WildFires-LosAngeles-Jan-2025
+    lat: 34.0549
+    lon: -118.2426
+    radius: 1
+    start_date: 2025-01-01
+    end_date: 2025-02-01
+  urls:
+    wikipedia: https://en.wikipedia.org/wiki/January_2025_Southern_California_wildfires, January 2025 Southern California wildfires
+    calfire: https://www.fire.ca.gov/incidents/2025/1/7/palisades-fire
+    "3d map": https://calfire-forestry.maps.arcgis.com/home/webscene/viewer.html?webscene=0a7381c8b46b4e26a057383424f32c06
+  versions:
+    test:
+      query_args:
+        count: 2
+```
+
+## 2️⃣ reviewing the target,
+
+```bash
+palisades ingest - target=LA
+```
+
+<details>
+<summary>🧊 100 datacubes</summary>
+
+```yaml
+datacube_id:
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103032-103001010B698000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100221-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100223-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100230-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100231-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100232-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100233-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100320-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100322-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102001-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102003-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102010-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102011-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102012-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102013-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102021-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102023-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102030-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102031-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102032-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102033-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102100-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102102-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102120-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102122-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102201-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102203-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102210-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102211-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102221-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102230-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102231-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102232-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102233-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102300-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102302-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102320-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102322-103001010B9A1B00
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100223-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100230-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100231-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100232-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100233-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100320-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100322-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100323-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311100332-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102001-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102003-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102010-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102011-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102012-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102013-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102021-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102023-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102030-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102031-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102032-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102033-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102100-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102101-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102102-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102103-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102110-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102112-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102120-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102121-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102122-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102123-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102130-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102201-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102203-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102210-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102211-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102221-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102230-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102231-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102300-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102301-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102302-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102303-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102320-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102321-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102322-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102323-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311120101-103001010C12B000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103030-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103031-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103032-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103033-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103120-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103122-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103210-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103211-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103300-103001010C360000
+- datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311103030-103001010C487900
+kind: distributed
+module_name: blue_geo.catalog.maxar_open_data.collection
+source: catalog_query
+```
+
+</details>
+
+## 3️⃣ ingesting from the target,
 
 ```bash
 @batch eval - \
   palisades ingest - \
-  target=Altadena \
+  target=LA \
   scope=rgb \
   predict \
   profile=FULL,upload - - - \
   to=aws_batch
 ```
 
-also for `Palisades-Maxar`.
+🎰
 
-## 2️⃣  ingesting analytics,
+## 4️⃣ ingesting analytics,
+
+🚧
 
 ```bash
 palisades analytics ingest upload
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/damage-history.png?raw=true)
+:::palisades-analytics-2025-01-27-20-55-12-6qykkv
 
+🔥
 
-```bash
-@download - \
-  palisades-analytics-2025-01-27-15-10-29-dkqvtj \
-  open,QGIS
-```
+## 5️⃣ ingesting one building,
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-3.png?raw=true)
-
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-2.png?raw=true)
-
-
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS.png?raw=true)
-
-```yaml
-analytics:
-  building_count: 3836
-  datetime:
-  - '2025-01-01T18:29:58Z'
-  - '2025-01-13T19:06:55Z'
-  - '2025-01-14T18:30:37Z'
-  - '2025-01-14T18:30:58Z'
-  - '2025-01-14T18:36:40Z'
-  - '2025-01-14T18:37:03Z'
-  - '2025-01-15T18:52:23Z'
-  - '2025-01-15T18:52:40Z'
-  - '2025-01-16T18:58:02Z'
-  - '2025-01-19T18:47:58Z'
-  - '2025-01-19T18:49:13Z'
-  - '2025-01-19T18:49:37Z'
-...
-  observation_count:
-    1: 589
-    2: 787
-    3: 1722
-    4: 320
-    5: 418
-
-```
-
-## 3️⃣ ingesting one building,
+🚧
 
 ```bash
 palisades analytics ingest_building \
-  building=035501-377213,~download \
-  palisades-analytics-2025-01-26-17-13-55-jl0par
+  building=<...>,deep,~download \
+  <...>
 ```
-
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
-
-
-object:::palisades-analytics-2025-01-27-15-10-29-dkqvtj
