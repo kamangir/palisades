@@ -297,7 +297,7 @@ source: catalog_query
 palisades analytics ingest upload
 ```
 
-:::palisades-analytics-2025-01-28-09-27-20-itglyy
+[palisades-analytics-2025-01-28-09-27-20-itglyy](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-28-09-27-20-itglyy.tar.gz)
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-28-09-27-20-itglyy/damage-history.png?raw=true)
 
