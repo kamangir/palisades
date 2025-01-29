@@ -61,7 +61,7 @@ palisades ingest upload \
 datacube.label
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/QGIS-datacube-label.png?raw=true)
+assets:::palisades/QGIS-datacube-label.png
 
 ## 4️⃣ creating a single-datacube dataset,
 
@@ -81,7 +81,7 @@ palisades label \
   palisades-dataset-v1
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-dataset.png?raw=true)
+assets:::palisades/palisades-dataset.png
 
 ```yaml
 rasterize:
@@ -107,7 +107,7 @@ roofai dataset review download \
   --subset train
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00.png?raw=true)
+assets:::palisades/datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00.png
 
 ```yaml
 datacube_id:
@@ -130,9 +130,9 @@ object:::palisades-dataset-v1-ingest-2025-01-19-v48x7l
 
 | | |
 |-|-|
-| ![image](https://github.com/kamangir/assets/blob/main/palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-tew1po/data.png?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-tew1po/label.png?raw=true) |
+| assets:::palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-tew1po/data.png | assets:::palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-tew1po/label.png |
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-358cnk/datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-10560-06960.png?raw=true)
+assets:::palisades/roofai_ingest_palisades-dataset-v1_2025-01-19-358cnk/datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-10560-06960.png
 
 ```yaml
 classes:
@@ -153,9 +153,9 @@ dataset: `125 X test + 1,002 X train + 125 X val`.
 
 object:::palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/predict-00000.png?raw=true)
+assets:::palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/predict-00000.png
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/train-summary.png?raw=true)
+assets:::palisades/palisades-dataset-v1-ingest-2025-01-20-520ze1-model-2025-01-20-s5xtkp/train-summary.png
 
 ```bash
 $PALISADES_DEFAULT_FIRE_MODEL
@@ -208,14 +208,14 @@ object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-03131
 
 | | |
 |-|-|
-| ![image](https://github.com/kamangir/assets/blob/main/palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640.gif?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640-2.gif?raw=true) |
+| assets:::palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640.gif | assets:::palisades/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-20-x54yb0/640-2.gif |
 
 ```yaml
 predict:
   elapsed_time: 150.75683450698853
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/prediction.png?raw=true)
+assets:::palisades/prediction.png
 
 object:::palisades-round-one-2025-01-21-le9rww
 

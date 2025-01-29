@@ -24,7 +24,7 @@ also for `Palisades-Maxar`.
 palisades analytics ingest upload
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/damage-history.png?raw=true)
+assets:::palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/damage-history.png
 
 
 ```bash
@@ -33,12 +33,12 @@ palisades analytics ingest upload
   open,QGIS
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-3.png?raw=true)
+assets:::palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-3.png
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-2.png?raw=true)
+assets:::palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS-2.png
 
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS.png?raw=true)
+assets:::palisades/palisades-analytics-2025-01-27-15-10-29-dkqvtj/QGIS.png
 
 ```yaml
 analytics:
@@ -74,7 +74,7 @@ palisades analytics ingest_building \
   palisades-analytics-2025-01-26-17-13-55-jl0par
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+assets:::palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif
 
 
 object:::palisades-analytics-2025-01-27-15-10-29-dkqvtj

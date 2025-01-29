@@ -44,8 +44,8 @@ palisades ingest - \
 palisades.load
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-1.png?raw=true)
+assets:::palisades/analytics-1.png
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-2.png?raw=true)
+assets:::palisades/analytics-2.png
 
 object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-103001010C7D2D00-2025-01-24-3zydh4

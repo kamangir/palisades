@@ -60,4 +60,4 @@ source: catalog_query
 @open QGIS .
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/analytics-3.png?raw=true)
+assets:::palisades/analytics-3.png
