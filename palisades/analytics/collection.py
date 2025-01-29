@@ -93,7 +93,7 @@ def collect_analytics(
         "observation_count": "int",
     }
     for prediction_datetime in metadata["datetime"]:
-        df_columns[prediction_datetime] = "str"
+        df_columns[prediction_datetime] = "float"
         df_columns[f"{prediction_datetime}-thumbnail"] = "str"
         df_columns[f"{prediction_datetime}-object_name"] = "str"
     logger.info(
