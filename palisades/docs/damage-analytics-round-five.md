@@ -7,7 +7,8 @@ continues [damage analytics](./building-analysis.md).
 🔥
 
 ```bash
-palisades analytics ingest upload
+palisades analytics ingest \
+    acq_count=3,building_count=10
 ```
 
 🔥

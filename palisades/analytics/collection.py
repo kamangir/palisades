@@ -151,7 +151,7 @@ def collect_analytics(
     df["damage"] = df[metadata["datetime"]].mean(axis=1, skipna=True)
 
     df["damage_std"] = df[metadata["datetime"]].std(axis=1, skipna=True)
-    df["damage_std"].fillna(0, inplace=True)
+    df["damage_std"] = df["damage_std"].fillna(0)
 
     metadata["observation_count"] = {
         int(key): int(value)
