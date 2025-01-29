@@ -29,12 +29,13 @@ def collect_analytics(
         "{}.collect_analytics: damage > {:.1f}: {}{}{}".format(
             NAME,
             damage_threshold,
-            f"{acq_count} acq(s)-" if acq_count != -1 else "",
-            f"{building_count} buildings(s)-" if building_count != -1 else "",
+            f"{acq_count} acq(s) " if acq_count != -1 else "",
+            f"{building_count} buildings(s) " if building_count != -1 else "",
             f" for {building_id}" if building_id else "",
         )
     )
 
+    # get list of prediction objects
     list_of_prediction_objects = mlflow.search(
         create_filter_string("contains=palisades.prediction,profile=FULL")
     )
@@ -42,23 +43,13 @@ def collect_analytics(
         list_of_prediction_objects = list_of_prediction_objects[:acq_count]
     logger.info(f"{len(list_of_prediction_objects)} acq(s) to process.")
 
+    # collect df columns
     metadata: Dict[str, Any] = {
         "objects": {},
         "datetime": [],
+        "prediction_datetime": {},
     }
-    list_of_polygons = []
-    df = pd.DataFrame(
-        columns=[
-            "area",
-            "building_id",
-            "damage",
-            "damage_std",
-            "thumbnail",
-            "thumbnail_object",
-            "observation_count",
-        ]
-    )
-    crs = ""
+    logger.info("collecting the predictions ...")
     for prediction_object_name in tqdm(list_of_prediction_objects):
         logger.info(f"processing {prediction_object_name} ...")
 
@@ -72,18 +63,64 @@ def collect_analytics(
         if not prediction_datetime:
             logger.warning("analysis.datetime not found.")
             continue
-        metadata["datetime"] += [prediction_datetime]
-
-        if prediction_datetime not in df.columns:
-            df[prediction_datetime] = pd.NA
-            df[f"{prediction_datetime}-thumbnail"] = pd.Series(dtype="object")
-            df[f"{prediction_datetime}-object_name"] = pd.Series(dtype="object")
 
         if not objects.download(
             filename="analysis.gpkg",
             object_name=prediction_object_name,
         ):
             continue
+
+        metadata["datetime"] += [prediction_datetime]
+        metadata["prediction_datetime"][prediction_object_name] = prediction_datetime
+        metadata["objects"][prediction_object_name]["success"] = True
+
+    metadata["datetime"] = sorted(list(set(metadata["datetime"])))
+    logger.info(
+        "{} acquisitions(s): {}".format(
+            len(metadata["datetime"]),
+            ", ".join(metadata["datetime"]),
+        )
+    )
+
+    # generate the df
+    df_columns: Dict[str, str] = {
+        "area": "float",
+        "building_id": "str",
+        "damage": "float",
+        "damage_std": "float",
+        "thumbnail": "str",
+        "thumbnail_object": "str",
+        "observation_count": "int",
+    }
+    for prediction_datetime in metadata["datetime"]:
+        df_columns[prediction_datetime] = "str"
+        df_columns[f"{prediction_datetime}-thumbnail"] = "str"
+        df_columns[f"{prediction_datetime}-object_name"] = "str"
+    logger.info(
+        "{} df columns: {}".format(
+            len(df_columns),
+            ", ".join(
+                f"{col_name}: {col_type}" for col_name, col_type in df_columns.items()
+            ),
+        )
+    )
+    df = pd.DataFrame(columns=df_columns.keys())
+    df = df.astype(df_columns)
+
+    # generate the gdf
+    logger.info("ingesting...")
+    list_of_polygons = []
+    crs = ""
+    for prediction_object_name in tqdm(list_of_prediction_objects):
+        if not metadata["objects"][prediction_object_name]["success"]:
+            continue
+
+        prediction_datetime = metadata["prediction_datetime"][prediction_object_name]
+
+        # for additional checks
+        metadata["objects"][prediction_object_name]["success"] = False
+
+        logger.info(f"processing {prediction_object_name} ...")
 
         success, gdf = file.load_geodataframe(
             objects.path_of(
@@ -103,6 +140,7 @@ def collect_analytics(
             logger.warning("building_id not found.")
             continue
 
+        collected_building_count = 0
         for _, row in tqdm(gdf.iterrows()):
             if building_id and row["building_id"] != building_id:
                 continue
@@ -110,8 +148,9 @@ def collect_analytics(
             if row["damage"] < damage_threshold:
                 continue
 
-            if row["building_id"] not in df["building_id"].values:
+            collected_building_count += 1
 
+            if row["building_id"] not in df["building_id"].values:
                 list_of_polygons.append(row["geometry"])
 
                 df.loc[len(df)] = {
@@ -139,10 +178,9 @@ def collect_analytics(
         metadata["objects"][prediction_object_name] = {
             "success": True,
             "building_count": len(gdf),
+            "collected_building_count": collected_building_count,
         }
         logger.info(f"ingested {len(df):,} building(s) so far...")
-
-    metadata["datetime"] = sorted(list(set(metadata["datetime"])))
 
     df["observation_count"] = df[metadata["datetime"]].apply(
         lambda row: row.count(),
@@ -151,7 +189,7 @@ def collect_analytics(
     df["damage"] = df[metadata["datetime"]].mean(axis=1, skipna=True)
 
     df["damage_std"] = df[metadata["datetime"]].std(axis=1, skipna=True)
-    df["damage_std"] = df["damage_std"].fillna(0)
+    df["damage_std"] = df["damage_std"].fillna(0).astype(float)
 
     metadata["observation_count"] = {
         int(key): int(value)

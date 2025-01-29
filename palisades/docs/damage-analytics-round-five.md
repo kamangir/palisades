@@ -8,7 +8,7 @@ continues [damage analytics](./building-analysis.md).
 
 ```bash
 palisades analytics ingest \
-    acq_count=3,building_count=10
+    acq_count=2
 ```
 
 🔥
