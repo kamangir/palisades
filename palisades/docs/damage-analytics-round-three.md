@@ -64,7 +64,7 @@ palisades analytics ingest_building \
   palisades-analytics-2025-01-26-13-27-24-5062kl
 ```
 
-[palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035511-377166-palisades-analytics-2025-01-25-23-23-42-i35w48.gif](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035511-377166-palisades-analytics-2025-01-25-23-23-42-i35w48.gif)
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035511-377166-palisades-analytics-2025-01-25-23-23-42-i35w48.gif?raw=true)
 
-[palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035584-377098-palisades-analytics-2025-01-25-23-23-42-i35w48.gif](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035584-377098-palisades-analytics-2025-01-25-23-23-42-i35w48.gif)
+![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-25-23-23-42-i35w48/thumbnail-035584-377098-palisades-analytics-2025-01-25-23-23-42-i35w48.gif?raw=true)
 
