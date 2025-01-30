@@ -39,7 +39,7 @@ list_of_menu_item = {
         "ICON": "🔍",
         "url": "#",
         "marquee": "",
-        "title": "`2,685.88` sq. km = `1,148,351` buildings processed -> `10,133` with damage found (1-7 observation each) - `108` datacubes completed, more processing ...",
+        "title": "`2,685.88` sq. km = `1,148,351` buildings processed -> `10,133` with damage found.",
     },
     "HurricaneHelene-Oct24": {
         "ICON": "🔍",
