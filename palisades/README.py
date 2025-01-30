@@ -32,7 +32,7 @@ list_of_menu_item = {
     "Los Angeles Wild Fires, Jan 25": {
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/WildFires-LosAngeles-Jan-2025.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-29-18-08-11-wcq26v/QGIS.png?raw=true",
-        "title": "`2,685.88` sq. km = `1,148,351` buildings processed -> `10,133` with damage found.",
+        "title": "`2,685.88` sq. km = `1,148,351` buildings processed -> `10,133` with fire damage found.",
     },
     "Hurricane Helene, Oct 24": {
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/HurricaneHelene-Oct24.md",
