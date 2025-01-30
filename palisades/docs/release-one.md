@@ -1,9 +1,5 @@
 # 🧑🏽‍🚒 `palisades`: Release One
 
-ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
-
----
-
 Prediction on a train datacube: [predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc](https://kamangir-public.s3.ca-central-1.amazonaws.com/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc.tar.gz)
 
 Prediction on an eval datacube: [predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-10400100A0B73800-2025-01-21-jeko6i](https://kamangir-public.s3.ca-central-1.amazonaws.com/predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-10400100A0B73800-2025-01-21-jeko6i.tar.gz)
@@ -27,3 +23,8 @@ Prediction result template: [predict-datacube-maxar_open_data-WildFires-LosAngel
 ---
 
 total: 10 files, 821 MB.
+
+---
+
+ℹ️ details: [step-by-step](./step-by-step.md)
+

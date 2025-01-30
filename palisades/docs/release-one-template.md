@@ -1,9 +1,5 @@
 # 🧑🏽‍🚒 `palisades`: Release One
 
-ℹ️ for details about these objects refer to [step-by-step](./step-by-step.md).
-
----
-
 Prediction on a train datacube: object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102213-103001010B9A1B00-2025-01-21-lhnxrc
 
 Prediction on an eval datacube: object:::predict-datacube-maxar_open_data-WildFires-LosAngeles-Jan-2025-11-031311102212-10400100A0B73800-2025-01-21-jeko6i
@@ -27,3 +23,7 @@ Prediction result template: object:::predict-datacube-maxar_open_data-WildFires-
 ---
 
 total: 10 files, 821 MB.
+
+---
+
+ℹ️ details: [step-by-step](./step-by-step.md)

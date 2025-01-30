@@ -84,16 +84,17 @@ def build():
         + [
             {"path": f"docs/{doc}.md"}
             for doc in [
-                "step-by-step",
-                "release-one",
                 "building-analysis",
+                "damage-analytics",
                 "damage-analytics-round-one",
                 "damage-analytics-round-two",
                 "damage-analytics-round-three",
                 "damage-analytics-round-four",
                 "damage-analytics-round-five",
-                "damage-analytics",
+                "release-one",
                 "release-two",
+                "release-three",
+                "step-by-step",
             ]
         ]
     )
