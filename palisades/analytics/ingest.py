@@ -26,7 +26,7 @@ def ingest_analytics(
         )
     )
 
-    df, bbox_gdf, gdf, metadata = collect_analytics(
+    df, bbox_gdf, building_gdf, metadata = collect_analytics(
         acq_count=acq_count,
         building_count=building_count,
         damage_threshold=damage_threshold,
@@ -42,7 +42,7 @@ def ingest_analytics(
         return False
 
     for filename, gdf in {
-        "analytics": gdf,
+        "analytics": building_gdf,
         "coverage": bbox_gdf,
     }.items():
         if not file.save_geojson(
@@ -70,6 +70,6 @@ def ingest_analytics(
         "analytics",
         {
             **metadata,
-            "building_count": len(gdf),
+            "building_count": len(building_gdf),
         },
     )
