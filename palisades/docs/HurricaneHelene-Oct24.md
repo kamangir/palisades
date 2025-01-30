@@ -4,4 +4,6 @@
 
 collection: `HurricaneHelene-Oct24`
 
+- [round one](HurricaneHelene-Oct24-round-one.md) 🔥
+
 🔥

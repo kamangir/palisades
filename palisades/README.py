@@ -100,8 +100,9 @@ def build():
                 "release-three",
                 "release-four",
                 #
-                "HurricaneHelene-Oct24",
                 "WildFires-LosAngeles-Jan-2025",
+                "HurricaneHelene-Oct24",
+                "HurricaneHelene-Oct24-round-one",
             ]
         ]
     )
