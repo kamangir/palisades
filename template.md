@@ -88,6 +88,10 @@ graph LR
 
 ---
 
+📜 [Dev Notes and Releases](https://github.com/kamangir/palisades/blob/main/palisades/docs/README.md).
+
+---
+
 ## Acknowledgments
  
 1. The concept and workflow of this tool is heavily affected by [microsoft/building-damage-assessment](https://github.com/microsoft/building-damage-assessment).
