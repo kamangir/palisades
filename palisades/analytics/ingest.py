@@ -68,8 +68,5 @@ def ingest_analytics(
     return post_to_object(
         object_name,
         "analytics",
-        {
-            **metadata,
-            "building_count": len(building_gdf),
-        },
+        metadata,
     )

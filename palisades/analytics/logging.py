@@ -23,7 +23,7 @@ def log_analytics(
         logger.warning(f"{NAME}.log_analytics: empty dataframe, skipped.")
         return True
 
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(15, 5))
     df[metadata["datetime"]].count().plot(
         kind="bar",
         color="gray",
@@ -59,7 +59,7 @@ def log_building_analytics(
     list_of_prediction_datetime: List[str],
     object_name: str,
 ) -> bool:
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(15, 5))
 
     logger.info(f"{len(history)} acquisition(s)")
     for index, (prediction_date_time, damage_value) in enumerate(history.items()):
