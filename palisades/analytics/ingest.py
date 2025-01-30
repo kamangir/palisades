@@ -26,15 +26,13 @@ def ingest_analytics(
         )
     )
 
-    success, df, gdf, metadata = collect_analytics(
+    df, bbox_gdf, building_gdf, metadata = collect_analytics(
         acq_count=acq_count,
         building_count=building_count,
         damage_threshold=damage_threshold,
         log=log,
         verbose=verbose,
     )
-    if not success:
-        return False
 
     if not log_analytics(
         df=df,
@@ -43,15 +41,19 @@ def ingest_analytics(
     ):
         return False
 
-    if not file.save_geojson(
-        objects.path_of(
-            "analytics.geojson",
-            object_name,
-        ),
-        gdf,
-        log=log,
-    ):
-        return False
+    for filename, gdf in {
+        "analytics": building_gdf,
+        "coverage": bbox_gdf,
+    }.items():
+        if not file.save_geojson(
+            objects.path_of(
+                f"{filename}.geojson",
+                object_name,
+            ),
+            gdf,
+            log=log,
+        ):
+            return False
 
     if not file.save_csv(
         objects.path_of(
@@ -68,6 +70,6 @@ def ingest_analytics(
         "analytics",
         {
             **metadata,
-            "building_count": len(gdf),
+            "building_count": len(building_gdf),
         },
     )
