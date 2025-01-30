@@ -17,20 +17,20 @@ palisades predict ingest \
 palisades.load
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-4.png?raw=true)
+assets:::palisades/building-analysis-4.png
 
 | Damaged | Not Damaged |
 |-|-|
-| ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/thumbnail-11-031311102213-103001010B9A1B00-103001010B9A1B00-visual-prediction000289.png?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/thumbnail-11-031311102213-103001010B9A1B00-103001010B9A1B00-visual-prediction000339.png?raw=true) |
+| assets:::palisades/building-analysis-2025-01-23-mdtggz/thumbnail-11-031311102213-103001010B9A1B00-103001010B9A1B00-visual-prediction000289.png | assets:::palisades/building-analysis-2025-01-23-mdtggz/thumbnail-11-031311102213-103001010B9A1B00-103001010B9A1B00-visual-prediction000339.png |
 
 
 | | |
 |-|-|
-| ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/area-damage-histogram.png?raw=true) | ![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-2025-01-23-mdtggz/area-damage-scatter.png?raw=true) |
+| assets:::palisades/building-analysis-2025-01-23-mdtggz/area-damage-histogram.png | assets:::palisades/building-analysis-2025-01-23-mdtggz/area-damage-scatter.png |
 
 
-[building-analysis-2025-01-23-mdtggz](https://kamangir-public.s3.ca-central-1.amazonaws.com/building-analysis-2025-01-23-mdtggz.tar.gz)
+object:::building-analysis-2025-01-23-mdtggz
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/building-analysis-3.png?raw=true)
+assets:::palisades/building-analysis-3.png
 
 ✅
