@@ -27,7 +27,7 @@ list_of_menu_item = {
     "Analytics": {
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true",
-        "title": "",
+        "title": "per-building multi-observation damage analytics.",
     },
     "Los Angeles Wild Fires, Jan 25": {
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/WildFires-LosAngeles-Jan-2025.md",
