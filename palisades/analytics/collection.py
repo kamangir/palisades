@@ -111,6 +111,7 @@ def collect_analytics(
     logger.info("ingesting...")
     list_of_polygons = []
     crs = ""
+    total_building_count: int = 0
     for prediction_object_name in tqdm(list_of_prediction_objects):
         if not metadata["objects"][prediction_object_name]["success"]:
             continue
@@ -135,6 +136,7 @@ def collect_analytics(
             crs = gdf.crs
         if building_count != -1:
             gdf = gdf.head(building_count)
+        total_building_count += len(gdf)
 
         if "building_id" not in gdf.columns:
             logger.warning("building_id not found.")
@@ -222,19 +224,28 @@ def collect_analytics(
     )
     output_gdf.crs = crs
 
-    success_count = len(
+    successful_object_count = len(
         [
             object_metadata
             for object_metadata in metadata["objects"].values()
             if object_metadata["success"]
         ]
     )
+
     logger.info(
-        "{} object(s) -> {} ingested -> {:,} buildings(s)".format(
+        "{} object(s) -> {} ingested {:,} building(s) -> {:,} buildings of interest".format(
             len(metadata["objects"]),
-            success_count,
+            successful_object_count,
+            total_building_count,
             len(output_gdf),
         )
+    )
+
+    metadata.update(
+        {
+            "successful_object_count": successful_object_count,
+            "total_building_count": total_building_count,
+        }
     )
 
     return True, df, output_gdf, metadata
