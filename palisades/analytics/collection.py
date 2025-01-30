@@ -4,6 +4,7 @@ from tqdm import tqdm
 import geopandas as gpd
 from collections import Counter
 import numpy as np
+from shapely.geometry import box
 
 from blueness import module
 from blue_objects import mlflow, objects, file
@@ -24,7 +25,7 @@ def collect_analytics(
     log: bool = True,
     verbose: bool = False,
     building_id: str = "",
-) -> Tuple[bool, pd.DataFrame, gpd.GeoDataFrame, Dict]:
+) -> Tuple[pd.DataFrame, gpd.GeoDataFrame, gpd.GeoDataFrame, Dict]:
     logger.info(
         "{}.collect_analytics: damage > {:.1f}: {}{}{}".format(
             NAME,
@@ -110,6 +111,7 @@ def collect_analytics(
     # generate the gdf
     logger.info("ingesting...")
     list_of_polygons = []
+    list_of_bboxes = []
     crs = ""
     total_building_count: int = 0
     for prediction_object_name in tqdm(list_of_prediction_objects):
@@ -137,6 +139,10 @@ def collect_analytics(
         if building_count != -1:
             gdf = gdf.head(building_count)
         total_building_count += len(gdf)
+
+        if not gdf.geometry.is_empty.any():
+            minx, miny, maxx, maxy = gdf.total_bounds
+            list_of_bboxes.append(box(minx, miny, maxx, maxy))
 
         if "building_id" not in gdf.columns:
             logger.warning("building_id not found.")
@@ -210,7 +216,7 @@ def collect_analytics(
         )
     )
 
-    output_gdf = gpd.GeoDataFrame(
+    building_gdf = gpd.GeoDataFrame(
         data={
             "building_id": df["building_id"].values,
             "geometry": list_of_polygons,
@@ -222,7 +228,7 @@ def collect_analytics(
             "observation_count": df["observation_count"].values,
         },
     )
-    output_gdf.crs = crs
+    building_gdf.crs = crs
 
     successful_object_count = len(
         [
@@ -237,7 +243,7 @@ def collect_analytics(
             len(metadata["objects"]),
             successful_object_count,
             total_building_count,
-            len(output_gdf),
+            len(building_gdf),
         )
     )
 
@@ -248,4 +254,6 @@ def collect_analytics(
         }
     )
 
-    return True, df, output_gdf, metadata
+    bbox_gdf = gpd.GeoDataFrame(geometry=list_of_bboxes, crs=crs)
+
+    return df, bbox_gdf, building_gdf, metadata

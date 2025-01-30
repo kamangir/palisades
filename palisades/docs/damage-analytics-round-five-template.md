@@ -1,6 +1,9 @@
 # Damage Analytics - Round Five
 
-continues [damage analytics](./building-analysis.md).
+- [round one](./damage-analytics-round-one.md)
+- [round two](./damage-analytics-round-two.md)
+- [round three](./damage-analytics-round-three.md)
+- [round four](./damage-analytics-round-four.md)
 
 ## 1️⃣ generating coverage map,
 

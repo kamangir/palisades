@@ -46,7 +46,7 @@ def ingest_building(
         return success
 
     if do_deep:
-        success, df, _, metadata = collect_analytics(
+        df, _, _, metadata = collect_analytics(
             acq_count=acq_count,
             building_count=building_count,
             damage_threshold=-1,
@@ -54,8 +54,6 @@ def ingest_building(
             log=log,
             verbose=verbose,
         )
-        if not success:
-            return False
 
         list_of_prediction_datetime = metadata["datetime"]
     else:
