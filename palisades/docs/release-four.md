@@ -28,6 +28,8 @@ palisades analytics ingest upload .
 
 coverage: [coverage.geojson](https://github.com/kamangir/assets/blob/main/palisades-release-four-2025-01-30-jqnc4l/coverage.geojson)
 
+![image](https://github.com/kamangir/assets/blob/main/palisades-release-four-2025-01-30-jqnc4l/QGIS.png?raw=true)
+
 ```yaml
 building_counts:
   all_observed: 1501023

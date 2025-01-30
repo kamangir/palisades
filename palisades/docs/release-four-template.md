@@ -29,6 +29,8 @@ object:::get:::object_name
 
 coverage: assets:::get:::object_name/coverage.geojson
 
+assets:::get:::object_name/QGIS.png
+
 yaml:::get:::object_name:::analytics.summary
 
 assets:::get:::object_name/damage-history.png
