@@ -199,23 +199,6 @@ def collect_analytics(
     df["damage_std"] = df[metadata["datetime"]].std(axis=1, skipna=True)
     df["damage_std"] = df["damage_std"].fillna(0).astype(float)
 
-    metadata["observation_count"] = {
-        int(key): int(value)
-        for key, value in Counter(df["observation_count"].values).items()
-    }
-    logger.info(
-        "observation counts: {}".format(
-            ", ".join(
-                sorted(
-                    [
-                        f"{rounds}X: {count}"
-                        for rounds, count in metadata["observation_count"].items()
-                    ]
-                )
-            )
-        )
-    )
-
     building_gdf = gpd.GeoDataFrame(
         data={
             "building_id": df["building_id"].values,
@@ -247,13 +230,29 @@ def collect_analytics(
         )
     )
 
-    metadata.update(
-        {
-            "successful_object_count": successful_object_count,
-            "total_building_count": total_building_count,
-        }
-    )
-
     bbox_gdf = gpd.GeoDataFrame(geometry=list_of_bboxes, crs=crs)
+
+    observation_count = {
+        int(key): int(value)
+        for key, value in Counter(df["observation_count"].values).items()
+    }
+    logger.info(
+        "observation counts: {}".format(
+            ", ".join(
+                sorted(
+                    [
+                        f"{rounds}X: {count}"
+                        for rounds, count in observation_count.items()
+                    ]
+                )
+            )
+        )
+    )
+    metadata["summary"] = {
+        "damaged_building_count": len(building_gdf),
+        "observation_count": observation_count,
+        "total_building_count": total_building_count,
+        "datacube_count": successful_object_count,
+    }
 
     return df, bbox_gdf, building_gdf, metadata

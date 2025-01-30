@@ -1,22 +1,39 @@
 # release three
 
 ```bash
-palisades analytics ingest upload
+@select palisades-release-three-$(@@timestamp)
+
+palisades analytics ingest upload .
+
+@open QGIS .
+code metadata.yaml
+
+@assets publish push .
+@publish tar .
 ```
 
-object:::TBA
+set:::object_name palisades-release-three-2025-01-29-k3drbd
 
-coverage: 🔥
+object:::get:::object_name
 
-preview: 🔥
+coverage: assets:::get:::object_name/coverage.geojson
 
 ```yaml
-TBA
+summary:
+damaged_building_count: 10133
+datacube_count: 108
+observation_count:
+    1: 1864
+    2: 5799
+    3: 1722
+    4: 294
+    5: 339
+    6: 25
+    7: 90
+total_building_count: 1148351
 ```
 
-assets:::palisades/TBA/damage-history.png
-
-assets:::palisades/TBA/QGIS.png
+assets:::get:::object_name/damage-history.png
 
 🎯 Target List: object:::blue-geo-target-list-v1
 
