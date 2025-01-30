@@ -112,6 +112,7 @@ def collect_analytics(
     logger.info("ingesting...")
     list_of_polygons = []
     list_of_bboxes = []
+    List_of_bbox_area: List[float] = []
     crs = ""
     total_building_count: int = 0
     for prediction_object_name in tqdm(list_of_prediction_objects):
@@ -143,6 +144,10 @@ def collect_analytics(
         if not gdf.geometry.is_empty.any():
             minx, miny, maxx, maxy = gdf.total_bounds
             list_of_bboxes.append(box(minx, miny, maxx, maxy))
+
+            bbox_area = (maxx - minx) * (maxy - miny) / 1000 / 1000
+            logger.info("+= {:,.1f} sq. km".format(bbox_area))
+            List_of_bbox_area += [float(bbox_area)]
 
         if "building_id" not in gdf.columns:
             logger.warning("building_id not found.")
@@ -248,11 +253,16 @@ def collect_analytics(
             )
         )
     )
+
+    total_bbox_area = sum(List_of_bbox_area)
+    logger.info("timeseries area: {:,.1f} sq. km".format(total_bbox_area))
+
     metadata["summary"] = {
         "damaged_building_count": len(building_gdf),
         "observation_count": observation_count,
         "total_building_count": total_building_count,
         "datacube_count": successful_object_count,
+        "timeseries_sq_km": round(total_bbox_area, 2),
     }
 
     return df, bbox_gdf, building_gdf, metadata
