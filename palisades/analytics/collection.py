@@ -259,11 +259,11 @@ def collect_analytics(
 
     metadata["summary"] = {
         "building_counts": {
-            "all": total_building_count,
-            "damaged": len(building_gdf),
+            "all_observed": total_building_count,
+            "damaged_unique": len(building_gdf),
         },
+        "damaged_building_observation_count": observation_count,
         "datacube_count": successful_object_count,
-        "observation_count": observation_count,
         "sq_km_processed": round(total_bbox_area, 2),
     }
 
