@@ -1,4 +1,4 @@
-# release four 🎰
+# release four
 
 ```bash
 @batch eval - \
