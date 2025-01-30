@@ -35,6 +35,18 @@ list_of_menu_item = {
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true",
         "title": "",
     },
+    "WildFires-LosAngeles-Jan-2025": {
+        "ICON": "🔍",
+        "url": "#",
+        "marquee": "",
+        "title": "2,685.88 sq, km = 1,148,351 buildings processed, 10,133 with damage found (1-7 observation each) - 108 datacubes, more processing.",
+    },
+    "HurricaneHelene-Oct24": {
+        "ICON": "🔍",
+        "url": "#",
+        "marquee": "https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true",
+        "title": "training the models 🔥",
+    },
     "template": {
         "ICON": ICON,
         "url": "#",
@@ -97,6 +109,9 @@ def build():
                 "release-two",
                 "release-three",
                 "release-four",
+                #
+                "HurricaneHelene-Oct24",
+                "WildFires-LosAngeles-Jan-2025",
             ]
         ]
     )

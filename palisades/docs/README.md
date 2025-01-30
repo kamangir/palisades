@@ -8,9 +8,3 @@
     - [round three](damage-analytics-round-three.md)
     - [round four](damage-analytics-round-four.md)
     - [round five](damage-analytics-round-five.md)
-
-# Releases
-- [one](release-one.md)
-- [two](release-two.md)
-- [three](release-three.md)
-- [four](release-four.md)

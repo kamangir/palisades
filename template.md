@@ -88,7 +88,7 @@ graph LR
 
 ---
 
-📜 [Dev Notes and Releases](https://github.com/kamangir/palisades/blob/main/palisades/docs/README.md)
+📜 [Dev Notes](https://github.com/kamangir/palisades/blob/main/palisades/docs/README.md)
 
 ---
 
