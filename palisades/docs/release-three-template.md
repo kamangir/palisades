@@ -18,19 +18,7 @@ object:::get:::object_name
 
 coverage: assets:::get:::object_name/coverage.geojson
 
-```yaml
-damaged_building_count: 10133
-datacube_count: 108
-observation_count:
-    1: 1864
-    2: 5799
-    3: 1722
-    4: 294
-    5: 339
-    6: 25
-    7: 90
-total_building_count: 1148351
-```
+yaml:::get:::object_name:::analytics.summary
 
 assets:::get:::object_name/damage-history.png
 

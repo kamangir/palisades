@@ -21,14 +21,15 @@ coverage: [coverage.geojson](https://github.com/kamangir/assets/blob/main/palisa
 damaged_building_count: 10133
 datacube_count: 108
 observation_count:
-    1: 1864
-    2: 5799
-    3: 1722
-    4: 294
-    5: 339
-    6: 25
-    7: 90
+  1: 1864
+  2: 5799
+  3: 1722
+  4: 294
+  5: 339
+  6: 25
+  7: 90
 total_building_count: 1148351
+
 ```
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades-release-three-2025-01-29-k3drbd/damage-history.png?raw=true)
