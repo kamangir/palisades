@@ -74,7 +74,7 @@ palisades analytics ingest_building \
   palisades-analytics-2025-01-26-17-13-55-jl0par
 ```
 
-![image](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true)
+[palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif](https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif)
 
 
 [palisades-analytics-2025-01-27-15-10-29-dkqvtj](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-analytics-2025-01-27-15-10-29-dkqvtj.tar.gz)

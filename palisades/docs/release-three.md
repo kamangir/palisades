@@ -15,7 +15,7 @@ code metadata.yaml
 
 [palisades-release-three-2025-01-29-k3drbd](https://kamangir-public.s3.ca-central-1.amazonaws.com/palisades-release-three-2025-01-29-k3drbd.tar.gz)
 
-coverage: ![image](https://github.com/kamangir/assets/blob/main/palisades-release-three-2025-01-29-k3drbd/coverage.geojson?raw=true)
+coverage: [palisades-release-three-2025-01-29-k3drbd/coverage.geojson](https://github.com/kamangir/assets/blob/main/palisades-release-three-2025-01-29-k3drbd/coverage.geojson)
 
 ```yaml
 summary:
