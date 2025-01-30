@@ -1,5 +1,17 @@
 # release four
 
+🚧
+
+```bash
+@batch eval - \
+  palisades ingest - \
+  target=LA-250 \
+  scope=rgb \
+  predict \
+  profile=FULL,upload - - - \
+  to=aws_batch
+```
+
 🔥
 
 ```bash
@@ -8,13 +20,12 @@
 palisades analytics ingest upload .
 
 @open QGIS .
-code metadata.yaml
 
 @assets publish push .
 @publish tar .
 ```
 
-set:::object_name TBA
+set:::object_name palisades-release-four-2025-01-30-1mgq3d
 
 object:::get:::object_name
 

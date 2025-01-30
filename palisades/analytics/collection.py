@@ -255,7 +255,7 @@ def collect_analytics(
     )
 
     total_bbox_area = sum(List_of_bbox_area)
-    logger.info("timeseries area: {:,.1f} sq. km".format(total_bbox_area))
+    logger.info("area processed: {:,.1f} sq. km".format(total_bbox_area))
 
     metadata["summary"] = {
         "building_counts": {
