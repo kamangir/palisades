@@ -91,10 +91,12 @@ def build():
                 "damage-analytics-round-three",
                 "damage-analytics-round-four",
                 "damage-analytics-round-five",
+                "step-by-step",
+                #
                 "release-one",
                 "release-two",
                 "release-three",
-                "step-by-step",
+                "release-four",
             ]
         ]
     )
