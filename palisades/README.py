@@ -35,17 +35,17 @@ list_of_menu_item = {
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-26-17-13-55-jl0par/thumbnail-035521-377202-palisades-analytics-2025-01-26-17-13-55-jl0par.gif?raw=true",
         "title": "",
     },
-    "WildFires-LosAngeles-Jan-2025": {
-        "ICON": "🔍 🎰",
+    "Los Angeles Wild Fires, Jan 25": {
+        "ICON": "🔍",
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/WildFires-LosAngeles-Jan-2025.md",
         "marquee": "https://github.com/kamangir/assets/blob/main/palisades/palisades-analytics-2025-01-29-18-08-11-wcq26v/QGIS.png?raw=true",
         "title": "`2,685.88` sq. km = `1,148,351` buildings processed -> `10,133` with damage found.",
     },
-    "HurricaneHelene-Oct24": {
-        "ICON": "🔍 🔥",
+    "Hurricane Helene, Oct 24": {
+        "ICON": "🔍",
         "url": "https://github.com/kamangir/palisades/blob/main/palisades/docs/HurricaneHelene-Oct24.md",
         "marquee": "https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true",
-        "title": "training the models 🔥",
+        "title": "training the models...",
     },
     "template": {
         "ICON": ICON,

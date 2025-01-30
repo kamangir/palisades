@@ -1,4 +1,6 @@
-#  WildFires-LosAngeles-Jan-2025 🎰
+#  Los Angeles Wild Fires, Jan 25
+
+collection: `WildFires-LosAngeles-Jan-2025`
 
 releases,
 
