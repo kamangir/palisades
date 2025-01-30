@@ -258,11 +258,13 @@ def collect_analytics(
     logger.info("timeseries area: {:,.1f} sq. km".format(total_bbox_area))
 
     metadata["summary"] = {
-        "damaged_building_count": len(building_gdf),
-        "observation_count": observation_count,
-        "total_building_count": total_building_count,
+        "building_counts": {
+            "all": total_building_count,
+            "damaged": len(building_gdf),
+        },
         "datacube_count": successful_object_count,
-        "timeseries_sq_km": round(total_bbox_area, 2),
+        "observation_count": observation_count,
+        "sq_km_processed": round(total_bbox_area, 2),
     }
 
     return df, bbox_gdf, building_gdf, metadata
