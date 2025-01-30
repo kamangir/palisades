@@ -20,25 +20,21 @@ coverage: assets:::get:::object_name/coverage.geojson
 
 ```yaml
 summary:
-damaged_building_count: 10133
-datacube_count: 108
-observation_count:
-    1: 1864
-    2: 5799
-    3: 1722
-    4: 294
-    5: 339
-    6: 25
-    7: 90
-total_building_count: 1148351
+    damaged_building_count: 10133
+    datacube_count: 108
+    observation_count:
+        1: 1864
+        2: 5799
+        3: 1722
+        4: 294
+        5: 339
+        6: 25
+        7: 90
+    total_building_count: 1148351
 ```
 
 assets:::get:::object_name/damage-history.png
 
-🎯 Target List: object:::blue-geo-target-list-v1
-
 ---
 
-total: 🔥 files, 🔥.
-
-💰 cost: 🔥
+🎯 Target List: object:::blue-geo-target-list-v1
