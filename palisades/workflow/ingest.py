@@ -32,8 +32,8 @@ def generate_ingest_workflow(
     if count != -1:
         list_of_datacube_id = list_of_datacube_id[:count]
 
-    list_of_datacube_id_filtered = []
     if do_tag:
+        list_of_datacube_id_filtered = []
         profile = Options(predict_options).get("profile", "VALIDATION")
 
         logger.info(f"checking previous {profile} runs ...")
@@ -54,7 +54,9 @@ def generate_ingest_workflow(
 
             list_of_datacube_id_filtered += [datacube_id]
 
-    list_of_datacube_id = [datacube_id for datacube_id in list_of_datacube_id_filtered]
+        list_of_datacube_id = [
+            datacube_id for datacube_id in list_of_datacube_id_filtered
+        ]
 
     logger.info(
         "{}.generate_ingest_workflow: {} @ {} {} {} {} {} -{}> {}".format(
