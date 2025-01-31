@@ -10,8 +10,6 @@
   to=aws_batch
 ```
 
-🎰
-
 ```bash
 @select palisades-release-four-$(@@timestamp)
 
