@@ -48,6 +48,8 @@ sq_km_processed: 5858.57
 
 ![image](https://github.com/kamangir/assets/blob/main/palisades-release-four-2025-01-30-uglnpq/damage-history.png?raw=true)
 
+Next: submissions at `Palisades-Maxar-100`, `Altadena-100`.
+
 ---
 
 🎯 Target List: [blue-geo-target-list-v1](https://kamangir-public.s3.ca-central-1.amazonaws.com/blue-geo-target-list-v1.tar.gz)

@@ -33,6 +33,8 @@ yaml:::get:::object_name:::analytics.summary
 
 assets:::get:::object_name/damage-history.png
 
+Next: submissions at `Palisades-Maxar-100`, `Altadena-100`.
+
 ---
 
 🎯 Target List: object:::blue-geo-target-list-v1
