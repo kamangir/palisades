@@ -262,7 +262,7 @@ def collect_analytics(
             "all_observed": total_building_count,
             "damaged_unique": len(building_gdf),
         },
-        "damaged_building_observation_count": observation_count,
+        "damage_time_series_depth": observation_count,
         "datacube_count": successful_object_count,
         "sq_km_processed": round(total_bbox_area, 2),
     }

@@ -1,5 +1,10 @@
+from tqdm import tqdm
+
 from blueness import module
 from blue_options import string
+from blue_objects import mlflow
+from blue_objects.mlflow.tags import create_filter_string
+from blue_options.options import Options
 from blue_objects.metadata import get_from_object
 from blueflow.workflow.generic import Workflow
 
@@ -26,6 +31,32 @@ def generate_ingest_workflow(
     )
     if count != -1:
         list_of_datacube_id = list_of_datacube_id[:count]
+
+    if do_tag:
+        list_of_datacube_id_filtered = []
+        profile = Options(predict_options).get("profile", "VALIDATION")
+
+        logger.info(f"checking previous {profile} runs ...")
+
+        for datacube_id in tqdm(list_of_datacube_id):
+            list_of_candidates = mlflow.search(
+                create_filter_string(
+                    "contains=palisades.prediction,datacube_id={},model={},profile={}".format(
+                        datacube_id,
+                        model_object_name,
+                        profile,
+                    )
+                )
+            )
+            if list_of_candidates:
+                logger.info("✅  {}".format(list_of_candidates[0]))
+                continue
+
+            list_of_datacube_id_filtered += [datacube_id]
+
+        list_of_datacube_id = [
+            datacube_id for datacube_id in list_of_datacube_id_filtered
+        ]
 
     logger.info(
         "{}.generate_ingest_workflow: {} @ {} {} {} {} {} -{}> {}".format(
