@@ -7,7 +7,7 @@ collection: `WildFires-LosAngeles-Jan-2025`
 - [one](release-one.md)
 - [two](release-two.md)
 - [three](release-three.md)
-- [four](release-four.md) ⭐️ 🎰
+- [four](release-four.md) ⭐️
 
 ## Dev Notes
 

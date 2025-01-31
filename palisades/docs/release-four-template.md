@@ -23,7 +23,7 @@ palisades analytics ingest upload .
 @publish tar .
 ```
 
-set:::object_name palisades-release-four-2025-01-30-jqnc4l
+set:::object_name palisades-release-four-2025-01-30-uglnpq
 
 object:::get:::object_name
 
