@@ -29,6 +29,12 @@ function palisades_ingest() {
             $target_options \
             $query_object_name
         [[ $? -ne 0 ]] && return 1
+
+        abcli_clone \
+            - \
+            $PALISADES_QGIS_TEMPLATE_INGEST \
+            $object_name
+
     fi
 
     local do_predict=$(abcli_option_int "$batch_options" predict 0)
