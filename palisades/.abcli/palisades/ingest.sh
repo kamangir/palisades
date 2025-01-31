@@ -31,7 +31,7 @@ function palisades_ingest() {
         [[ $? -ne 0 ]] && return 1
 
         abcli_clone \
-            - \
+            upload \
             $PALISADES_QGIS_TEMPLATE_INGEST \
             $query_object_name
 
