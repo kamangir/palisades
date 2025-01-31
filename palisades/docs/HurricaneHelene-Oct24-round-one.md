@@ -1,3 +1,0 @@
-# Hurricane Helene - round one
-
-🔥
