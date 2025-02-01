@@ -89,7 +89,7 @@ palisades \
 	[~analyze | buffer=<buffer>,count=<count>] \
 	[~submit | dryrun,to=<runner>]
  . ingest <target>.
-   target: Altadena | Altadena-100 | Altadena-test | Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | LA | LA-250 | LA-test | Noto | Noto-250 | Noto-test | Palisades-Maxar | Palisades-Maxar-100 | Palisades-Maxar-test
+   target: Altadena | Altadena-100 | Altadena-test | Borger | Borger-250 | Borger-test | Brown-Mountain-Truck-Trail | Brown-Mountain-Truck-Trail-all | Brown-Mountain-Truck-Trail-test | LA | LA-250 | LA-test | Noto | Noto-250 | Noto-test | Palisades-Maxar | Palisades-Maxar-100 | Palisades-Maxar-test
    scope: all + metadata + raster + rgb + rgbx + <.jp2> + <.tif> + <.tiff>
       all: ALL files.
       metadata (default): any < 1 MB.
@@ -185,4 +185,4 @@ palisades \
 
 [![pylint](https://github.com/kamangir/palisades/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/palisades/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/palisades/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/palisades.svg)](https://pypi.org/project/palisades/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/palisades)](https://pypistats.org/packages/palisades)
 
-built by 🌀 [`blue_options-4.200.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.335.1`](https://github.com/kamangir/palisades).
+built by 🌀 [`blue_options-4.200.1`](https://github.com/kamangir/awesome-bash-cli), based on 🧑🏽‍🚒 [`palisades-4.336.1`](https://github.com/kamangir/palisades).
