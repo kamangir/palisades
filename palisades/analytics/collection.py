@@ -7,9 +7,10 @@ import numpy as np
 from shapely.geometry import box
 
 from blueness import module
-from blue_objects import mlflow, objects, file
+from blue_objects import mlflow, objects
 from blue_objects.mlflow.tags import create_filter_string
 from blue_objects.metadata import get_from_object
+from blue_geo.file.load import load_geodataframe
 
 from palisades import NAME
 from palisades import env
@@ -126,7 +127,7 @@ def collect_analytics(
 
         logger.info(f"processing {prediction_object_name} ...")
 
-        success, gdf = file.load_geodataframe(
+        success, gdf = load_geodataframe(
             objects.path_of(
                 filename="analysis.gpkg",
                 object_name=prediction_object_name,
