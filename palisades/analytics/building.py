@@ -6,6 +6,8 @@ from blueness import module
 from blue_objects import objects, file
 from blue_objects.metadata import get_from_object, post_to_object
 from blue_objects.graphics.gif import generate_animated_gif
+from blue_geo.file.load import load_geodataframe
+from blue_geo.file.save import save_geojson
 
 from palisades import NAME
 from palisades.analytics.logging import log_building_analytics
@@ -38,7 +40,7 @@ def ingest_building(
         "analytics.geojson",
         object_name,
     )
-    success, gdf = file.load_geodataframe(
+    success, gdf = load_geodataframe(
         geojson_filename,
         log=log,
     )
@@ -114,7 +116,7 @@ def ingest_building(
     gdf.loc[gdf["building_id"] == building_id, "thumbnail"] = thumbnail_filename
     gdf.loc[gdf["building_id"] == building_id, "thumbnail_object"] = object_name
 
-    if not file.save_geojson(
+    if not save_geojson(
         geojson_filename,
         gdf,
         log=log,

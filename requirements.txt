@@ -1,26 +1,5 @@
-shapely==2.0.6
-
-blueness
-abcli
-blue-options
-blue_objects
 blue_geo
-blueflow
-blue_plugin
 roofai
-
-boto3
-geojson
-geopandas
-matplotlib
-numpy
-opencv-python
-pymysql
-pyyaml
-pylint
-pytest
-python-dotenv[cli]
-tqdm
 
 fiona
 osmnx

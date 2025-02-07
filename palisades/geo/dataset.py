@@ -5,6 +5,7 @@ from torch.utils.data import Dataset as BaseDataset
 
 from blueness import module
 from blue_objects import file
+from blue_geo.file.load import load_geoimage
 from roofai.dataset.classes import DatasetTarget
 
 from palisades import NAME
@@ -26,7 +27,7 @@ class GeoDataset(BaseDataset):
         self.chip_width = DatasetTarget.TORCH.chip_width
         self.chip_overlap = chip_overlap
 
-        success, self.matrix, _ = file.load_geoimage(
+        success, self.matrix, _ = load_geoimage(
             filename,
             log=True,
         )

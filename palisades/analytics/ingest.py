@@ -1,6 +1,7 @@
 from blueness import module
 from blue_objects import objects, file
 from blue_objects.metadata import post_to_object
+from blue_geo.file.save import save_geojson
 
 from palisades import NAME
 from palisades.analytics.collection import collect_analytics
@@ -45,7 +46,7 @@ def ingest_analytics(
         "analytics": building_gdf,
         "coverage": bbox_gdf,
     }.items():
-        if not file.save_geojson(
+        if not save_geojson(
             objects.path_of(
                 f"{filename}.geojson",
                 object_name,
