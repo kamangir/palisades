@@ -9,6 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Download se_resnext50_32x4d
+        if: false # source not available, downloaded from an object instead.
         run: |
           mkdir -pv /home/runner/.cache/torch/hub/checkpoints/
           curl \
@@ -43,4 +44,3 @@ jobs:
           echo "DATABRICKS_TOKEN: $DATABRICKS_TOKEN"
 
           ./.github/workflows/bashtest.sh palisades
-
